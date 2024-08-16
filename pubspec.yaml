@@ -1,19 +1,33 @@
 name: movie_tracker
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
   sdk: ^3.5.0
 
 dependencies:
+  auto_route: ^9.2.1+1
   flutter:
     sdk: flutter
+
+  get_it: ^7.7.0
+  injectable: ^2.4.4
+  majestica_ds:
+    git:
+      url: https://github.com/Majestica-Dev/design-system.git
+      ref: main
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^4.0.0
+  auto_route_generator: ^9.0.0
+  build_runner: ^2.4.12
+  flutter_gen_runner: ^5.6.0
+  injectable_generator: ^2.6.2
 
 flutter:
+  generate: true
   uses-material-design: true
