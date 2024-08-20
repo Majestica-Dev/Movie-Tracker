@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_tracker/core/env/env.dart';
+import 'package:movie_tracker/env/env.dart';
 
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 
