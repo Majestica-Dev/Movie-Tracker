@@ -1,10 +1,12 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
-import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+
+import 'package:movie_tracker/core/di/locator.dart';
+import 'package:movie_tracker/domain/movie/entities/ai_rec/movie_genre.dart';
+import 'package:movie_tracker/domain/movie/entities/ai_rec/streaming_service.dart';
+import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_mood.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -12,12 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final openAI = OpenAI.instance.build(
-      token: token,
-      baseOption: HttpSetup(receiveTimeout: const Duration(seconds: 5)),
-      enableLog: true,
-    );
-
     // TODO
     return Scaffold(
       body: Column(
@@ -26,7 +22,12 @@ class HomeScreen extends StatelessWidget {
           Center(
             child: PrimaryButton(
               onPressed: () async {
-                TMDBMovieServies().fetchMovie('Harrry');
+                Locator.gptMovieRecImpl.getRecomendedMovieTitle(
+                  mood: WatchMood.excited,
+                  genres: [MovieGenre.documentary, MovieGenre.drama],
+                  streamingServices: [StreamingService.amazonPrime],
+                  movies: [],
+                );
               },
               text: 'Test',
             ),
@@ -37,31 +38,11 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-final token =
-    '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';
 
-class MovieService {
-  final String apiKey = '84d0e788'; // Replace with your API key
 
-  void fetchMovie(query) async {
-    final response = await Dio()
-        .get('http://www.omdbapi.com/?t=$query&apikey=$apiKey&type=movie');
 
-    print(response);
-  }
-}
 
-class TMDBMovieServies {
-  void fetchMovie(title) async {
-    const String apiKey = '22a5a7ca47ed70dfcdbf1bd0a5a049e4';
-    const String baseUrl = 'https://api.themoviedb.org/3';
 
-    final response =
-        await Dio().get('$baseUrl/search/movie?api_key=$apiKey&query=$title');
-
-    print(response);
-  }
-}
 
 
 
