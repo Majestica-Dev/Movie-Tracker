@@ -26,30 +26,7 @@ class HomeScreen extends StatelessWidget {
           Center(
             child: PrimaryButton(
               onPressed: () async {
-                final request = ChatCompleteText(
-                  messages: [
-                    Messages(
-                      role: Role.user,
-                      content: '''
-Task: Recommend a movie title based on the user’s  current mood,  preferred genres and favorite movies,.
-Parameters:
-	•	Current Mood: Need a laugh
-	•	Preferred Genres: [Romance,Comedy ]
-  •	Favorite Movies: []
-Instructions: Return a single movie title that aligns with the user’s favorite movies, current mood, and preferred genres. Provide only the movie title. and it should not be on the list anymore''',
-                    ).toJson(),
-                  ],
-                  maxToken: 200,
-                  model: ChatModelFromValue(model: 'gpt-4o-mini'),
-                );
-
-                final response =
-                    await openAI.onChatCompletion(request: request);
-
-                print(response!.choices.first.message!.content);
-
-                MovieService()
-                    .fetchMovie(response!.choices.first.message!.content);
+                TMDBMovieServies().fetchMovie('Harrry');
               },
               text: 'Test',
             ),
@@ -73,3 +50,42 @@ class MovieService {
     print(response);
   }
 }
+
+class TMDBMovieServies {
+  void fetchMovie(title) async {
+    const String apiKey = '22a5a7ca47ed70dfcdbf1bd0a5a049e4';
+    const String baseUrl = 'https://api.themoviedb.org/3';
+
+    final response =
+        await Dio().get('$baseUrl/search/movie?api_key=$apiKey&query=$title');
+
+    print(response);
+  }
+}
+
+
+
+// final request = ChatCompleteText(
+//                   messages: [
+//                     Messages(
+//                       role: Role.user,
+//                       content: '''
+// Task: Recommend a movie title based on the user’s  current mood,  preferred genres and favorite movies,.
+// Parameters:
+// 	•	Current Mood: ""
+// 	•	Preferred Genres: []
+//   •	Favorite Movies: []
+// Instructions: Return a single movie title that aligns with the user’s favorite movies, current mood, and preferred genres. Provide only the movie title. and it should not be on the list anymore''',
+//                     ).toJson(),
+//                   ],
+//                   maxToken: 200,
+//                   model: ChatModelFromValue(model: 'gpt-4o-mini'),
+//                 );
+
+//                 final response =
+//                     await openAI.onChatCompletion(request: request);
+
+//                 print(response!.choices.first.message!.content);
+
+//                 MovieService()
+//                     .fetchMovie(response!.choices.first.message!.content);
