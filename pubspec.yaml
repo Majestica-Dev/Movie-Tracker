@@ -28,6 +28,8 @@ dependencies:
   path: ^1.9.0
   path_provider: ^2.1.4
   fpdart: ^1.1.0
+  cached_network_image: ^3.4.1
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:
@@ -45,3 +47,11 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+
+  fonts:
+    - family: SF-Pro
+      fonts:
+        - asset: assets/fonts/SF-Pro-Text-Regular.otf
+    - family: New-York
+      fonts:
+        - asset: assets/fonts/NewYorkLarge-Regular.otf

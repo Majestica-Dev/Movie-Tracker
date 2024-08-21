@@ -37,9 +37,15 @@ class $MovieTableTable extends MovieTable
       GeneratedColumn<String>('status', aliasedName, false,
               type: DriftSqlType.string, requiredDuringInsert: true)
           .withConverter<WatchStatus>($MovieTableTable.$converterstatus);
+  static const VerificationMeta _editedAtMeta =
+      const VerificationMeta('editedAt');
+  @override
+  late final GeneratedColumn<DateTime> editedAt = GeneratedColumn<DateTime>(
+      'edited_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, title, description, posterImageUrl, status];
+      [id, title, description, posterImageUrl, status, editedAt];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -74,6 +80,12 @@ class $MovieTableTable extends MovieTable
               data['poster_image_url']!, _posterImageUrlMeta));
     }
     context.handle(_statusMeta, const VerificationResult.success());
+    if (data.containsKey('edited_at')) {
+      context.handle(_editedAtMeta,
+          editedAt.isAcceptableOrUnknown(data['edited_at']!, _editedAtMeta));
+    } else if (isInserting) {
+      context.missing(_editedAtMeta);
+    }
     return context;
   }
 
@@ -94,6 +106,8 @@ class $MovieTableTable extends MovieTable
       status: $MovieTableTable.$converterstatus.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}status'])!),
+      editedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}edited_at'])!,
     );
   }
 
@@ -112,12 +126,14 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
   final String? description;
   final String? posterImageUrl;
   final WatchStatus status;
+  final DateTime editedAt;
   const MovieTableData(
       {required this.id,
       required this.title,
       this.description,
       this.posterImageUrl,
-      required this.status});
+      required this.status,
+      required this.editedAt});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -133,6 +149,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       map['status'] =
           Variable<String>($MovieTableTable.$converterstatus.toSql(status));
     }
+    map['edited_at'] = Variable<DateTime>(editedAt);
     return map;
   }
 
@@ -147,6 +164,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           ? const Value.absent()
           : Value(posterImageUrl),
       status: Value(status),
+      editedAt: Value(editedAt),
     );
   }
 
@@ -160,6 +178,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       posterImageUrl: serializer.fromJson<String?>(json['posterImageUrl']),
       status: $MovieTableTable.$converterstatus
           .fromJson(serializer.fromJson<String>(json['status'])),
+      editedAt: serializer.fromJson<DateTime>(json['editedAt']),
     );
   }
   @override
@@ -172,6 +191,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       'posterImageUrl': serializer.toJson<String?>(posterImageUrl),
       'status': serializer
           .toJson<String>($MovieTableTable.$converterstatus.toJson(status)),
+      'editedAt': serializer.toJson<DateTime>(editedAt),
     };
   }
 
@@ -180,7 +200,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           String? title,
           Value<String?> description = const Value.absent(),
           Value<String?> posterImageUrl = const Value.absent(),
-          WatchStatus? status}) =>
+          WatchStatus? status,
+          DateTime? editedAt}) =>
       MovieTableData(
         id: id ?? this.id,
         title: title ?? this.title,
@@ -188,6 +209,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
         posterImageUrl:
             posterImageUrl.present ? posterImageUrl.value : this.posterImageUrl,
         status: status ?? this.status,
+        editedAt: editedAt ?? this.editedAt,
       );
   MovieTableData copyWithCompanion(MovieTableCompanion data) {
     return MovieTableData(
@@ -199,6 +221,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           ? data.posterImageUrl.value
           : this.posterImageUrl,
       status: data.status.present ? data.status.value : this.status,
+      editedAt: data.editedAt.present ? data.editedAt.value : this.editedAt,
     );
   }
 
@@ -209,14 +232,15 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           ..write('title: $title, ')
           ..write('description: $description, ')
           ..write('posterImageUrl: $posterImageUrl, ')
-          ..write('status: $status')
+          ..write('status: $status, ')
+          ..write('editedAt: $editedAt')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode =>
-      Object.hash(id, title, description, posterImageUrl, status);
+      Object.hash(id, title, description, posterImageUrl, status, editedAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -225,7 +249,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           other.title == this.title &&
           other.description == this.description &&
           other.posterImageUrl == this.posterImageUrl &&
-          other.status == this.status);
+          other.status == this.status &&
+          other.editedAt == this.editedAt);
 }
 
 class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
@@ -234,6 +259,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
   final Value<String?> description;
   final Value<String?> posterImageUrl;
   final Value<WatchStatus> status;
+  final Value<DateTime> editedAt;
   final Value<int> rowid;
   const MovieTableCompanion({
     this.id = const Value.absent(),
@@ -241,6 +267,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     this.description = const Value.absent(),
     this.posterImageUrl = const Value.absent(),
     this.status = const Value.absent(),
+    this.editedAt = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   MovieTableCompanion.insert({
@@ -249,16 +276,19 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     this.description = const Value.absent(),
     this.posterImageUrl = const Value.absent(),
     required WatchStatus status,
+    required DateTime editedAt,
     this.rowid = const Value.absent(),
   })  : id = Value(id),
         title = Value(title),
-        status = Value(status);
+        status = Value(status),
+        editedAt = Value(editedAt);
   static Insertable<MovieTableData> custom({
     Expression<String>? id,
     Expression<String>? title,
     Expression<String>? description,
     Expression<String>? posterImageUrl,
     Expression<String>? status,
+    Expression<DateTime>? editedAt,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -267,6 +297,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       if (description != null) 'description': description,
       if (posterImageUrl != null) 'poster_image_url': posterImageUrl,
       if (status != null) 'status': status,
+      if (editedAt != null) 'edited_at': editedAt,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -277,6 +308,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       Value<String?>? description,
       Value<String?>? posterImageUrl,
       Value<WatchStatus>? status,
+      Value<DateTime>? editedAt,
       Value<int>? rowid}) {
     return MovieTableCompanion(
       id: id ?? this.id,
@@ -284,6 +316,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       description: description ?? this.description,
       posterImageUrl: posterImageUrl ?? this.posterImageUrl,
       status: status ?? this.status,
+      editedAt: editedAt ?? this.editedAt,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -307,6 +340,9 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       map['status'] = Variable<String>(
           $MovieTableTable.$converterstatus.toSql(status.value));
     }
+    if (editedAt.present) {
+      map['edited_at'] = Variable<DateTime>(editedAt.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -321,6 +357,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
           ..write('description: $description, ')
           ..write('posterImageUrl: $posterImageUrl, ')
           ..write('status: $status, ')
+          ..write('editedAt: $editedAt, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -344,6 +381,7 @@ typedef $$MovieTableTableCreateCompanionBuilder = MovieTableCompanion Function({
   Value<String?> description,
   Value<String?> posterImageUrl,
   required WatchStatus status,
+  required DateTime editedAt,
   Value<int> rowid,
 });
 typedef $$MovieTableTableUpdateCompanionBuilder = MovieTableCompanion Function({
@@ -352,6 +390,7 @@ typedef $$MovieTableTableUpdateCompanionBuilder = MovieTableCompanion Function({
   Value<String?> description,
   Value<String?> posterImageUrl,
   Value<WatchStatus> status,
+  Value<DateTime> editedAt,
   Value<int> rowid,
 });
 
@@ -384,6 +423,11 @@ class $$MovieTableTableFilterComposer
           builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
               column,
               joinBuilders: joinBuilders));
+
+  ColumnFilters<DateTime> get editedAt => $state.composableBuilder(
+      column: $state.table.editedAt,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 }
 
 class $$MovieTableTableOrderingComposer
@@ -411,6 +455,11 @@ class $$MovieTableTableOrderingComposer
 
   ColumnOrderings<String> get status => $state.composableBuilder(
       column: $state.table.status,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<DateTime> get editedAt => $state.composableBuilder(
+      column: $state.table.editedAt,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }
@@ -443,6 +492,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             Value<String?> description = const Value.absent(),
             Value<String?> posterImageUrl = const Value.absent(),
             Value<WatchStatus> status = const Value.absent(),
+            Value<DateTime> editedAt = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               MovieTableCompanion(
@@ -451,6 +501,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             description: description,
             posterImageUrl: posterImageUrl,
             status: status,
+            editedAt: editedAt,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -459,6 +510,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             Value<String?> description = const Value.absent(),
             Value<String?> posterImageUrl = const Value.absent(),
             required WatchStatus status,
+            required DateTime editedAt,
             Value<int> rowid = const Value.absent(),
           }) =>
               MovieTableCompanion.insert(
@@ -467,6 +519,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             description: description,
             posterImageUrl: posterImageUrl,
             status: status,
+            editedAt: editedAt,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

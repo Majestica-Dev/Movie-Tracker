@@ -6,6 +6,7 @@ class MovieWatcherState with _$MovieWatcherState {
 
   const factory MovieWatcherState.succeeded({
     required Movies allMovies,
+    required Map<WatchStatus, Movies> moviesMap,
   }) = _Succeeded;
 
   const factory MovieWatcherState.failed({

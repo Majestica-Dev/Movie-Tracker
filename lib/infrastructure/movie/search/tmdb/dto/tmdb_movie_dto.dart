@@ -26,12 +26,13 @@ class TmdbMovieDto {
 
   Movie get toEntity {
     return Movie(
+      editedAt: DateTime.now(),
       id: id.toString(),
       title: title,
       description: overview,
       posterImageUrl: posterPath == null
           ? null
-          : 'https://image.tmdb.org/t/p/w500$posterPath',
+          : 'https://image.tmdb.org/t/p/w342$posterPath',
       status: WatchStatus.toWatch,
     );
   }

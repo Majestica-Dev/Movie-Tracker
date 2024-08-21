@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_tracker/domain/movie/entities/failures/movie_search_failure.dart';
 import 'package:movie_tracker/env/env.dart';
 
 import 'package:movie_tracker/core/typdefs/typdef.dart';
@@ -15,22 +17,21 @@ class TmdbSearchService {
   final String apiKey = Env.tmdbApiKey;
   final String baseUrl = 'https://api.themoviedb.org/3/search/movie?';
 
-  // TODO : Error Handling
-  Future<Movies> searchByTitle(title) async {
-    final response = await Dio().get(
-      '$baseUrl&api_key=$apiKey&query=$title',
-    );
-
+  Future<Either<MovieSearchFailure, Movies>> searchByTitle(title) async {
     try {
+      final response = await dio.get(
+        '$baseUrl&api_key=$apiKey&query=$title',
+      );
+
       final List moviesJson = response.data['results'];
 
       final movies = moviesJson
           .map((json) => TmdbMovieDto.fromJson(json).toEntity)
           .toList();
 
-      return movies;
+      return Right(movies);
     } catch (e) {
-      return [];
+      return Left(MovieSearchUnknownError());
     }
   }
 }

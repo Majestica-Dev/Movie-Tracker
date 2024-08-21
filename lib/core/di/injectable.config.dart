@@ -13,6 +13,8 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../application/movie/saver/movie_saver_bloc.dart' as _i47;
+import '../../application/movie/search/movie_search_bloc.dart' as _i1024;
 import '../../application/movie/watcher/movie_watcher_bloc.dart' as _i756;
 import '../../domain/movie/repositories/i_ai_movie_rec.dart' as _i627;
 import '../../domain/movie/repositories/i_movie_repo.dart' as _i72;
@@ -55,6 +57,10 @@ _i174.GetIt $initGetIt(
       () => _i914.GptMovieRecImpl(openAI: gh<_i1054.OpenAI>()));
   gh.singleton<_i1069.IMovieSearchRepo>(
       () => _i437.MovieSearchRepoImpl(gh<_i71.TmdbSearchService>()));
+  gh.singleton<_i47.MovieSaverBloc>(
+      () => _i47.MovieSaverBloc(gh<_i72.IMovieRepo>()));
+  gh.factory<_i1024.MovieSearchBloc>(
+      () => _i1024.MovieSearchBloc(gh<_i1069.IMovieSearchRepo>()));
   return getIt;
 }
 

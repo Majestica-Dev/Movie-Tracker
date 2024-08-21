@@ -5,6 +5,7 @@ final class Movie {
   final String title;
   final String? description;
   final String? posterImageUrl;
+  final DateTime editedAt;
   final WatchStatus status;
 
   const Movie({
@@ -13,5 +14,6 @@ final class Movie {
     required this.description,
     required this.posterImageUrl,
     required this.status,
+    required this.editedAt,
   });
 }

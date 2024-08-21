@@ -1,37 +1,34 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:majestica_ds/majestica_ds.dart';
 
-import 'package:movie_tracker/core/di/locator.dart';
-import 'package:movie_tracker/domain/movie/entities/ai_rec/movie_genre.dart';
-import 'package:movie_tracker/domain/movie/entities/ai_rec/streaming_service.dart';
-import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_mood.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:movie_tracker/presentation/home/widgets/home_screen_body.dart';
+import 'package:movie_tracker/presentation/home/widgets/home_screen_header.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    // TODO
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    final t = context.mdsTheme;
+
+    return SafeArea(
+      child: Column(
         children: [
-          Center(
-            child: PrimaryButton(
-              onPressed: () async {
-                Locator.gptMovieRecImpl.getRecomendedMovieTitle(
-                  mood: WatchMood.excited,
-                  genres: [MovieGenre.documentary, MovieGenre.drama],
-                  streamingServices: [StreamingService.amazonPrime],
-                  movies: [],
-                );
-              },
-              text: 'Test',
-            ),
-          )
+          SizedBox(height: t.spacing.x6),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
+            child: const HomeScreenHeader(),
+          ),
+          SizedBox(height: t.spacing.x4),
+          const Expanded(child: HomeScreenBody()),
         ],
       ),
     );

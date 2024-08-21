@@ -27,12 +27,12 @@ class AiMovieRecImpl implements IAiMovieRec {
     try {
       return Right(
         Movie(
-          id: 'id',
-          title: '',
-          description: null,
-          posterImageUrl: null,
-          status: WatchStatus.toWatch,
-        ),
+            id: 'id',
+            title: '',
+            description: null,
+            posterImageUrl: null,
+            status: WatchStatus.toWatch,
+            editedAt: DateTime.now()),
       );
     } catch (e) {
       // TODO : sentry
