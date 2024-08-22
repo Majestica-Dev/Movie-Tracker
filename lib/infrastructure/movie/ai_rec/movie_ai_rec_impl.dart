@@ -47,8 +47,10 @@ class MovieAiRecImpl implements IMovieAiRec {
           (l) => Left(AiMovieRecUnknowError()),
           (r) {
             if (r.isEmpty) {
-              Sentry.captureMessage('Gpt rec is not found from api',
-                  level: SentryLevel.error);
+              Sentry.captureMessage(
+                'Gpt rec is not found from api : $movieTitle',
+                level: SentryLevel.error,
+              );
             }
 
             return r.isEmpty ? Left(AiMovieRecUnknowError()) : Right(r.first);
