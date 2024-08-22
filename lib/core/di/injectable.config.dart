@@ -1,0 +1,102 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// InjectableConfigGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint
+// coverage:ignore-file
+
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart' as _i1054;
+import 'package:dio/dio.dart' as _i361;
+import 'package:get_it/get_it.dart' as _i174;
+import 'package:in_app_review/in_app_review.dart' as _i553;
+import 'package:injectable/injectable.dart' as _i526;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
+
+import '../../application/fisrt_visit/first_visit_cubit.dart' as _i808;
+import '../../application/movie/actor/movie_actor_bloc.dart' as _i195;
+import '../../application/movie/ai_rec/bloc/movie_ai_rec_bloc.dart' as _i501;
+import '../../application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart'
+    as _i481;
+import '../../application/movie/saver/movie_saver_bloc.dart' as _i47;
+import '../../application/movie/search/movie_search_bloc.dart' as _i1024;
+import '../../application/movie/watcher/movie_watcher_bloc.dart' as _i756;
+import '../../domain/movie/repositories/i_movie_ai_rec.dart' as _i561;
+import '../../domain/movie/repositories/i_movie_repo.dart' as _i72;
+import '../../domain/movie/repositories/i_movie_search_repo.dart' as _i1069;
+import '../../infrastructure/core/app_injectable_module.dart' as _i756;
+import '../../infrastructure/core/local_database/drift_database.dart' as _i841;
+import '../../infrastructure/core/shared_prefs/raw_manager.dart' as _i541;
+import '../../infrastructure/core/shared_prefs/shared_prefs_manager.dart'
+    as _i352;
+import '../../infrastructure/fisrt_visit/fisrt_visit_pref_manager.dart'
+    as _i657;
+import '../../infrastructure/movie/ai_rec/gpt_movie_rec_impl.dart' as _i914;
+import '../../infrastructure/movie/ai_rec/movie_ai_rec_impl.dart' as _i691;
+import '../../infrastructure/movie/movie_repo_impl.dart' as _i338;
+import '../../infrastructure/movie/search/movie_search_repo_impl.dart' as _i437;
+import '../../infrastructure/movie/search/tmdb/tmdb_search_service.dart'
+    as _i71;
+import '../../presentation/core/router/app_router.dart' as _i300;
+import '../utils/review/review_service.dart' as _i495;
+
+// initializes the registration of main-scope dependencies inside of GetIt
+Future<_i174.GetIt> $initGetIt(
+  _i174.GetIt getIt, {
+  String? environment,
+  _i526.EnvironmentFilter? environmentFilter,
+}) async {
+  final gh = _i526.GetItHelper(
+    getIt,
+    environment,
+    environmentFilter,
+  );
+  final appInjectableModule = _$AppInjectableModule();
+  gh.factory<_i481.MovieAiRecFormCubit>(() => _i481.MovieAiRecFormCubit());
+  await gh.factoryAsync<_i460.SharedPreferences>(
+    () => appInjectableModule.sharedPreferences(),
+    preResolve: true,
+  );
+  gh.singleton<_i553.InAppReview>(() => appInjectableModule.inAppReview);
+  gh.singleton<_i841.AppDriftDatabase>(() => _i841.AppDriftDatabase());
+  gh.singleton<_i300.AppRouter>(() => _i300.AppRouter());
+  gh.lazySingleton<_i361.Dio>(() => appInjectableModule.dio);
+  gh.lazySingleton<_i1054.OpenAI>(() => appInjectableModule.openAI);
+  gh.singleton<_i495.ReviewService>(
+      () => _i495.ReviewService(gh<_i553.InAppReview>()));
+  gh.factory<_i541.SharedPrefsRawManager>(
+      () => _i541.SharedPrefsRawManager(gh<_i460.SharedPreferences>()));
+  gh.singleton<_i71.TmdbSearchService>(
+      () => _i71.TmdbSearchService(dio: gh<_i361.Dio>()));
+  gh.singleton<_i72.IMovieRepo>(
+      () => _i338.MovieRepoImpl(gh<_i841.AppDriftDatabase>()));
+  gh.singleton<_i756.MovieWatcherBloc>(
+      () => _i756.MovieWatcherBloc(gh<_i72.IMovieRepo>()));
+  gh.singleton<_i914.GptMovieRecImpl>(
+      () => _i914.GptMovieRecImpl(openAI: gh<_i1054.OpenAI>()));
+  gh.singleton<_i352.SharedPrefsManager>(
+      () => _i352.SharedPrefsManager(gh<_i541.SharedPrefsRawManager>()));
+  gh.singleton<_i1069.IMovieSearchRepo>(
+      () => _i437.MovieSearchRepoImpl(gh<_i71.TmdbSearchService>()));
+  gh.singleton<_i561.IMovieAiRec>(() => _i691.MovieAiRecImpl(
+        gh<_i914.GptMovieRecImpl>(),
+        gh<_i71.TmdbSearchService>(),
+      ));
+  gh.factory<_i501.MovieAiRecBloc>(
+      () => _i501.MovieAiRecBloc(gh<_i561.IMovieAiRec>()));
+  gh.factory<_i195.MovieActorBloc>(
+      () => _i195.MovieActorBloc(gh<_i72.IMovieRepo>()));
+  gh.singleton<_i47.MovieSaverBloc>(
+      () => _i47.MovieSaverBloc(gh<_i72.IMovieRepo>()));
+  gh.factory<_i1024.MovieSearchBloc>(
+      () => _i1024.MovieSearchBloc(gh<_i1069.IMovieSearchRepo>()));
+  gh.singleton<_i657.FisrtVisitPrefManager>(
+      () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i808.FirstVisitCubit>(
+      () => _i808.FirstVisitCubit(gh<_i657.FisrtVisitPrefManager>()));
+  return getIt;
+}
+
+class _$AppInjectableModule extends _i756.AppInjectableModule {}
