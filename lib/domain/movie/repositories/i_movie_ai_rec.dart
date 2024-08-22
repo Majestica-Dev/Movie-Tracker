@@ -7,7 +7,7 @@ import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_mood.dart';
 import 'package:movie_tracker/domain/movie/entities/failures/ai_movie_rec_failure.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 
-abstract interface class IAiMovieRec {
+abstract interface class IMovieAiRec {
   Future<Either<AiMovieRecFailure, Movie>> getRecomended({
     required WatchMood mood,
     required List<MovieGenre> genres,

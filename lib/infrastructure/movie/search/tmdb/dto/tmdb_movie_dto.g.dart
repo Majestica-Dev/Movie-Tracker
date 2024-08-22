@@ -11,4 +11,5 @@ TmdbMovieDto _$TmdbMovieDtoFromJson(Map<String, dynamic> json) => TmdbMovieDto(
       title: json['title'] as String,
       overview: json['overview'] as String?,
       posterPath: json['poster_path'] as String?,
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
     );

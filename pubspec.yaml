@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   majestica_ds:
     git:
       url: https://github.com/Majestica-Dev/design-system.git
@@ -30,10 +31,13 @@ dependencies:
   fpdart: ^1.1.0
   cached_network_image: ^3.4.1
   collection: ^1.18.0
+  flutter_rating_bar: ^4.0.1
+  lottie: ^3.1.2
+  equatable: ^2.0.5
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  # dev_dependencies:
+  #   flutter_test:
+  #     sdk: flutter
 
   flutter_lints: ^4.0.0
   auto_route_generator: ^9.0.0
@@ -43,10 +47,14 @@ dev_dependencies:
   json_serializable: ^6.8.0
   envied_generator: ^0.5.4+1
   freezed: ^2.5.7
+  mccounting_text: ^1.0.0
 
 flutter:
   generate: true
   uses-material-design: true
+
+  assets:
+    - assets/lotties/
 
   fonts:
     - family: SF-Pro

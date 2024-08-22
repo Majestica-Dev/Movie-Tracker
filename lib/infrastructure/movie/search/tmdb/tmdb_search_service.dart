@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
@@ -17,7 +19,9 @@ class TmdbSearchService {
   final String apiKey = Env.tmdbApiKey;
   final String baseUrl = 'https://api.themoviedb.org/3/search/movie?';
 
-  Future<Either<MovieSearchFailure, Movies>> searchByTitle(title) async {
+  Future<Either<MovieSearchFailure, Movies>> searchByTitle(String title) async {
+    log('log started api search by $title');
+
     try {
       final response = await dio.get(
         '$baseUrl&api_key=$apiKey&query=$title',

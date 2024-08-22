@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 
 import 'package:movie_tracker/domain/movie/repositories/i_movie_repo.dart';
@@ -39,5 +40,22 @@ class MovieRepoImpl implements IMovieRepo {
           ),
           mode: InsertMode.insertOrIgnore,
         );
+  }
+
+  @override
+  Future<void> updateStatus({
+    required String id,
+    required WatchStatus status,
+  }) {
+    return (_database.update(_database.movieTable)
+          ..where(
+            (tbl) => tbl.id.equals(id),
+          ))
+        .write(
+      MovieTableCompanion(
+        status: Value(status),
+        editedAt: Value(DateTime.now()),
+      ),
+    );
   }
 }

@@ -14,11 +14,15 @@ class TmdbMovieDto {
   @JsonKey(name: 'poster_path')
   final String? posterPath;
 
+  @JsonKey(name: 'vote_average')
+  final double? voteAverage;
+
   TmdbMovieDto({
     required this.id,
     required this.title,
     required this.overview,
     required this.posterPath,
+    required this.voteAverage,
   });
 
   factory TmdbMovieDto.fromJson(Map<String, dynamic> json) =>
@@ -26,6 +30,7 @@ class TmdbMovieDto {
 
   Movie get toEntity {
     return Movie(
+      rating: voteAverage,
       editedAt: DateTime.now(),
       id: id.toString(),
       title: title,

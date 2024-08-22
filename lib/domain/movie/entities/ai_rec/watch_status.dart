@@ -1,4 +1,4 @@
 enum WatchStatus {
-  watched,
   toWatch,
+  watched,
 }

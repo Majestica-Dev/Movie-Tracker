@@ -9,6 +9,7 @@ extension MovieX on Movie {
     final String? posterImageUrl,
     final DateTime? editedAt,
     final WatchStatus? status,
+    final double? rating,
   }) {
     return Movie(
       id: id ?? this.id,
@@ -17,6 +18,7 @@ extension MovieX on Movie {
       posterImageUrl: posterImageUrl ?? this.posterImageUrl,
       status: status ?? this.status,
       editedAt: editedAt ?? this.editedAt,
+      rating: rating ?? this.rating,
     );
   }
 }

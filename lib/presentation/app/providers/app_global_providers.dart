@@ -17,6 +17,7 @@ class AppGlobalProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieWatcherBloc>(
+          lazy: false,
           create: (context) => Locator.movieWatcherBloc
             ..add(
               const MovieWatcherEvent.init(),

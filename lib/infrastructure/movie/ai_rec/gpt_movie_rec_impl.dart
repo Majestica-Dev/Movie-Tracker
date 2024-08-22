@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
@@ -23,14 +21,14 @@ class GptMovieRecImpl {
     required List<StreamingService> streamingServices,
     required Movies movies,
   }) async {
-    try {
-      final randomMoviesTitles = _get5RandomMoviesTitles(movies: movies);
+    final List<String> moviesTitles = movies.map((e) => e.title).toList();
 
+    try {
       final prompt = _generetePromptForGptRecomend(
         mood: mood,
         genres: genres,
         streamingServices: streamingServices,
-        moviesTitles: randomMoviesTitles,
+        moviesTitles: moviesTitles,
       );
 
       final request = ChatCompleteText(
@@ -46,24 +44,13 @@ class GptMovieRecImpl {
 
       final response = await openAI.onChatCompletion(request: request);
 
-      return Right(response!.choices.first.message!.content);
+      final title = response!.choices.first.message!.content;
+
+      return Right(title);
     } catch (e) {
       // TODO : Sentry
       return Left(AiMovieRecUnknowError());
     }
-  }
-
-  List<String> _get5RandomMoviesTitles({required Movies movies}) {
-    if (movies.isEmpty) return [];
-
-    final random = Random();
-    final shuffled = Movies.from(movies)..shuffle(random);
-
-    // If the list has fewer than 5 items, take all of them
-    final randomMovies =
-        shuffled.length <= 5 ? shuffled : shuffled.take(5).toList();
-
-    return randomMovies.map((e) => e.title).toList();
   }
 
   String _generetePromptForGptRecomend({
@@ -75,12 +62,14 @@ class GptMovieRecImpl {
     final currentMood = mood.title;
     final preferredGenres = genres.map((e) => e.title).toString();
     final favoriteMovies = moviesTitles.toString();
+    final services = streamingServices.toString();
 
-    return '''Task: Recommend a movie title based on the user’s  current mood,  preferred genres and favorite movies,.
+    return '''Task: Recommend a movie title based on the user’s  current mood,  preferred genres,favorite movies and streaming platforms if it is not empty.
   Parameters:
 	•	Current Mood: $currentMood
 	•	Preferred Genres: $preferredGenres  
   • Favorite Movies: $favoriteMovies
-Instructions: Return a single movie title that aligns with the user’s favorite movies, current mood, and preferred genres. Provide only the movie title. and it should not be on the list anymore''';
+  . Streaming Platforms: $services
+Instructions: Return a single movie title that aligns with the user’s favorite movies, current mood, and preferred genres. Provide only the movie title. and it should not be on the list anymore and should be in streaming platform if it is not empty''';
   }
 }

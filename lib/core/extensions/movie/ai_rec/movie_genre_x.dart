@@ -13,4 +13,17 @@ extension MovieGenreX on MovieGenre {
       MovieGenre.thriller => 'Thriller',
     };
   }
+
+  String get emoji {
+    return switch (this) {
+      MovieGenre.action => '💥',
+      MovieGenre.comedy => '🎭',
+      MovieGenre.drama => '🌧️',
+      MovieGenre.sciFi => '🚀',
+      MovieGenre.horror => '👻',
+      MovieGenre.documentary => '📚',
+      MovieGenre.romance => '🌹',
+      MovieGenre.thriller => '🎬',
+    };
+  }
 }

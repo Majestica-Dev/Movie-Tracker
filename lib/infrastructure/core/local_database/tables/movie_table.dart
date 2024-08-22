@@ -10,6 +10,7 @@ class MovieTable extends Table {
   TextColumn get posterImageUrl => text().nullable()();
   TextColumn get status => textEnum<WatchStatus>()();
   DateTimeColumn get editedAt => dateTime()();
+  RealColumn get rating => real().nullable()();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -18,6 +19,7 @@ class MovieTable extends Table {
 extension MovieTableMapper on MovieTableData {
   Movie get toEntity {
     return Movie(
+      rating: rating,
       id: id,
       title: title,
       description: description,
@@ -35,6 +37,7 @@ extension MovieTableMapper on MovieTableData {
       posterImageUrl: Value(movie.posterImageUrl),
       status: Value(movie.status),
       editedAt: Value(movie.editedAt),
+      rating: Value(movie.rating),
     );
   }
 }

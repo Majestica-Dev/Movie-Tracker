@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
+import 'package:movie_tracker/presentation/ai_rec_movie/widgets/find_perfect_movie_card.dart';
 import 'package:movie_tracker/presentation/home/widgets/movies_grid_view.dart';
 
 class HomeScreenTabBarView extends StatelessWidget {
@@ -22,9 +23,18 @@ class HomeScreenTabBarView extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
-          child: MoviesGridView(
-            watchStatus: null,
-            movies: allMovies,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const FindPerfectMovieCard(),
+                SizedBox(height: t.spacing.x3),
+                MoviesGridView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  watchStatus: null,
+                  movies: allMovies,
+                ),
+              ],
+            ),
           ),
         ),
         Padding(

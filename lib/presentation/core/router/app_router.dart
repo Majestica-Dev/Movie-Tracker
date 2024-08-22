@@ -14,8 +14,10 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(page: HomeRoute.page),
             AutoRoute(page: DiscoverRoute.page),
-            AutoRoute(page: InsightRoute.page),
+            AutoRoute(page: SettingRoute.page),
           ],
         ),
+        AutoRoute(page: MovieDetailsRoute.page),
+        AutoRoute(page: MovieOverviewRoute.page)
       ];
 }

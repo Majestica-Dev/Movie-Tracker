@@ -16,7 +16,7 @@ class BaseScreen extends StatelessWidget {
     final List<PageRouteInfo<dynamic>> routes = [
       const HomeRoute(),
       const DiscoverRoute(),
-      const InsightRoute(),
+      const SettingRoute(),
     ];
 
     final t = context.mdsTheme;

@@ -41,6 +41,8 @@ class MovieCover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.mdsTheme;
+
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
@@ -52,8 +54,19 @@ class MovieCover extends StatelessWidget {
             Container(
               width: movieCoverSize.width,
               height: movieCoverSize.height,
-              decoration: BoxDecoration(boxShadow: _boxShadow),
-              child: image(context),
+              decoration: BoxDecoration(
+                color: t.colors.primaryHighContainer,
+                image: movie.posterImageUrl == null
+                    ? null
+                    : DecorationImage(
+                        image: chacheImage
+                            ? CachedNetworkImageProvider(movie.posterImageUrl!)
+                            : NetworkImage(movie.posterImageUrl!),
+                        fit: BoxFit.cover,
+                      ),
+                boxShadow: _boxShadow,
+                borderRadius: BorderRadius.circular(t.borderRadius.r1),
+              ),
             ),
             _title(context),
           ],
@@ -106,32 +119,5 @@ class MovieCover extends StatelessWidget {
         )
       ],
     );
-  }
-
-  Widget image(BuildContext context) {
-    final t = context.mdsTheme;
-
-    return movie.posterImageUrl != null
-        ? !chacheImage
-            ? Image.network(
-                movie.posterImageUrl!,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => ColoredBox(
-                  color: t.colors.primaryHighContainer,
-                ),
-              )
-            : CachedNetworkImage(
-                imageUrl: movie.posterImageUrl!,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => ColoredBox(
-                  color: t.colors.primaryHighContainer,
-                ),
-                errorWidget: (context, url, error) => ColoredBox(
-                  color: t.colors.primaryHighContainer,
-                ),
-                fadeInDuration: Duration.zero,
-                fadeOutDuration: Duration.zero,
-              )
-        : ColoredBox(color: t.colors.primaryHighContainer);
   }
 }
