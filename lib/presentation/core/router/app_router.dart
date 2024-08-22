@@ -7,17 +7,22 @@ import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
+        AutoRoute(page: InitialRoute.page, initial: true),
         CustomRoute(
-          initial: true,
-          durationInMilliseconds: 0,
+          page: IntroRoute.page,
+          transitionsBuilder: TransitionsBuilders.noTransition,
+        ),
+        AutoRoute(page: OnboardingRoute.page),
+        CustomRoute(
+          transitionsBuilder: TransitionsBuilders.noTransition,
           page: BaseRoute.page,
           children: [
             AutoRoute(page: HomeRoute.page),
             AutoRoute(page: DiscoverRoute.page),
-            AutoRoute(page: SettingRoute.page),
+            AutoRoute(page: SettingsRoute.page),
           ],
         ),
         AutoRoute(page: MovieDetailsRoute.page),
-        AutoRoute(page: MovieOverviewRoute.page)
+        AutoRoute(page: MovieOverviewRoute.page),
       ];
 }

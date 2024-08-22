@@ -48,6 +48,12 @@ dependencies:
   envied_generator: ^0.5.4+1
   freezed: ^2.5.7
   mccounting_text: ^1.0.0
+  shared_preferences: ^2.3.2
+  flutter_native_splash: ^2.4.1
+  flutter_svg: ^2.0.10+1
+  url_launcher: ^6.3.0
+  rxdart: ^0.28.0
+  in_app_review: ^2.0.9
 
 flutter:
   generate: true
@@ -55,6 +61,10 @@ flutter:
 
   assets:
     - assets/lotties/
+    - assets/intro/
+    - assets/icons/
+    - assets/onboarding/
+    - assets/onboarding/icons/
 
   fonts:
     - family: SF-Pro
@@ -63,3 +73,7 @@ flutter:
     - family: New-York
       fonts:
         - asset: assets/fonts/NewYorkLarge-Regular.otf
+
+flutter_native_splash:
+  image: assets/icons/splash_icon.png
+  color: "#6B66DA"

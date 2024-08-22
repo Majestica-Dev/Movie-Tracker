@@ -68,7 +68,7 @@ class MovieGenreChooserPage extends StatelessWidget {
             );
           },
         ),
-        Spacer(),
+        const Spacer(),
       ],
     );
   }

@@ -7,4 +7,4 @@ import 'package:injectable/injectable.dart';
   preferRelativeImports: true,
   asExtension: false,
 )
-GetIt configureDependencies() => $initGetIt(GetIt.instance);
+Future<GetIt> configureDependencies() => $initGetIt(GetIt.instance);

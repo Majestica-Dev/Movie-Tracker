@@ -11,7 +11,6 @@ import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/core/widgets/movie/cover/movie_cover.dart';
-import 'package:movie_tracker/presentation/movie_details/widgets/movie_overview.dart';
 
 class MovieTile extends StatelessWidget {
   final WatchStatus? watchStatus;

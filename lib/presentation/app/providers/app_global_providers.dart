@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_tracker/application/fisrt_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
 import 'package:movie_tracker/core/di/locator.dart';
@@ -25,6 +26,10 @@ class AppGlobalProviders extends StatelessWidget {
         ),
         BlocProvider<MovieSaverBloc>(
           create: (context) => Locator.movieSaverBloc,
+        ),
+        BlocProvider<FirstVisitCubit>(
+          create: (context) => Locator.firstVisitCubit,
+          lazy: false,
         ),
       ],
       child: child,

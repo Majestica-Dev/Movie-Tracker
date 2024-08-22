@@ -16,7 +16,7 @@ class BaseScreen extends StatelessWidget {
     final List<PageRouteInfo<dynamic>> routes = [
       const HomeRoute(),
       const DiscoverRoute(),
-      const SettingRoute(),
+      const SettingsRoute(),
     ];
 
     final t = context.mdsTheme;
@@ -41,8 +41,8 @@ class BaseScreen extends StatelessWidget {
               label: 'Discover',
             ),
             MDSBottomNavBarItem(
-              icon: PhosphorIcon(PhosphorIconsFill.user),
-              label: 'Insights',
+              icon: PhosphorIcon(PhosphorIconsFill.gearSix),
+              label: 'Settings',
             ),
           ],
         );

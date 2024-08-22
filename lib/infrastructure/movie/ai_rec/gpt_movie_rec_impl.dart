@@ -77,7 +77,7 @@ Parameters:
 Instructions:
 
 
-  1.	Ensure the movie is not already in this list $favoriteMovies
+  1.  The movie should not already be in this list $favoriteMovies
 	2.	Select a movie that fits the user’s current mood and preferred genres.
 	3.	If streaming platforms are provided, ensure the movie is available on one of those platforms.
 	4.	Return only the movie title.''';
