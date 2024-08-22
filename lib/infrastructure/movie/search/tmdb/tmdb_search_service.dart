@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
@@ -9,6 +7,7 @@ import 'package:movie_tracker/env/env.dart';
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 
 import 'package:movie_tracker/infrastructure/movie/search/tmdb/dto/tmdb_movie_dto.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 @Singleton()
 class TmdbSearchService {
@@ -20,8 +19,6 @@ class TmdbSearchService {
   final String baseUrl = 'https://api.themoviedb.org/3/search/movie?';
 
   Future<Either<MovieSearchFailure, Movies>> searchByTitle(String title) async {
-    log('log started api search by $title');
-
     try {
       final response = await dio.get(
         '$baseUrl&api_key=$apiKey&query=$title',
@@ -29,12 +26,18 @@ class TmdbSearchService {
 
       final List moviesJson = response.data['results'];
 
+      if (moviesJson.isEmpty) {
+        return const Right([]);
+      }
+
       final movies = moviesJson
           .map((json) => TmdbMovieDto.fromJson(json).toEntity)
           .toList();
 
       return Right(movies);
     } catch (e) {
+      Sentry.captureException(e);
+
       return Left(MovieSearchUnknownError());
     }
   }

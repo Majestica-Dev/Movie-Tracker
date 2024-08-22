@@ -9,6 +9,8 @@ import 'package:movie_tracker/core/extensions/movie/movie_watcher_state_x.dart';
 import 'package:movie_tracker/core/extensions/movie/movie_x.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
+
+import 'package:movie_tracker/presentation/core/formatters/date_time_formater.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/core/widgets/movie/cover/movie_cover.dart';
 
@@ -42,8 +44,6 @@ class MovieTile extends StatelessWidget {
             } else {
               context.router.push(MovieOverviewRoute(movie: movie));
             }
-
-            // TODO : impl
           },
           child: ConstrainedBox(
             constraints: BoxConstraints(
@@ -62,12 +62,27 @@ class MovieTile extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: t.spacing.x1),
-                    child: Text(
-                      movie.title,
-                      style: t.textTheme.bodyMRegular
-                          .copyWith(color: t.colors.neutralHighContent),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          movie.title,
+                          style: t.textTheme.bodyMRegular
+                              .copyWith(color: t.colors.neutralHighContent),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                        if (movie.releaseDate != null)
+                          Text(
+                            DateTimeFormatter.dayMonthYear(movie.releaseDate!),
+                            style: t.textTheme.bodySBold.copyWith(
+                              color: t.colors.neutralMedContent,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                      ],
                     ),
                   ),
                 ),
@@ -82,7 +97,7 @@ class MovieTile extends StatelessWidget {
                     rightIcon: PhosphorIcon(
                       PhosphorIcons.plus(),
                     ),
-                    buttonSize: MDSButtonSize.S,
+                    buttonSize: MDSButtonSize.XS,
                     onPressed: () async {
                       context.read<MovieSaverBloc>().add(MovieSaverEvent.save(
                           movie: movie.copyWith(status: watchStatus)));

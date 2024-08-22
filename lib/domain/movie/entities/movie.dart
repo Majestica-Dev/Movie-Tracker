@@ -8,6 +8,7 @@ final class Movie {
   final DateTime editedAt;
   final WatchStatus status;
   final double? rating;
+  final DateTime? releaseDate;
 
   const Movie({
     required this.id,
@@ -17,5 +18,6 @@ final class Movie {
     required this.status,
     required this.editedAt,
     required this.rating,
+    required this.releaseDate,
   });
 }

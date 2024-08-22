@@ -1,32 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 
-part 'tmdb_movie_dto.g.dart';
-
-@JsonSerializable(createToJson: false)
 class TmdbMovieDto {
   final int id;
   final String title;
-
   final String? overview;
-
-  @JsonKey(name: 'poster_path')
   final String? posterPath;
-
-  @JsonKey(name: 'vote_average')
   final double? voteAverage;
+  final DateTime? releaseDate;
 
-  TmdbMovieDto({
+  const TmdbMovieDto({
     required this.id,
     required this.title,
     required this.overview,
     required this.posterPath,
     required this.voteAverage,
+    required this.releaseDate,
   });
 
-  factory TmdbMovieDto.fromJson(Map<String, dynamic> json) =>
-      _$TmdbMovieDtoFromJson(json);
+  factory TmdbMovieDto.fromJson(Map<String, dynamic> json) => TmdbMovieDto(
+        id: (json['id'] as num).toInt(),
+        title: json['title'] as String,
+        overview: json['overview'] as String?,
+        posterPath: json['poster_path'] as String?,
+        voteAverage: (json['vote_average'] as num?)?.toDouble(),
+        releaseDate: DateTime.tryParse(json['release_date'] as String),
+      );
 
   Movie get toEntity {
     return Movie(
@@ -39,6 +38,7 @@ class TmdbMovieDto {
           ? null
           : 'https://image.tmdb.org/t/p/w342$posterPath',
       status: WatchStatus.toWatch,
+      releaseDate: releaseDate,
     );
   }
 }

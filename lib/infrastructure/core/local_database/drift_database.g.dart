@@ -48,9 +48,23 @@ class $MovieTableTable extends MovieTable
   late final GeneratedColumn<double> rating = GeneratedColumn<double>(
       'rating', aliasedName, true,
       type: DriftSqlType.double, requiredDuringInsert: false);
+  static const VerificationMeta _releaseDateMeta =
+      const VerificationMeta('releaseDate');
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, title, description, posterImageUrl, status, editedAt, rating];
+  late final GeneratedColumn<DateTime> releaseDate = GeneratedColumn<DateTime>(
+      'release_date', aliasedName, true,
+      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        title,
+        description,
+        posterImageUrl,
+        status,
+        editedAt,
+        rating,
+        releaseDate
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -95,6 +109,12 @@ class $MovieTableTable extends MovieTable
       context.handle(_ratingMeta,
           rating.isAcceptableOrUnknown(data['rating']!, _ratingMeta));
     }
+    if (data.containsKey('release_date')) {
+      context.handle(
+          _releaseDateMeta,
+          releaseDate.isAcceptableOrUnknown(
+              data['release_date']!, _releaseDateMeta));
+    }
     return context;
   }
 
@@ -119,6 +139,8 @@ class $MovieTableTable extends MovieTable
           .read(DriftSqlType.dateTime, data['${effectivePrefix}edited_at'])!,
       rating: attachedDatabase.typeMapping
           .read(DriftSqlType.double, data['${effectivePrefix}rating']),
+      releaseDate: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}release_date']),
     );
   }
 
@@ -139,6 +161,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
   final WatchStatus status;
   final DateTime editedAt;
   final double? rating;
+  final DateTime? releaseDate;
   const MovieTableData(
       {required this.id,
       required this.title,
@@ -146,7 +169,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       this.posterImageUrl,
       required this.status,
       required this.editedAt,
-      this.rating});
+      this.rating,
+      this.releaseDate});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -166,6 +190,9 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
     if (!nullToAbsent || rating != null) {
       map['rating'] = Variable<double>(rating);
     }
+    if (!nullToAbsent || releaseDate != null) {
+      map['release_date'] = Variable<DateTime>(releaseDate);
+    }
     return map;
   }
 
@@ -183,6 +210,9 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       editedAt: Value(editedAt),
       rating:
           rating == null && nullToAbsent ? const Value.absent() : Value(rating),
+      releaseDate: releaseDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(releaseDate),
     );
   }
 
@@ -198,6 +228,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           .fromJson(serializer.fromJson<String>(json['status'])),
       editedAt: serializer.fromJson<DateTime>(json['editedAt']),
       rating: serializer.fromJson<double?>(json['rating']),
+      releaseDate: serializer.fromJson<DateTime?>(json['releaseDate']),
     );
   }
   @override
@@ -212,6 +243,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           .toJson<String>($MovieTableTable.$converterstatus.toJson(status)),
       'editedAt': serializer.toJson<DateTime>(editedAt),
       'rating': serializer.toJson<double?>(rating),
+      'releaseDate': serializer.toJson<DateTime?>(releaseDate),
     };
   }
 
@@ -222,7 +254,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           Value<String?> posterImageUrl = const Value.absent(),
           WatchStatus? status,
           DateTime? editedAt,
-          Value<double?> rating = const Value.absent()}) =>
+          Value<double?> rating = const Value.absent(),
+          Value<DateTime?> releaseDate = const Value.absent()}) =>
       MovieTableData(
         id: id ?? this.id,
         title: title ?? this.title,
@@ -232,6 +265,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
         status: status ?? this.status,
         editedAt: editedAt ?? this.editedAt,
         rating: rating.present ? rating.value : this.rating,
+        releaseDate: releaseDate.present ? releaseDate.value : this.releaseDate,
       );
   MovieTableData copyWithCompanion(MovieTableCompanion data) {
     return MovieTableData(
@@ -245,6 +279,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       status: data.status.present ? data.status.value : this.status,
       editedAt: data.editedAt.present ? data.editedAt.value : this.editedAt,
       rating: data.rating.present ? data.rating.value : this.rating,
+      releaseDate:
+          data.releaseDate.present ? data.releaseDate.value : this.releaseDate,
     );
   }
 
@@ -257,14 +293,15 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           ..write('posterImageUrl: $posterImageUrl, ')
           ..write('status: $status, ')
           ..write('editedAt: $editedAt, ')
-          ..write('rating: $rating')
+          ..write('rating: $rating, ')
+          ..write('releaseDate: $releaseDate')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-      id, title, description, posterImageUrl, status, editedAt, rating);
+  int get hashCode => Object.hash(id, title, description, posterImageUrl,
+      status, editedAt, rating, releaseDate);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -275,7 +312,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           other.posterImageUrl == this.posterImageUrl &&
           other.status == this.status &&
           other.editedAt == this.editedAt &&
-          other.rating == this.rating);
+          other.rating == this.rating &&
+          other.releaseDate == this.releaseDate);
 }
 
 class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
@@ -286,6 +324,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
   final Value<WatchStatus> status;
   final Value<DateTime> editedAt;
   final Value<double?> rating;
+  final Value<DateTime?> releaseDate;
   final Value<int> rowid;
   const MovieTableCompanion({
     this.id = const Value.absent(),
@@ -295,6 +334,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     this.status = const Value.absent(),
     this.editedAt = const Value.absent(),
     this.rating = const Value.absent(),
+    this.releaseDate = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   MovieTableCompanion.insert({
@@ -305,6 +345,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     required WatchStatus status,
     required DateTime editedAt,
     this.rating = const Value.absent(),
+    this.releaseDate = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : id = Value(id),
         title = Value(title),
@@ -318,6 +359,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     Expression<String>? status,
     Expression<DateTime>? editedAt,
     Expression<double>? rating,
+    Expression<DateTime>? releaseDate,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -328,6 +370,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       if (status != null) 'status': status,
       if (editedAt != null) 'edited_at': editedAt,
       if (rating != null) 'rating': rating,
+      if (releaseDate != null) 'release_date': releaseDate,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -340,6 +383,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       Value<WatchStatus>? status,
       Value<DateTime>? editedAt,
       Value<double?>? rating,
+      Value<DateTime?>? releaseDate,
       Value<int>? rowid}) {
     return MovieTableCompanion(
       id: id ?? this.id,
@@ -349,6 +393,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       status: status ?? this.status,
       editedAt: editedAt ?? this.editedAt,
       rating: rating ?? this.rating,
+      releaseDate: releaseDate ?? this.releaseDate,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -378,6 +423,9 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     if (rating.present) {
       map['rating'] = Variable<double>(rating.value);
     }
+    if (releaseDate.present) {
+      map['release_date'] = Variable<DateTime>(releaseDate.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -394,6 +442,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
           ..write('status: $status, ')
           ..write('editedAt: $editedAt, ')
           ..write('rating: $rating, ')
+          ..write('releaseDate: $releaseDate, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -419,6 +468,7 @@ typedef $$MovieTableTableCreateCompanionBuilder = MovieTableCompanion Function({
   required WatchStatus status,
   required DateTime editedAt,
   Value<double?> rating,
+  Value<DateTime?> releaseDate,
   Value<int> rowid,
 });
 typedef $$MovieTableTableUpdateCompanionBuilder = MovieTableCompanion Function({
@@ -429,6 +479,7 @@ typedef $$MovieTableTableUpdateCompanionBuilder = MovieTableCompanion Function({
   Value<WatchStatus> status,
   Value<DateTime> editedAt,
   Value<double?> rating,
+  Value<DateTime?> releaseDate,
   Value<int> rowid,
 });
 
@@ -471,6 +522,11 @@ class $$MovieTableTableFilterComposer
       column: $state.table.rating,
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<DateTime> get releaseDate => $state.composableBuilder(
+      column: $state.table.releaseDate,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 }
 
 class $$MovieTableTableOrderingComposer
@@ -510,6 +566,11 @@ class $$MovieTableTableOrderingComposer
       column: $state.table.rating,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<DateTime> get releaseDate => $state.composableBuilder(
+      column: $state.table.releaseDate,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
 class $$MovieTableTableTableManager extends RootTableManager<
@@ -542,6 +603,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             Value<WatchStatus> status = const Value.absent(),
             Value<DateTime> editedAt = const Value.absent(),
             Value<double?> rating = const Value.absent(),
+            Value<DateTime?> releaseDate = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               MovieTableCompanion(
@@ -552,6 +614,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             status: status,
             editedAt: editedAt,
             rating: rating,
+            releaseDate: releaseDate,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -562,6 +625,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             required WatchStatus status,
             required DateTime editedAt,
             Value<double?> rating = const Value.absent(),
+            Value<DateTime?> releaseDate = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               MovieTableCompanion.insert(
@@ -572,6 +636,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             status: status,
             editedAt: editedAt,
             rating: rating,
+            releaseDate: releaseDate,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

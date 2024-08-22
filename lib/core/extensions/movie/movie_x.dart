@@ -10,6 +10,7 @@ extension MovieX on Movie {
     final DateTime? editedAt,
     final WatchStatus? status,
     final double? rating,
+    final DateTime? releaseDate,
   }) {
     return Movie(
       id: id ?? this.id,
@@ -19,6 +20,7 @@ extension MovieX on Movie {
       status: status ?? this.status,
       editedAt: editedAt ?? this.editedAt,
       rating: rating ?? this.rating,
+      releaseDate: releaseDate ?? this.releaseDate,
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:majestica_ds/icons/icons.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/core/di/locator.dart';
 import 'package:movie_tracker/presentation/core/constants/app_url.dart';
 
 import 'package:movie_tracker/presentation/core/utils/url_launcher.dart';
@@ -24,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
           SettingsItem(
             leadingIcon: const PhosphorIcon(PhosphorIconsFill.star),
             text: 'Rate App',
-            onTap: () => print('e'),
+            onTap: () => Locator.revieService.openAppStoreReview(),
           ),
           SizedBox(height: t.spacing.x3),
           SettingsItem(

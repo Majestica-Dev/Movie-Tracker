@@ -6,6 +6,7 @@ import 'package:movie_tracker/application/movie/ai_rec/form/movie_ai_rec_form_cu
 import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/application/movie/search/movie_search_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
+import 'package:movie_tracker/core/utils/review/review_service.dart';
 
 import 'package:movie_tracker/presentation/core/router/app_router.dart';
 
@@ -28,4 +29,6 @@ abstract final class Locator {
   static MovieAiRecBloc get movieAiRecBloc => _getIt<MovieAiRecBloc>();
 
   static FirstVisitCubit get firstVisitCubit => _getIt<FirstVisitCubit>();
+
+  static ReviewService get revieService => _getIt<ReviewService>();
 }

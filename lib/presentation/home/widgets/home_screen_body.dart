@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/presentation/ai_rec_movie/widgets/find_perfect_movie_card.dart';
 import 'package:movie_tracker/presentation/home/widgets/home_screen_tab_bar.dart';
 import 'package:movie_tracker/presentation/home/widgets/home_screen_tab_bar_view.dart';
 import 'package:movie_tracker/presentation/home/widgets/movies_grid_view.dart';
@@ -33,9 +34,18 @@ class HomeScreenBody extends StatelessWidget {
               if (allMovies.isEmpty) {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
-                  child: MoviesGridView(
-                    watchStatus: null,
-                    movies: succeededState.allMovies,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const FindPerfectMovieCard(),
+                        SizedBox(height: t.spacing.x4),
+                        MoviesGridView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          watchStatus: null,
+                          movies: succeededState.allMovies,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }

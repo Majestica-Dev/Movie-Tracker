@@ -11,6 +11,7 @@ import 'package:movie_tracker/domain/movie/repositories/i_movie_ai_rec.dart';
 
 import 'package:movie_tracker/infrastructure/movie/ai_rec/gpt_movie_rec_impl.dart';
 import 'package:movie_tracker/infrastructure/movie/search/tmdb/tmdb_search_service.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 @Singleton(as: IMovieAiRec)
 class MovieAiRecImpl implements IMovieAiRec {
@@ -42,9 +43,17 @@ class MovieAiRecImpl implements IMovieAiRec {
         final apiSearchResult =
             await _tmdbSearchService.searchByTitle(movieTitle);
 
-        return apiSearchResult.fold((l) => Left(AiMovieRecUnknowError()), (r) {
-          return r.isEmpty ? Left(AiMovieRecUnknowError()) : Right(r.first);
-        });
+        return apiSearchResult.fold(
+          (l) => Left(AiMovieRecUnknowError()),
+          (r) {
+            if (r.isEmpty) {
+              Sentry.captureMessage('Gpt rec is not found from api',
+                  level: SentryLevel.error);
+            }
+
+            return r.isEmpty ? Left(AiMovieRecUnknowError()) : Right(r.first);
+          },
+        );
       },
     );
   }

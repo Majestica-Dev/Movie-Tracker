@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/core/di/locator.dart';
@@ -5,6 +6,7 @@ import 'package:movie_tracker/gen/fonts.gen.dart';
 import 'package:movie_tracker/presentation/app/providers/app_global_providers.dart';
 import 'package:movie_tracker/presentation/core/constants/theme/colors.dart';
 import 'package:movie_tracker/presentation/core/constants/theme/text_theme.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class MovieApp extends StatelessWidget {
   const MovieApp({super.key});
@@ -28,7 +30,11 @@ class MovieApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: FontFamily.sFPro,
             ),
-            routerConfig: Locator.appRouter.config(),
+            routerConfig: Locator.appRouter.config(
+              navigatorObservers: () {
+                return kDebugMode ? [] : [SentryNavigatorObserver()];
+              },
+            ),
           ),
         ),
       ),

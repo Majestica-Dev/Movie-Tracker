@@ -8,6 +8,7 @@ import 'package:movie_tracker/domain/movie/entities/ai_rec/movie_genre.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/streaming_service.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_mood.dart';
 import 'package:movie_tracker/domain/movie/entities/failures/ai_movie_rec_failure.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 @Singleton()
 class GptMovieRecImpl {
@@ -48,7 +49,8 @@ class GptMovieRecImpl {
 
       return Right(title);
     } catch (e) {
-      // TODO : Sentry
+      Sentry.captureException(e);
+
       return Left(AiMovieRecUnknowError());
     }
   }
