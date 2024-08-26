@@ -66,5 +66,65 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.3,
     ),
+    Movie(
+      releaseDate: DateTime(2024, 5, 24),
+      id: '748783',
+      title: 'The Garfield Movie',
+      description:
+          '''Garfield, the world-famous, Monday-hating, lasagna-loving indoor cat, is about to have a wild outdoor adventure! After an unexpected reunion with his long-lost father – scruffy street cat Vic – Garfield and his canine friend Odie are forced from their perfectly pampered life into joining Vic in a hilarious, high-stakes heist.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/xYduFGuch9OwbCOEUiamml18ZoB.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 7.2,
+    ),
+    Movie(
+      releaseDate: DateTime(2007, 8, 17),
+      id: '8363',
+      title: 'Superbad',
+      description:
+          '''Two co-dependent high school seniors are forced to deal with separation anxiety after their plan to stage a booze-soaked party goes awry.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 7.3,
+    ),
+    Movie(
+      releaseDate: DateTime(2014, 3, 7),
+      id: '120467',
+      title: 'The Grand Budapest Hotel',
+      description:
+          '''The Grand Budapest Hotel tells of a legendary concierge at a famous European hotel between the wars and his friendship with a young employee who becomes his trusted protégé. The story involves the theft and recovery of a priceless Renaissance painting, the battle for an enormous family fortune and the slow and then sudden upheavals that transformed Europe during the first half of the 20th century.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 8.1,
+    ),
+    Movie(
+      releaseDate: DateTime(2008, 7, 25),
+      id: '69983219',
+      title: 'Step Brothers',
+      description:
+          '''Brennan Huff and Dale Doback might be grown men. But that doesn't stop them from living at home and turning into jealous, competitive stepbrothers when their single parents marry. Brennan's constant competition with Dale strains his mom's marriage to Dale's dad, leaving everyone to wonder whether they'll ever see eye to eye.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/wRR6U3K3v2iQsG3uw7ehz1ctRyT.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 6.6,
+    ),
+    Movie(
+      releaseDate: DateTime(2016, 5, 20),
+      id: '290250',
+      title: 'The Nice Guys',
+      description:
+          '''A private eye investigates the apparent suicide of a fading porn star in 1970s Los Angeles and uncovers a conspiracy.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/8JGmaQSfFVhOpH3NwdHBw9uJvzs.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 7.1,
+    ),
   ],
 );
