@@ -67,5 +67,65 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.5,
     ),
+    Movie(
+      releaseDate: DateTime(2015, 5, 14),
+      id: '76341',
+      title: 'Mad Max: Fury Road',
+      description:
+          '''An apocalyptic story set in the furthest reaches of our planet, in a stark desert landscape where humanity is broken, and most everyone is crazed fighting for the necessities of life. Within this world exist two rebels on the run who just might be able to restore order.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/A2ple9q4qnwxp3hKVNhroipsir.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 7.6,
+    ),
+    Movie(
+      releaseDate: DateTime(2000, 6, 3),
+      id: '98',
+      title: 'Gladiator',
+      description:
+          '''In the year 180, the death of emperor Marcus Aurelius throws the Roman Empire into chaos. Maximus is one of the Roman army's most capable and trusted generals and a key advisor to the emperor. As Marcus' devious son Commodus ascends to the throne, Maximus is set to be executed. He escapes, but is captured by slave traders. Renamed Spaniard and forced to become a gladiator, Maximus must battle to the death with other men for the amusement of paying audiences.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 8.2,
+    ),
+    Movie(
+      releaseDate: DateTime(2012, 5, 10),
+      id: '24428',
+      title: 'The Avengers',
+      description:
+          '''When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 7.7,
+    ),
+    Movie(
+      releaseDate: DateTime(2018, 7, 27),
+      id: '353081',
+      title: 'Mission: Impossible - Fallout',
+      description:
+          '''When an IMF mission ends badly, the world is faced with dire consequences. As Ethan Hunt takes it upon himself to fulfill his original briefing, the CIA begin to question his loyalty and his motives. The IMF team find themselves in a race against time, hunted by assassins while trying to prevent a global catastrophe.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 7.4,
+    ),
+    Movie(
+      releaseDate: DateTime(2021, 9, 31),
+      id: '370172',
+      title: 'No Time to Die',
+      description:
+          '''Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 7.4,
+    ),
   ],
 );
