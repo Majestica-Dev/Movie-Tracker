@@ -74,7 +74,7 @@ final actionMovies = DiscoverMovies(
       description:
           '''An apocalyptic story set in the furthest reaches of our planet, in a stark desert landscape where humanity is broken, and most everyone is crazed fighting for the necessities of life. Within this world exist two rebels on the run who just might be able to restore order.''',
       posterImageUrl:
-          'https://image.tmdb.org/t/p/w342/A2ple9q4qnwxp3hKVNhroipsir.jpg',
+          'https://image.tmdb.org/t/p/w342/hA2ple9q4qnwxp3hKVNhroipsir.jpg',
       status: WatchStatus.toWatch,
       editedAt: DateTime.now(),
       rating: 7.6,
