@@ -67,7 +67,7 @@ class _MovieAiRecProgressBarState extends State<MovieAiRecProgressBar> {
                               style: t.textTheme.bodySRegular.copyWith(
                                 color: t.colors.neutralMedContainer,
                               ),
-                              duration: const Duration(milliseconds: 1000),
+                              duration: const Duration(milliseconds: 1500),
                               curve: Curves.easeIn,
                             ),
                       if (!finished) ...[
