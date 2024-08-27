@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_tracker/core/extensions/movie/ai_rec/movie_genre_x.dart';
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/movie_genre.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/streaming_service.dart';
@@ -51,9 +54,16 @@ class MovieAiRecImpl implements IMovieAiRec {
                 'Gpt rec is not found from api : $movieTitle',
                 level: SentryLevel.error,
               );
+
+              final genreMovies = genres.first.discoverMovies;
+
+              final Movie randomMovieByGenre =
+                  genreMovies[Random().nextInt(genreMovies.length)];
+
+              return Right(randomMovieByGenre);
             }
 
-            return r.isEmpty ? Left(AiMovieRecUnknowError()) : Right(r.first);
+            return Right(r.first);
           },
         );
       },
