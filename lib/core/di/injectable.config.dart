@@ -14,6 +14,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:in_app_review/in_app_review.dart' as _i553;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
+import 'package:uuid/uuid.dart' as _i706;
 
 import '../../application/fisrt_visit/first_visit_cubit.dart' as _i808;
 import '../../application/movie/actor/movie_actor_bloc.dart' as _i195;
@@ -39,6 +40,10 @@ import '../../infrastructure/movie/movie_repo_impl.dart' as _i338;
 import '../../infrastructure/movie/search/movie_search_repo_impl.dart' as _i437;
 import '../../infrastructure/movie/search/tmdb/tmdb_search_service.dart'
     as _i71;
+import '../../infrastructure/notifications/reminder/reminder_functions.dart'
+    as _i845;
+import '../../infrastructure/notifications/reminder/reminder_pref_manager.dart'
+    as _i947;
 import '../../presentation/core/router/app_router.dart' as _i300;
 import '../utils/review/review_pref_manager.dart' as _i630;
 import '../utils/review/review_service.dart' as _i495;
@@ -61,6 +66,7 @@ Future<_i174.GetIt> $initGetIt(
     preResolve: true,
   );
   gh.singleton<_i553.InAppReview>(() => appInjectableModule.inAppReview);
+  gh.singleton<_i706.Uuid>(() => appInjectableModule.uuid);
   gh.singleton<_i841.AppDriftDatabase>(() => _i841.AppDriftDatabase());
   gh.singleton<_i300.AppRouter>(() => _i300.AppRouter());
   gh.lazySingleton<_i361.Dio>(() => appInjectableModule.dio);
@@ -98,6 +104,11 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i495.ReviewService>(() => _i495.ReviewService(
         gh<_i553.InAppReview>(),
         gh<_i630.ReviewPrefManager>(),
+  gh.singleton<_i947.ReminderPrefManager>(
+      () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i845.ReminderFunctions>(() => _i845.ReminderFunctions(
+        gh<_i947.ReminderPrefManager>(),
+        gh<_i706.Uuid>(),
       ));
   gh.singleton<_i808.FirstVisitCubit>(
       () => _i808.FirstVisitCubit(gh<_i657.FisrtVisitPrefManager>()));
