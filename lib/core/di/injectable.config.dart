@@ -40,6 +40,7 @@ import '../../infrastructure/movie/search/movie_search_repo_impl.dart' as _i437;
 import '../../infrastructure/movie/search/tmdb/tmdb_search_service.dart'
     as _i71;
 import '../../presentation/core/router/app_router.dart' as _i300;
+import '../utils/review/review_pref_manager.dart' as _i630;
 import '../utils/review/review_service.dart' as _i495;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -64,8 +65,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i300.AppRouter>(() => _i300.AppRouter());
   gh.lazySingleton<_i361.Dio>(() => appInjectableModule.dio);
   gh.lazySingleton<_i1054.OpenAI>(() => appInjectableModule.openAI);
-  gh.singleton<_i495.ReviewService>(
-      () => _i495.ReviewService(gh<_i553.InAppReview>()));
   gh.factory<_i541.SharedPrefsRawManager>(
       () => _i541.SharedPrefsRawManager(gh<_i460.SharedPreferences>()));
   gh.singleton<_i71.TmdbSearchService>(
@@ -92,8 +91,14 @@ Future<_i174.GetIt> $initGetIt(
       () => _i47.MovieSaverBloc(gh<_i72.IMovieRepo>()));
   gh.factory<_i1024.MovieSearchBloc>(
       () => _i1024.MovieSearchBloc(gh<_i1069.IMovieSearchRepo>()));
+  gh.singleton<_i630.ReviewPrefManager>(
+      () => _i630.ReviewPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i657.FisrtVisitPrefManager>(
       () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i495.ReviewService>(() => _i495.ReviewService(
+        gh<_i553.InAppReview>(),
+        gh<_i630.ReviewPrefManager>(),
+      ));
   gh.singleton<_i808.FirstVisitCubit>(
       () => _i808.FirstVisitCubit(gh<_i657.FisrtVisitPrefManager>()));
   return getIt;

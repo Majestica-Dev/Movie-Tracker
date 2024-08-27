@@ -30,5 +30,5 @@ abstract final class Locator {
 
   static FirstVisitCubit get firstVisitCubit => _getIt<FirstVisitCubit>();
 
-  static ReviewService get revieService => _getIt<ReviewService>();
+  static ReviewService get reviewService => _getIt<ReviewService>();
 }
