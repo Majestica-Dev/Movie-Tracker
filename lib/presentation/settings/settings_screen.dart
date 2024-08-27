@@ -25,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
           SettingsItem(
             leadingIcon: const PhosphorIcon(PhosphorIconsFill.star),
             text: 'Rate App',
-            onTap: () => Locator.revieService.openAppStoreReview(),
+            onTap: () => Locator.reviewService.openAppStoreReview(),
           ),
           SizedBox(height: t.spacing.x3),
           SettingsItem(
