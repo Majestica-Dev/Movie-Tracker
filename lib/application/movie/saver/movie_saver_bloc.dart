@@ -32,7 +32,7 @@ class MovieSaverBloc extends Bloc<MovieSaverEvent, MovieSaverState> {
 
     await _iMovieRepo.save(movie: event.movie);
 
-    await _moviePrefManager.plusToAddedBookCount();
+    await _moviePrefManager.plusToAddedMoviesCount();
 
     emit(MovieSaverState.saved(
       addedMoviesCount: _moviePrefManager.addedMoviesCount,

@@ -9,7 +9,7 @@ class MoviePrefManager {
 
   int get addedMoviesCount => _sharedPrefsManager.addedMoviesCount.get() ?? 0;
 
-  Future<void> plusToAddedBookCount() async {
+  Future<void> plusToAddedMoviesCount() async {
     await _sharedPrefsManager.addedMoviesCount.set(
       addedMoviesCount + 1,
     );
