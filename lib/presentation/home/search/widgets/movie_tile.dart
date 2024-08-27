@@ -42,7 +42,10 @@ class MovieTile extends StatelessWidget {
                 ),
               );
             } else {
-              context.router.push(MovieOverviewRoute(movie: movie));
+              context.router.push(MovieOverviewRoute(
+                movie: movie,
+                isFromAI: false,
+              ));
             }
           },
           child: ConstrainedBox(

@@ -37,7 +37,12 @@ class DiscoverMoviesItem extends StatelessWidget {
             MovieDetailsRoute(id: movie.id),
           );
         } else {
-          context.router.push(MovieOverviewRoute(movie: movie));
+          context.router.push(
+            MovieOverviewRoute(
+              movie: movie,
+              isFromAI: false,
+            ),
+          );
         }
       },
       child: Container(

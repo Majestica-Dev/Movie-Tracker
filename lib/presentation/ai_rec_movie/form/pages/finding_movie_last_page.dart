@@ -54,8 +54,12 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
             },
             succeeded: (value) {
               if (animationEnded) {
-                context.router
-                    .popAndPush(MovieOverviewRoute(movie: value.movie));
+                context.router.popAndPush(
+                  MovieOverviewRoute(
+                    movie: value.movie,
+                    isFromAI: true,
+                  ),
+                );
               }
             },
           );
@@ -76,8 +80,12 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
                             );
 
                     if (movie != null) {
-                      context.router
-                          .popAndPush(MovieOverviewRoute(movie: movie));
+                      context.router.popAndPush(
+                        MovieOverviewRoute(
+                          movie: movie,
+                          isFromAI: true,
+                        ),
+                      );
 
                       return;
                     }
