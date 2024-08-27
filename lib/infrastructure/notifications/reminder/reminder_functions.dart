@@ -1,12 +1,12 @@
 import 'package:injectable/injectable.dart';
 import 'package:movie_tracker/infrastructure/notifications/local_notification_service.dart';
-import 'package:movie_tracker/infrastructure/notifications/reminder/reminder_manager.dart';
+import 'package:movie_tracker/infrastructure/notifications/reminder/reminder_pref_manager.dart';
 import 'package:movie_tracker/infrastructure/notifications/reminder/reminder_service.dart';
 import 'package:uuid/uuid.dart';
 
 @singleton
 class ReminderFunctions {
-  final ReminderManager _reminderManager;
+  final ReminderPrefManager _reminderManager;
   final Uuid _uuid;
 
   ReminderFunctions(this._reminderManager, this._uuid);

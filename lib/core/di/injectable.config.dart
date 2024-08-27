@@ -42,8 +42,8 @@ import '../../infrastructure/movie/search/tmdb/tmdb_search_service.dart'
     as _i71;
 import '../../infrastructure/notifications/reminder/reminder_functions.dart'
     as _i845;
-import '../../infrastructure/notifications/reminder/reminder_manager.dart'
-    as _i527;
+import '../../infrastructure/notifications/reminder/reminder_pref_manager.dart'
+    as _i947;
 import '../../presentation/core/router/app_router.dart' as _i300;
 import '../utils/review/review_service.dart' as _i495;
 
@@ -100,10 +100,10 @@ Future<_i174.GetIt> $initGetIt(
       () => _i1024.MovieSearchBloc(gh<_i1069.IMovieSearchRepo>()));
   gh.singleton<_i657.FisrtVisitPrefManager>(
       () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
-  gh.singleton<_i527.ReminderManager>(
-      () => _i527.ReminderManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i947.ReminderPrefManager>(
+      () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i845.ReminderFunctions>(() => _i845.ReminderFunctions(
-        gh<_i527.ReminderManager>(),
+        gh<_i947.ReminderPrefManager>(),
         gh<_i706.Uuid>(),
       ));
   gh.singleton<_i808.FirstVisitCubit>(

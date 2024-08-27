@@ -2,10 +2,10 @@ import 'package:injectable/injectable.dart';
 import 'package:movie_tracker/infrastructure/core/shared_prefs/shared_prefs_manager.dart';
 
 @singleton
-class ReminderManager {
+class ReminderPrefManager {
   final SharedPrefsManager _sharedPrefsManager;
 
-  ReminderManager(this._sharedPrefsManager);
+  ReminderPrefManager(this._sharedPrefsManager);
 
   List<String> get reminderNotificationsIds =>
       _sharedPrefsManager.reminderNotificationsIds.get() ?? [];
