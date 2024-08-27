@@ -9,6 +9,7 @@ import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/form/movie_ai_rec_form_sheet.dart';
 
 import 'package:movie_tracker/presentation/ai_rec_movie/widgets/majic_ball.dart';
+import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
 
 class FindPerfectMovieCard extends StatelessWidget {
   const FindPerfectMovieCard({
@@ -21,7 +22,11 @@ class FindPerfectMovieCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        MovieAiRecFormSheet.show(context);
+        if (context.generateAiEnabled) {
+          MovieAiRecFormSheet.show(context);
+        } else {
+          const MDSToast(message: 'Ai Limit').show(); // TODO: show Paywall
+        }
       },
       child: Container(
         alignment: Alignment.center,

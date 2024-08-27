@@ -32,7 +32,7 @@ class PremiumCheckerBloc
     final bool isPremium = _premiumCheckerManager.hasPremium;
 
     if (kDebugMode) {
-      emit(const PremiumCheckerState.limited());
+      emit(const PremiumCheckerState.premium());
 
       return;
     }
