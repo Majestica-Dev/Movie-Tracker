@@ -36,6 +36,7 @@ import '../../infrastructure/fisrt_visit/fisrt_visit_pref_manager.dart'
     as _i657;
 import '../../infrastructure/movie/ai_rec/gpt_movie_rec_impl.dart' as _i914;
 import '../../infrastructure/movie/ai_rec/movie_ai_rec_impl.dart' as _i691;
+import '../../infrastructure/movie/manager/movie_pref_manager.dart' as _i661;
 import '../../infrastructure/movie/movie_repo_impl.dart' as _i338;
 import '../../infrastructure/movie/search/movie_search_repo_impl.dart' as _i437;
 import '../../infrastructure/movie/search/tmdb/tmdb_search_service.dart'
@@ -93,19 +94,24 @@ Future<_i174.GetIt> $initGetIt(
       () => _i501.MovieAiRecBloc(gh<_i561.IMovieAiRec>()));
   gh.factory<_i195.MovieActorBloc>(
       () => _i195.MovieActorBloc(gh<_i72.IMovieRepo>()));
-  gh.singleton<_i47.MovieSaverBloc>(
-      () => _i47.MovieSaverBloc(gh<_i72.IMovieRepo>()));
   gh.factory<_i1024.MovieSearchBloc>(
       () => _i1024.MovieSearchBloc(gh<_i1069.IMovieSearchRepo>()));
-  gh.singleton<_i630.ReviewPrefManager>(
-      () => _i630.ReviewPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i657.FisrtVisitPrefManager>(
       () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i947.ReminderPrefManager>(
+      () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i630.ReviewPrefManager>(
+      () => _i630.ReviewPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i661.MoviePrefManager>(
+      () => _i661.MoviePrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i495.ReviewService>(() => _i495.ReviewService(
         gh<_i553.InAppReview>(),
         gh<_i630.ReviewPrefManager>(),
-  gh.singleton<_i947.ReminderPrefManager>(
-      () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
+      ));
+  gh.singleton<_i47.MovieSaverBloc>(() => _i47.MovieSaverBloc(
+        gh<_i72.IMovieRepo>(),
+        gh<_i661.MoviePrefManager>(),
+      ));
   gh.singleton<_i845.ReminderFunctions>(() => _i845.ReminderFunctions(
         gh<_i947.ReminderPrefManager>(),
         gh<_i706.Uuid>(),

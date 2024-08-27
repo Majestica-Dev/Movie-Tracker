@@ -1,3 +1,4 @@
+import 'package:movie_tracker/infrastructure/core/shared_prefs/prefs/int_pref.dart';
 import 'package:movie_tracker/infrastructure/core/shared_prefs/prefs/string_pref.dart';
 import 'package:movie_tracker/infrastructure/core/shared_prefs/prefs/string_list_pref.dart';
 
@@ -20,6 +21,8 @@ class PrefsKeys {
   static const showedReviewFromAIMovieResult = 'showedReviewFromAIMovieResult';
   static const reminderNotificationsIds = 'reminderNotificationsIds';
 
+  static const addedMoviesCount = 'AddedMoviesCount';
+
   PrefsKeys._();
 }
 
@@ -34,6 +37,8 @@ class SharedPrefsManager {
   final Pref<bool> showedReviewFromAdded10Moves;
   final Pref<bool> showedReviewFromAIMovieResult;
   final Pref<List<String>> reminderNotificationsIds;
+
+  final Pref<int> addedMoviesCount;
 
   SharedPrefsManager(
     SharedPrefsRawManager sharedPreferences,
@@ -67,6 +72,10 @@ class SharedPrefsManager {
         // Reminder
         reminderNotificationsIds = StringListPref(
           PrefsKeys.reminderNotificationsIds,
+          sharedPreferences,
+        ),
+        addedMoviesCount = IntPref(
+          PrefsKeys.addedMoviesCount,
           sharedPreferences,
         );
 }

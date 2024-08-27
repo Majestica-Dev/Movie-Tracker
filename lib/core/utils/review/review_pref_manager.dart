@@ -60,14 +60,13 @@ class ReviewPrefManager {
 
   Pref<bool> _getReviewPref(ReviewFrom reviewFrom) {
     return switch (reviewFrom) {
-      // TODO: Handle this case.
-      ReviewFrom.onboarding => throw UnimplementedError(),
-      // TODO: Handle this case.
-      ReviewFrom.added10movies => throw UnimplementedError(),
-      // TODO: Handle this case.
-      ReviewFrom.boughtPremium => throw UnimplementedError(),
-      // TODO: Handle this case.
-      ReviewFrom.aiMovieResult => throw UnimplementedError(),
+      ReviewFrom.onboarding => _sharedPrefsManager.showedReviewFromOnboarding,
+      ReviewFrom.added10movies =>
+        _sharedPrefsManager.showedReviewFromAdded10Moves,
+      ReviewFrom.boughtPremium =>
+        _sharedPrefsManager.showedReviewFromPremiumPurchased,
+      ReviewFrom.aiMovieResult =>
+        _sharedPrefsManager.showedReviewFromAIMovieResult,
     };
   }
 }

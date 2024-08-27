@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -26,8 +24,6 @@ class MovieAiRecBloc extends Bloc<MovieAiRecEvent, MovieAiRecState> {
     _GetRecomended event,
     Emitter<MovieAiRecState> emit,
   ) async {
-    log('start event');
-
     emit(const MovieAiRecState.inProgress());
 
     final result = await _movieAiRec.getRecomended(

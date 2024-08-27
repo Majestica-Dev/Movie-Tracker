@@ -6,5 +6,7 @@ class MovieSaverState with _$MovieSaverState {
 
   const factory MovieSaverState.inProgress() = _InProgress;
 
-  const factory MovieSaverState.saved() = _Saved;
+  const factory MovieSaverState.saved({
+    required int addedMoviesCount,
+  }) = _Saved;
 }

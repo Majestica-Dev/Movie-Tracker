@@ -21,7 +21,7 @@ abstract final class CupertionStyleNotificationAlertDialog {
         return CupertinoAlertDialog(
           title: const Text("Torn on notifications"),
           content: const Text(
-            "Get daily reminders to capture your moments and thoughts.",
+            "Get daily reminders to track your favorite movies and never miss a must-watch!",
           ),
           actions: <Widget>[
             CupertinoDialogAction(
