@@ -1,5 +1,5 @@
 abstract final class FreemiumLimits {
   static const int addMovieLimit = 15;
 
-  static const int aiGeneratedMovies = 1;
+  static const int aiGeneratedMovies = 4;
 }

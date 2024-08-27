@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_tracker/core/extensions/movie/ai_rec/movie_genre_x.dart';
+import 'package:movie_tracker/core/extensions/movie/ai_rec/watch_mood_x.dart';
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/movie_genre.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/streaming_service.dart';
@@ -40,7 +41,8 @@ class MovieAiRecImpl implements IMovieAiRec {
       movies: movies,
     );
 
-    final genreMovies = genres.first.discoverMovies;
+    final genreMovies =
+        genres.isEmpty ? mood.discoverMovies : genres.first.discoverMovies;
 
     final Movie randomMovieByGenre =
         genreMovies[Random().nextInt(genreMovies.length)];

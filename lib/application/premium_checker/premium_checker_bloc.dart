@@ -29,13 +29,11 @@ class PremiumCheckerBloc
     _Check event,
     Emitter<PremiumCheckerState> emit,
   ) async {
+    emit(const PremiumCheckerState.premium());
+
+    return;
+
     final bool isPremium = _premiumCheckerManager.hasPremium;
-
-    if (kDebugMode) {
-      emit(const PremiumCheckerState.premium());
-
-      return;
-    }
 
     if (isPremium) {
       emit(const PremiumCheckerState.premium());
