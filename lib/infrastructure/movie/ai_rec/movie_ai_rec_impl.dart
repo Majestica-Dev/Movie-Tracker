@@ -40,14 +40,19 @@ class MovieAiRecImpl implements IMovieAiRec {
       movies: movies,
     );
 
+    final genreMovies = genres.first.discoverMovies;
+
+    final Movie randomMovieByGenre =
+        genreMovies[Random().nextInt(genreMovies.length)];
+
     return gptRecResult.fold(
-      (l) => Left(AiMovieRecUnknowError()),
+      (l) => Right(randomMovieByGenre),
       (movieTitle) async {
         final apiSearchResult =
             await _tmdbSearchService.searchByTitle(movieTitle);
 
         return apiSearchResult.fold(
-          (l) => Left(AiMovieRecUnknowError()),
+          (l) => Right(randomMovieByGenre),
           (r) {
             if (r.isEmpty) {
               Sentry.captureMessage(
@@ -55,15 +60,10 @@ class MovieAiRecImpl implements IMovieAiRec {
                 level: SentryLevel.error,
               );
 
-              final genreMovies = genres.first.discoverMovies;
-
-              final Movie randomMovieByGenre =
-                  genreMovies[Random().nextInt(genreMovies.length)];
-
               return Right(randomMovieByGenre);
+            } else {
+              return Right(r.first);
             }
-
-            return Right(r.first);
           },
         );
       },
