@@ -24,9 +24,12 @@ import '../../application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart'
 import '../../application/movie/saver/movie_saver_bloc.dart' as _i47;
 import '../../application/movie/search/movie_search_bloc.dart' as _i1024;
 import '../../application/movie/watcher/movie_watcher_bloc.dart' as _i756;
+import '../../application/premium_checker/premium_checker_bloc.dart' as _i277;
 import '../../domain/movie/repositories/i_movie_ai_rec.dart' as _i561;
 import '../../domain/movie/repositories/i_movie_repo.dart' as _i72;
 import '../../domain/movie/repositories/i_movie_search_repo.dart' as _i1069;
+import '../../domain/purchases/i_purchase_action_repo.dart' as _i5;
+import '../../domain/purchases/i_subscriptions_repo.dart' as _i617;
 import '../../infrastructure/core/app_injectable_module.dart' as _i756;
 import '../../infrastructure/core/local_database/drift_database.dart' as _i841;
 import '../../infrastructure/core/shared_prefs/raw_manager.dart' as _i541;
@@ -45,6 +48,9 @@ import '../../infrastructure/notifications/reminder/reminder_functions.dart'
     as _i845;
 import '../../infrastructure/notifications/reminder/reminder_pref_manager.dart'
     as _i947;
+import '../../infrastructure/premium/premium_pref_manager.dart' as _i125;
+import '../../infrastructure/purchases/purchase_actor_repo_impl.dart' as _i690;
+import '../../infrastructure/purchases/subscriptions_repo_impl.dart' as _i621;
 import '../../presentation/core/router/app_router.dart' as _i300;
 import '../utils/review/review_pref_manager.dart' as _i630;
 import '../utils/review/review_service.dart' as _i495;
@@ -72,6 +78,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i300.AppRouter>(() => _i300.AppRouter());
   gh.lazySingleton<_i361.Dio>(() => appInjectableModule.dio);
   gh.lazySingleton<_i1054.OpenAI>(() => appInjectableModule.openAI);
+  gh.singleton<_i617.ISubscriptionsRepo>(() => _i621.SubscriptionsRepoImpl());
+  gh.singleton<_i5.IPurchaseActionRepo>(() => _i690.PurchaseActionRepoImpl());
   gh.factory<_i541.SharedPrefsRawManager>(
       () => _i541.SharedPrefsRawManager(gh<_i460.SharedPreferences>()));
   gh.singleton<_i71.TmdbSearchService>(
@@ -96,14 +104,16 @@ Future<_i174.GetIt> $initGetIt(
       () => _i195.MovieActorBloc(gh<_i72.IMovieRepo>()));
   gh.factory<_i1024.MovieSearchBloc>(
       () => _i1024.MovieSearchBloc(gh<_i1069.IMovieSearchRepo>()));
-  gh.singleton<_i657.FisrtVisitPrefManager>(
-      () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
-  gh.singleton<_i947.ReminderPrefManager>(
-      () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i630.ReviewPrefManager>(
       () => _i630.ReviewPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i661.MoviePrefManager>(
       () => _i661.MoviePrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i657.FisrtVisitPrefManager>(
+      () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i125.PremiumPrefManager>(
+      () => _i125.PremiumPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i947.ReminderPrefManager>(
+      () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i495.ReviewService>(() => _i495.ReviewService(
         gh<_i553.InAppReview>(),
         gh<_i630.ReviewPrefManager>(),
@@ -111,6 +121,10 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i47.MovieSaverBloc>(() => _i47.MovieSaverBloc(
         gh<_i72.IMovieRepo>(),
         gh<_i661.MoviePrefManager>(),
+      ));
+  gh.singleton<_i277.PremiumCheckerBloc>(() => _i277.PremiumCheckerBloc(
+        gh<_i125.PremiumPrefManager>(),
+        gh<_i5.IPurchaseActionRepo>(),
       ));
   gh.singleton<_i845.ReminderFunctions>(() => _i845.ReminderFunctions(
         gh<_i947.ReminderPrefManager>(),

@@ -23,6 +23,8 @@ class PrefsKeys {
 
   static const addedMoviesCount = 'AddedMoviesCount';
 
+  static const hasPremium = 'hasPremium';
+
   PrefsKeys._();
 }
 
@@ -39,6 +41,8 @@ class SharedPrefsManager {
   final Pref<List<String>> reminderNotificationsIds;
 
   final Pref<int> addedMoviesCount;
+
+  final Pref<bool> hasPremium;
 
   SharedPrefsManager(
     SharedPrefsRawManager sharedPreferences,
@@ -76,6 +80,10 @@ class SharedPrefsManager {
         ),
         addedMoviesCount = IntPref(
           PrefsKeys.addedMoviesCount,
+          sharedPreferences,
+        ),
+        hasPremium = BoolPref(
+          PrefsKeys.hasPremium,
           sharedPreferences,
         );
 }
