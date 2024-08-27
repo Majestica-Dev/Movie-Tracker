@@ -80,5 +80,5 @@ flutter:
         - asset: assets/fonts/NewYorkLarge-Regular.otf
 
 flutter_native_splash:
-  image: assets/icons/splash_icon.png
+  image: assets/icons/app_logo.png
   color: "#6B66DA"
