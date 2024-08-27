@@ -10,5 +10,5 @@ abstract interface class IPurchaseActionRepo {
 
   Future<Either<PurchaseFailure, CustomerInfo>> restorePurchases();
 
-  Future<Either<PurchaseFailure, bool>> hasActivePurchase();
+  Future<Either<PurchaseFailure, bool>> get hasActivePurchase;
 }

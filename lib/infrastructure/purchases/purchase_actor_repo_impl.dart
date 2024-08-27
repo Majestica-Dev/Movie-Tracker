@@ -27,7 +27,7 @@ class PurchaseActionRepoImpl implements IPurchaseActionRepo {
   }
 
   @override
-  Future<Either<PurchaseFailure, bool>> hasActivePurchase() async {
+  Future<Either<PurchaseFailure, bool>> get hasActivePurchase async {
     try {
       final purchaserInfo = await Purchases.getCustomerInfo();
 

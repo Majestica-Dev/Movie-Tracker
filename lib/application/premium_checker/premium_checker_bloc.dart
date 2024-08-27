@@ -43,7 +43,7 @@ class PremiumCheckerBloc
       emit(const PremiumCheckerState.limited());
     }
 
-    final result = await _purchaseRepo.hasActivePurchase();
+    final result = await _purchaseRepo.hasActivePurchase;
 
     result.fold(
       (l) {},
