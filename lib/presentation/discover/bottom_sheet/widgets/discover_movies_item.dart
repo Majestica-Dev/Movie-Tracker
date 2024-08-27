@@ -7,6 +7,7 @@ import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/presentation/core/formatters/date_time_formater.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/core/widgets/movie/cover/movie_cover.dart';
 
@@ -65,13 +66,30 @@ class DiscoverMoviesItem extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: t.spacing.x1),
-                      child: Text(
-                        movie.title,
-                        style: t.textTheme.bodyMRegular.copyWith(
-                          color: t.colors.neutralHighContent,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            movie.title,
+                            style: t.textTheme.bodyMRegular.copyWith(
+                              color: t.colors.neutralHighContent,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          if (movie.releaseDate != null) ...[
+                            SizedBox(height: t.spacing.x2),
+                            Text(
+                              DateTimeFormatter.dayMonthYear(
+                                  movie.releaseDate!),
+                              style: t.textTheme.bodySRegular.copyWith(
+                                color: t.colors.neutralMedContent,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ]
+                        ],
                       ),
                     ),
                   ),

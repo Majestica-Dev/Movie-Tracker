@@ -5,7 +5,7 @@ import 'package:movie_tracker/presentation/discover/models/discover_movie.dart';
 final DiscoverMovies sciFiMovies = DiscoverMovies(
   genre: 'Sci-Fi',
   description:
-      'Explore futuristic worlds, cutting-edge technology, and mind-bending adventures. Discover the limitless possibilities of the universe with our sci-fi selection!',
+      'Explore futuristic worlds and mind-bending adventures in our sci-fi selection!',
   movies: [
     Movie(
       id: '157336',
@@ -127,6 +127,5 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.6,
     ),
-    
   ],
 );

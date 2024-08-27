@@ -5,7 +5,7 @@ import 'package:movie_tracker/presentation/discover/models/discover_movie.dart';
 final DiscoverMovies best2024Movies = DiscoverMovies(
   genre: 'Best Movies of 2024',
   description:
-      "Explore the must-see films of 2024, featuring blockbuster action, captivating dramas, and stunning visuals. Discover this year's cinematic gems that you won't want to miss.",
+      "Explore 2024's top films with action, drama, and stunning visuals. Don't miss these cinematic gems!",
   movies: [
     Movie(
       releaseDate: DateTime(2023, 11, 9),

@@ -5,7 +5,7 @@ import 'package:movie_tracker/presentation/discover/models/discover_movie.dart';
 final DiscoverMovies thrillerMovies = DiscoverMovies(
   genre: 'Thriller',
   description:
-      'Edge-of-your-seat suspense, unexpected twists, and nonstop excitement—these thrillers will keep you hooked until the last frame!',
+      'Edge-of-your-seat suspense, twists, and nonstop excitement—these thrillers will keep you hooked!',
   movies: [
     Movie(
       id: '872585',

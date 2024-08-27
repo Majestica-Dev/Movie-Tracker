@@ -4,6 +4,7 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_tracker/env/env.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 @module
 abstract class AppInjectableModule {
@@ -24,4 +25,7 @@ abstract class AppInjectableModule {
 
   @singleton
   InAppReview get inAppReview => InAppReview.instance;
+
+  @singleton
+  Uuid get uuid => const Uuid();
 }

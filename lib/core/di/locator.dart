@@ -7,6 +7,7 @@ import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/application/movie/search/movie_search_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
 import 'package:movie_tracker/core/utils/review/review_service.dart';
+import 'package:movie_tracker/infrastructure/notifications/reminder/reminder_functions.dart';
 
 import 'package:movie_tracker/presentation/core/router/app_router.dart';
 
@@ -30,5 +31,7 @@ abstract final class Locator {
 
   static FirstVisitCubit get firstVisitCubit => _getIt<FirstVisitCubit>();
 
-  static ReviewService get revieService => _getIt<ReviewService>();
+  static ReviewService get reviewService => _getIt<ReviewService>();
+
+  static ReminderFunctions get reminderFunctions => _getIt<ReminderFunctions>();
 }
