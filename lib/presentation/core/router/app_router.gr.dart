@@ -174,12 +174,14 @@ class MovieDetailsRouteArgs {
 class MovieOverviewRoute extends _i11.PageRouteInfo<MovieOverviewRouteArgs> {
   MovieOverviewRoute({
     required _i13.Movie movie,
+    required bool isFromAI,
     _i14.Key? key,
     List<_i11.PageRouteInfo>? children,
   }) : super(
           MovieOverviewRoute.name,
           args: MovieOverviewRouteArgs(
             movie: movie,
+            isFromAI: isFromAI,
             key: key,
           ),
           initialChildren: children,
@@ -193,6 +195,7 @@ class MovieOverviewRoute extends _i11.PageRouteInfo<MovieOverviewRouteArgs> {
       final args = data.argsAs<MovieOverviewRouteArgs>();
       return _i7.MovieOverviewScreen(
         movie: args.movie,
+        isFromAI: args.isFromAI,
         key: args.key,
       );
     },
@@ -202,16 +205,19 @@ class MovieOverviewRoute extends _i11.PageRouteInfo<MovieOverviewRouteArgs> {
 class MovieOverviewRouteArgs {
   const MovieOverviewRouteArgs({
     required this.movie,
+    required this.isFromAI,
     this.key,
   });
 
   final _i13.Movie movie;
 
+  final bool isFromAI;
+
   final _i14.Key? key;
 
   @override
   String toString() {
-    return 'MovieOverviewRouteArgs{movie: $movie, key: $key}';
+    return 'MovieOverviewRouteArgs{movie: $movie, isFromAI: $isFromAI, key: $key}';
   }
 }
 

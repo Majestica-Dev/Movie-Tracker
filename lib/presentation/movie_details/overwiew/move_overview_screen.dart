@@ -3,7 +3,7 @@ import 'package:movie_tracker/core/extensions/movie/movie_x.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/presentation/core/scafold.dart';
-import 'package:movie_tracker/presentation/movie_details/overwiew/widgets/move_overview_left_button.dart';
+import 'package:movie_tracker/presentation/movie_details/overwiew/widgets/move_overview_right_button.dart';
 import 'package:movie_tracker/presentation/movie_details/widgets/movie_overview.dart';
 import 'package:movie_tracker/presentation/movie_details/widgets/movie_status_chooser.dart';
 
@@ -14,9 +14,11 @@ import 'package:majestica_ds/majestica_ds.dart';
 @RoutePage()
 class MovieOverviewScreen extends StatefulWidget {
   final Movie movie;
+  final bool isFromAI;
 
   const MovieOverviewScreen({
     required this.movie,
+    required this.isFromAI,
     super.key,
   });
 
@@ -41,11 +43,12 @@ class _MovieOverviewScreenState extends State<MovieOverviewScreen> {
           onTap: () => context.router.maybePop(),
         ),
         forceMaterialTransparency: true,
-        trailing: MoveOverviewLeftButton(
+        trailing: MoveOverviewRightButton(
           movie: widget.movie.copyWith(
             status: watchStatus,
             editedAt: DateTime.now(),
           ),
+          isFromAI: widget.isFromAI,
         ),
       ),
       body: Padding(

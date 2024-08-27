@@ -235,21 +235,21 @@ mixin _$MovieSaverState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProgress,
-    required TResult Function() saved,
+    required TResult Function(int addedMoviesCount) saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProgress,
-    TResult? Function()? saved,
+    TResult? Function(int addedMoviesCount)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProgress,
-    TResult Function()? saved,
+    TResult Function(int addedMoviesCount)? saved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -341,7 +341,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProgress,
-    required TResult Function() saved,
+    required TResult Function(int addedMoviesCount) saved,
   }) {
     return initial();
   }
@@ -351,7 +351,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProgress,
-    TResult? Function()? saved,
+    TResult? Function(int addedMoviesCount)? saved,
   }) {
     return initial?.call();
   }
@@ -361,7 +361,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProgress,
-    TResult Function()? saved,
+    TResult Function(int addedMoviesCount)? saved,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -452,7 +452,7 @@ class _$InProgressImpl implements _InProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProgress,
-    required TResult Function() saved,
+    required TResult Function(int addedMoviesCount) saved,
   }) {
     return inProgress();
   }
@@ -462,7 +462,7 @@ class _$InProgressImpl implements _InProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProgress,
-    TResult? Function()? saved,
+    TResult? Function(int addedMoviesCount)? saved,
   }) {
     return inProgress?.call();
   }
@@ -472,7 +472,7 @@ class _$InProgressImpl implements _InProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProgress,
-    TResult Function()? saved,
+    TResult Function(int addedMoviesCount)? saved,
     required TResult orElse(),
   }) {
     if (inProgress != null) {
@@ -525,6 +525,8 @@ abstract class _$$SavedImplCopyWith<$Res> {
   factory _$$SavedImplCopyWith(
           _$SavedImpl value, $Res Function(_$SavedImpl) then) =
       __$$SavedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int addedMoviesCount});
 }
 
 /// @nodoc
@@ -537,35 +539,61 @@ class __$$SavedImplCopyWithImpl<$Res>
 
   /// Create a copy of MovieSaverState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? addedMoviesCount = null,
+  }) {
+    return _then(_$SavedImpl(
+      addedMoviesCount: null == addedMoviesCount
+          ? _value.addedMoviesCount
+          : addedMoviesCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SavedImpl implements _Saved {
-  const _$SavedImpl();
+  const _$SavedImpl({required this.addedMoviesCount});
+
+  @override
+  final int addedMoviesCount;
 
   @override
   String toString() {
-    return 'MovieSaverState.saved()';
+    return 'MovieSaverState.saved(addedMoviesCount: $addedMoviesCount)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SavedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SavedImpl &&
+            (identical(other.addedMoviesCount, addedMoviesCount) ||
+                other.addedMoviesCount == addedMoviesCount));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, addedMoviesCount);
+
+  /// Create a copy of MovieSaverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SavedImplCopyWith<_$SavedImpl> get copyWith =>
+      __$$SavedImplCopyWithImpl<_$SavedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() inProgress,
-    required TResult Function() saved,
+    required TResult Function(int addedMoviesCount) saved,
   }) {
-    return saved();
+    return saved(addedMoviesCount);
   }
 
   @override
@@ -573,9 +601,9 @@ class _$SavedImpl implements _Saved {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? inProgress,
-    TResult? Function()? saved,
+    TResult? Function(int addedMoviesCount)? saved,
   }) {
-    return saved?.call();
+    return saved?.call(addedMoviesCount);
   }
 
   @override
@@ -583,11 +611,11 @@ class _$SavedImpl implements _Saved {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? inProgress,
-    TResult Function()? saved,
+    TResult Function(int addedMoviesCount)? saved,
     required TResult orElse(),
   }) {
     if (saved != null) {
-      return saved();
+      return saved(addedMoviesCount);
     }
     return orElse();
   }
@@ -628,5 +656,13 @@ class _$SavedImpl implements _Saved {
 }
 
 abstract class _Saved implements MovieSaverState {
-  const factory _Saved() = _$SavedImpl;
+  const factory _Saved({required final int addedMoviesCount}) = _$SavedImpl;
+
+  int get addedMoviesCount;
+
+  /// Create a copy of MovieSaverState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SavedImplCopyWith<_$SavedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
