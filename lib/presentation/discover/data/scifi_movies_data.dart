@@ -56,16 +56,16 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       releaseDate: DateTime(2024, 6, 27),
     ),
     Movie(
-      id: '801688',
-      title: 'Kalki 2898-AD',
+      id: '1272',
+      title: 'Sunshine',
       description:
-          '''In the year 2898 AD, around 6000 years after Kurukshetra war, Ashwatthama gears up for his final battle of redemption at the sign of hope in a dystopian world and Bhairava, a wisecracking and self-interested bounty hunter, tired of the perilous life becomes the hurdle in the process.''',
+          '''Fifty years into the future, the sun is dying, and Earth is threatened by arctic temperatures. A team of astronauts is sent to revive the Sun — but the mission fails. Seven years later, a new team is sent to finish the mission as mankind’s last hope.''',
       posterImageUrl:
-          'https://image.tmdb.org/t/p/w342/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg',
+          'https://image.tmdb.org/t/p/w342/oKGGeJ8qvm0UmClz43VJ31fzPP7.jpg',
       status: WatchStatus.toWatch,
       editedAt: DateTime.now(),
       rating: 7.0,
-      releaseDate: DateTime(2024, 6, 27),
+      releaseDate: DateTime(2007, 4, 5),
     ),
     Movie(
       releaseDate: DateTime(2017, 10, 15),

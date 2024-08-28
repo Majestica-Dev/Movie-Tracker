@@ -8,18 +8,6 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       "Explore 2024's top films with action, drama, and stunning visuals. Don't miss these cinematic gems!",
   movies: [
     Movie(
-      releaseDate: DateTime(2023, 11, 9),
-      id: '872585',
-      title: 'Oppenheimer',
-      description:
-          '''The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.''',
-      posterImageUrl:
-          'https://image.tmdb.org/t/p/w342/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-      status: WatchStatus.toWatch,
-      editedAt: DateTime.now(),
-      rating: 8.2,
-    ),
-    Movie(
       releaseDate: DateTime(2024, 2, 29),
       id: '693134',
       title: 'Dune: Part Two',
@@ -30,6 +18,18 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       status: WatchStatus.toWatch,
       editedAt: DateTime.now(),
       rating: 8.2,
+    ),
+    Movie(
+      releaseDate: DateTime(2024, 6, 7),
+      id: '1086747',
+      title: 'The Watchers',
+      description:
+          '''A young artist gets stranded in an extensive, immaculate forest in western Ireland, where, after finding shelter, she becomes trapped alongside three strangers, stalked by mysterious creatures each night.''',
+      posterImageUrl:
+          'https://image.tmdb.org/t/p/w342/vZVEUPychdvZLrTNwWErr9xZFmu.jpg',
+      status: WatchStatus.toWatch,
+      editedAt: DateTime.now(),
+      rating: 6.5,
     ),
     Movie(
       releaseDate: DateTime(2023, 10, 19),
