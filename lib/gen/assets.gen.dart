@@ -12,11 +12,11 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/app_logo.png
-  AssetGenImage get appLogo => const AssetGenImage('assets/icons/app_logo.png');
+  /// File path: assets/icons/app_icon.png
+  AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [appLogo];
+  List<AssetGenImage> get values => [appIcon];
 }
 
 class $AssetsIntroGen {
@@ -36,11 +36,14 @@ class $AssetsIntroGen {
 class $AssetsLottiesGen {
   const $AssetsLottiesGen();
 
+  /// File path: assets/lotties/canfeti.json
+  String get canfeti => 'assets/lotties/canfeti.json';
+
   /// File path: assets/lotties/majic_ball.json
   String get majicBall => 'assets/lotties/majic_ball.json';
 
   /// List of all assets
-  List<String> get values => [majicBall];
+  List<String> get values => [canfeti, majicBall];
 }
 
 class $AssetsOnboardingGen {

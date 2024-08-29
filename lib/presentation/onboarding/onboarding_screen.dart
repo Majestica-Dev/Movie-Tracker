@@ -7,6 +7,7 @@ import 'package:movie_tracker/gen/assets.gen.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/core/scafold.dart';
 import 'package:movie_tracker/presentation/onboarding/models/onboarding_question_item.dart';
+import 'package:movie_tracker/presentation/onboarding/pages/paywall/paywall_page.dart';
 import 'package:movie_tracker/presentation/onboarding/structures/onboarding_question_structure.dart';
 
 @RoutePage()
@@ -54,7 +55,8 @@ class OnboardingScreen extends StatelessWidget {
           OnboardingQuestionItem(emoji: '🙁', title: 'Neutral'),
           OnboardingQuestionItem(emoji: '🙁', title: 'Dissatisfied'),
         ],
-      )
+      ),
+      const PaywallPage(),
     ];
 
     return MTScafold(
