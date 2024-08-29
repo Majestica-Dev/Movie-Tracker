@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/gen/fonts.gen.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/widgets/find_perfect_movie_card.dart';
 
 import 'package:movie_tracker/presentation/discover/data/discover_movies_data.dart';
@@ -29,9 +30,10 @@ class DiscoverScreen extends StatelessWidget {
           // Title
           if (index == 0) {
             return Text(
-              'Discover Movies',
+              'Discover Collections',
               style: t.textTheme.title1Regular.copyWith(
                 color: t.colors.neutralHighContent,
+                fontFamily: FontFamily.newYork,
               ),
             );
           }

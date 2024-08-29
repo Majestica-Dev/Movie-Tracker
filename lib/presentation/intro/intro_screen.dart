@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:auto_route/auto_route.dart';
@@ -74,10 +73,9 @@ class _IntroScreenBody extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  Assets.intro.appIcon,
+                Image.asset(
+                  Assets.icons.appIcon.path,
                   width: 64,
-                  height: 64,
                 ),
                 SizedBox(height: t.spacing.x3),
                 Text(

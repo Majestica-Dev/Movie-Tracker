@@ -14,14 +14,26 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
       fetchSubscriptions() async {
     try {
       final products = await Purchases.getProducts(
-        [],
+        [
+          'com.majestica.movieTracker.yearly35',
+          'com.majestica.movieTracker.weekly3',
+        ],
       );
 
       if (products.isEmpty) {
         return Left(PurchaseError());
       }
 
-      final subscriptionPlans = SubscriptionPlans();
+      final yearly = products.firstWhere(
+          (e) => e.identifier == 'com.majestica.movieTracker.yearly35');
+
+      final weekly = products.firstWhere(
+          (e) => e.identifier == 'com.majestica.movieTracker.weekly3');
+
+      final subscriptionPlans = SubscriptionPlans(
+        yearly: yearly,
+        weekly: weekly,
+      );
 
       return Right(subscriptionPlans);
     } catch (e, st) {

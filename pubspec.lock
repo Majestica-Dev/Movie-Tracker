@@ -749,7 +749,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "094bb409d87b7945895e6a5da8499c9d3e04debf"
+      resolved-ref: d5f3967236037f5f194b63f90b2e8c7d2de953fd
       url: "https://github.com/Majestica-Dev/design-system.git"
     source: git
     version: "2.0.0"

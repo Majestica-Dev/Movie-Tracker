@@ -8,6 +8,7 @@ import 'package:movie_tracker/presentation/core/extensions/context/build_context
 import 'package:movie_tracker/presentation/discover/bottom_sheet/discover_movies_sheet.dart';
 import 'package:movie_tracker/presentation/discover/models/discover_movie.dart';
 import 'package:movie_tracker/presentation/discover/widgets/movies_stack.dart';
+import 'package:movie_tracker/presentation/paywall/sheet/paywall_sheet.dart';
 
 class DiscoverMoviesCard extends StatelessWidget {
   final DiscoverMovies discoverMovies;
@@ -29,8 +30,7 @@ class DiscoverMoviesCard extends StatelessWidget {
             discoverMovies: discoverMovies,
           );
         } else {
-          const MDSToast(message: 'Discover is premium')
-              .show(); // TODO: show Paywall // TODO: show Paywall
+          PaywallSheet.show(context);
         }
       },
       child: SizedBox(

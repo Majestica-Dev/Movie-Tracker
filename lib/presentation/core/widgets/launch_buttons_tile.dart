@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import 'package:movie_tracker/presentation/core/constants/app_url.dart';
 import 'package:movie_tracker/presentation/core/utils/url_launcher.dart';
 
@@ -31,7 +33,9 @@ class LaunchButtonsTile extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            // TODO : impl
+            context.read<PurchaseActorBloc>().add(
+                  const PurchaseActorEvent.restore(),
+                );
           },
           child: Text(
             'Restore Purchases',

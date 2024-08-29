@@ -1,12 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_tracker/application/fisrt_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/gen/assets.gen.dart';
-
-import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/core/scafold.dart';
 import 'package:movie_tracker/presentation/onboarding/models/onboarding_question_item.dart';
+import 'package:movie_tracker/presentation/onboarding/pages/paywall/paywall_page.dart';
 import 'package:movie_tracker/presentation/onboarding/structures/onboarding_question_structure.dart';
 
 @RoutePage()
@@ -38,14 +35,7 @@ class OnboardingScreen extends StatelessWidget {
       ),
       OnboardingQuestionStructure(
         isMultiSelect: false,
-        changePage: () {
-          context.read<FirstVisitCubit>().recordVisit();
-
-          context.router.pushAndPopUntil(
-            const HomeRoute(),
-            predicate: (_) => false,
-          );
-        },
+        changePage: changePage,
         title: 'How happy are you with your streaming recommendations?',
         iconPath: Assets.onboarding.icons.film,
         questions: [
@@ -54,7 +44,8 @@ class OnboardingScreen extends StatelessWidget {
           OnboardingQuestionItem(emoji: '🙁', title: 'Neutral'),
           OnboardingQuestionItem(emoji: '🙁', title: 'Dissatisfied'),
         ],
-      )
+      ),
+      const PaywallPage(),
     ];
 
     return MTScafold(

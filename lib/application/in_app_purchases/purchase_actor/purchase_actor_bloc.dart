@@ -42,8 +42,13 @@ class PurchaseActorBloc extends Bloc<PurchaseActorEvent, PurchaseActorState> {
       (r) {
         emit(const PurchaseActorState.purchased());
 
-        _reviewService.checkAndRequestReviw(
-          reviewFrom: ReviewFrom.boughtPremium,
+        Timer(
+          const Duration(seconds: 1),
+          () {
+            _reviewService.checkAndRequestReviw(
+              reviewFrom: ReviewFrom.boughtPremium,
+            );
+          },
         );
       },
     );
