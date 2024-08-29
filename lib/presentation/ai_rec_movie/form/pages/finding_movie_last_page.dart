@@ -38,64 +38,56 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
           streamingServices: movieAiRecFormState.streamingServices,
           movies: context.allMovies,
         )),
-      child: BlocListener<MovieAiRecBloc, MovieAiRecState>(
-        listener: (context, state) {
-          state.mapOrNull(
-            failed: (value) {
-              const MDSToast(
-                message: 'Somthing Went Wrong',
-                type: ToastType.erorr,
-              ).show();
-
-              context.router.maybePop();
-            },
-            succeeded: (value) {
-              if (animationEnded) {
-                context.router.popAndPush(
-                  MovieOverviewRoute(
-                    movie: value.movie,
-                    isFromAI: true,
-                  ),
-                );
-              }
-            },
-          );
-        },
-        child: Builder(builder: (context) {
+      child: Builder(
+        builder: (context) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 100),
+              const SizedBox(height: 67),
               const MajicBall(isBig: true),
               SizedBox(height: t.spacing.x9),
               Expanded(
-                child: MovieAiRecLoading(
-                  onAnimationEnd: () {
-                    final Movie? movie =
-                        context.read<MovieAiRecBloc>().state.mapOrNull(
-                              succeeded: (value) => value.movie,
-                            );
+                child: Column(
+                  children: [
+                    MovieAiRecLoading(
+                      onAnimationEnd: () {
+                        setState(() {
+                          animationEnded = true;
+                        });
+                      },
+                    ),
+                    SizedBox(height: t.spacing.x7),
+                    BlocBuilder<MovieAiRecBloc, MovieAiRecState>(
+                      builder: (context, state) {
+                        final Movie? movie = state.mapOrNull(
+                          succeeded: (value) => value.movie,
+                        );
 
-                    if (movie != null) {
-                      context.router.popAndPush(
-                        MovieOverviewRoute(
-                          movie: movie,
-                          isFromAI: true,
-                        ),
-                      );
-
-                      return;
-                    }
-
-                    setState(() {
-                      animationEnded = true;
-                    });
-                  },
+                        return AnimatedOpacity(
+                          opacity: animationEnded && movie != null ? 1 : 0,
+                          duration: const Duration(milliseconds: 300),
+                          child: PrimaryButton(
+                            buttonSize: MDSButtonSize.L,
+                            expand: true,
+                            text: 'See result',
+                            disabled: movie == null || !animationEnded,
+                            onPressed: () {
+                              context.router.popAndPush(
+                                MovieOverviewRoute(
+                                  movie: movie!,
+                                  isFromAI: true,
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],
           );
-        }),
+        },
       ),
     );
   }
