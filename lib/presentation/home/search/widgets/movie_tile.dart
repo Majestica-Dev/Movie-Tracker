@@ -9,6 +9,7 @@ import 'package:movie_tracker/core/extensions/movie/movie_watcher_state_x.dart';
 import 'package:movie_tracker/core/extensions/movie/movie_x.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
+import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
 
 import 'package:movie_tracker/presentation/core/formatters/date_time_formater.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
@@ -102,8 +103,13 @@ class MovieTile extends StatelessWidget {
                     ),
                     buttonSize: MDSButtonSize.XS,
                     onPressed: () async {
-                      context.read<MovieSaverBloc>().add(MovieSaverEvent.save(
-                          movie: movie.copyWith(status: watchStatus)));
+                      if (context.addMovieEnabled) {
+                        context.read<MovieSaverBloc>().add(MovieSaverEvent.save(
+                            movie: movie.copyWith(status: watchStatus)));
+                      } else {
+                        const MDSToast(message: 'Book Adding Limit')
+                            .show(); // TODO: show Paywall
+                      }
                     },
                   ),
                 ),

@@ -21,7 +21,10 @@ class PrefsKeys {
   static const showedReviewFromAIMovieResult = 'showedReviewFromAIMovieResult';
   static const reminderNotificationsIds = 'reminderNotificationsIds';
 
-  static const addedMoviesCount = 'AddedMoviesCount';
+  static const addedMoviesCount = 'addedMoviesCount';
+  static const aiGeneratedMoviesCount = 'addedAiMoviesCount';
+
+  static const hasPremium = 'hasPremium';
 
   PrefsKeys._();
 }
@@ -39,6 +42,9 @@ class SharedPrefsManager {
   final Pref<List<String>> reminderNotificationsIds;
 
   final Pref<int> addedMoviesCount;
+  final Pref<int> aiGeneratedMoviesCount;
+
+  final Pref<bool> hasPremium;
 
   SharedPrefsManager(
     SharedPrefsRawManager sharedPreferences,
@@ -76,6 +82,14 @@ class SharedPrefsManager {
         ),
         addedMoviesCount = IntPref(
           PrefsKeys.addedMoviesCount,
+          sharedPreferences,
+        ),
+        aiGeneratedMoviesCount = IntPref(
+          PrefsKeys.aiGeneratedMoviesCount,
+          sharedPreferences,
+        ),
+        hasPremium = BoolPref(
+          PrefsKeys.hasPremium,
           sharedPreferences,
         );
 }

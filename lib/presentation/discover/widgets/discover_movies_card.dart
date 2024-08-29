@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/gen/fonts.gen.dart';
+import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
 import 'package:movie_tracker/presentation/discover/bottom_sheet/discover_movies_sheet.dart';
 import 'package:movie_tracker/presentation/discover/models/discover_movie.dart';
 import 'package:movie_tracker/presentation/discover/widgets/movies_stack.dart';
@@ -22,10 +23,15 @@ class DiscoverMoviesCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        DiscoverMoviesSheet.show(
-          context,
-          discoverMovies: discoverMovies,
-        );
+        if (context.hasPremium) {
+          DiscoverMoviesSheet.show(
+            context,
+            discoverMovies: discoverMovies,
+          );
+        } else {
+          const MDSToast(message: 'Discover is premium')
+              .show(); // TODO: show Paywall // TODO: show Paywall
+        }
       },
       child: SizedBox(
         width: double.infinity,

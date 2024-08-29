@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_tracker/core/extensions/movie/ai_rec/movie_genre_x.dart';
+import 'package:movie_tracker/core/extensions/movie/ai_rec/watch_mood_x.dart';
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/movie_genre.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/streaming_service.dart';
@@ -37,23 +41,31 @@ class MovieAiRecImpl implements IMovieAiRec {
       movies: movies,
     );
 
+    final genreMovies =
+        genres.isEmpty ? mood.discoverMovies : genres.first.discoverMovies;
+
+    final Movie randomMovieByGenre =
+        genreMovies[Random().nextInt(genreMovies.length)];
+
     return gptRecResult.fold(
-      (l) => Left(AiMovieRecUnknowError()),
+      (l) => Right(randomMovieByGenre),
       (movieTitle) async {
         final apiSearchResult =
             await _tmdbSearchService.searchByTitle(movieTitle);
 
         return apiSearchResult.fold(
-          (l) => Left(AiMovieRecUnknowError()),
+          (l) => Right(randomMovieByGenre),
           (r) {
             if (r.isEmpty) {
               Sentry.captureMessage(
                 'Gpt rec is not found from api : $movieTitle',
                 level: SentryLevel.error,
               );
-            }
 
-            return r.isEmpty ? Left(AiMovieRecUnknowError()) : Right(r.first);
+              return Right(randomMovieByGenre);
+            } else {
+              return Right(r.first);
+            }
           },
         );
       },

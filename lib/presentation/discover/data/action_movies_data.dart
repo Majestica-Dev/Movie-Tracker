@@ -20,16 +20,16 @@ final actionMovies = DiscoverMovies(
       rating: 8.4,
     ),
     Movie(
-      releaseDate: DateTime(2024, 6, 7),
-      id: '573435',
-      title: 'Bad Boys: Ride or Die',
+      releaseDate: DateTime(2023, 8, 9),
+      id: '724209',
+      title: 'Heart of Stone',
       description:
-          '''After their late former Captain is framed, Lowrey and Burnett try to clear his name, only to end up on the run themselves.''',
+          '''An intelligence operative for a shadowy global peacekeeping agency races to stop a hacker from stealing its most valuable — and dangerous — weapon.''',
       posterImageUrl:
-          'https://image.tmdb.org/t/p/w342/oGythE98MYleE6mZlGs5oBGkux1.jpg',
+          'https://image.tmdb.org/t/p/w342/vB8o2p4ETnrfiWEgVxHmHWP9yRl.jpg',
       status: WatchStatus.toWatch,
       editedAt: DateTime.now(),
-      rating: 7.6,
+      rating: 6.8,
     ),
     Movie(
       releaseDate: DateTime(1999, 3, 31),

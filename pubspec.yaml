@@ -1,7 +1,8 @@
 name: movie_tracker
 description: "A new Flutter project."
 publish_to: "none"
-version: 1.0.0+1
+
+version: 1.0.0+4
 
 environment:
   sdk: ^3.5.0
@@ -48,6 +49,7 @@ dependencies:
   shared_preferences: ^2.3.2
   mccounting_text: ^1.0.0
   flutter_native_splash: ^2.4.1
+  purchases_flutter: ^8.1.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -79,5 +81,5 @@ flutter:
         - asset: assets/fonts/NewYorkLarge-Regular.otf
 
 flutter_native_splash:
-  image: assets/icons/splash_icon.png
+  image: assets/icons/app_logo.png
   color: "#6B66DA"
