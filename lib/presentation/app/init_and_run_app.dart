@@ -29,6 +29,7 @@ void initAndRunApp() async {
 void _initWidgetBindingAndPreserveSplash() {
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
+
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 }
 

@@ -11,5 +11,5 @@ abstract class Env {
   static const String gptTestToken = _Env.gptTestToken;
 
   @EnviedField(varName: 'IAP_API_KEY')
-  static const String iapApiKey = _Env.gptTestToken;
+  static const String iapApiKey = _Env.iapApiKey;
 }

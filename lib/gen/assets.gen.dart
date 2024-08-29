@@ -12,12 +12,11 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/splash_icon.png
-  AssetGenImage get splashIcon =>
-      const AssetGenImage('assets/icons/splash_icon.png');
+  /// File path: assets/icons/app_logo.png
+  AssetGenImage get appLogo => const AssetGenImage('assets/icons/app_logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [splashIcon];
+  List<AssetGenImage> get values => [appLogo];
 }
 
 class $AssetsIntroGen {
