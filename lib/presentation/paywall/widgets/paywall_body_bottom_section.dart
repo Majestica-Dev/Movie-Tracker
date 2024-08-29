@@ -6,7 +6,12 @@ import 'package:movie_tracker/presentation/paywall/widgets/paywall_button_tile.d
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_plan_chooser_card.dart';
 
 class PaywallBodyBottomSection extends StatefulWidget {
-  const PaywallBodyBottomSection({super.key});
+  final bool isFromOnboarding;
+
+  const PaywallBodyBottomSection({
+    required this.isFromOnboarding,
+    super.key,
+  });
 
   @override
   State<PaywallBodyBottomSection> createState() =>
@@ -47,6 +52,7 @@ class _PaywallBodyBottomSectionState extends State<PaywallBodyBottomSection> {
                 PaywallButtonTile(
                   productToPurchase:
                       isYearlyChosen ? plans.yearly : plans.weekly,
+                  isFromOnboarding: widget.isFromOnboarding,
                 ),
               ],
             );

@@ -14,6 +14,7 @@ import 'package:movie_tracker/presentation/core/extensions/context/build_context
 import 'package:movie_tracker/presentation/core/formatters/date_time_formater.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/core/widgets/movie/cover/movie_cover.dart';
+import 'package:movie_tracker/presentation/paywall/sheet/paywall_sheet.dart';
 
 class MovieTile extends StatelessWidget {
   final WatchStatus? watchStatus;
@@ -107,8 +108,7 @@ class MovieTile extends StatelessWidget {
                         context.read<MovieSaverBloc>().add(MovieSaverEvent.save(
                             movie: movie.copyWith(status: watchStatus)));
                       } else {
-                        const MDSToast(message: 'Book Adding Limit')
-                            .show(); // TODO: show Paywall
+                        PaywallSheet.show(context);
                       }
                     },
                   ),

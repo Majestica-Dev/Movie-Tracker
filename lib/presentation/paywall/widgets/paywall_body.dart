@@ -18,13 +18,15 @@ class PaywallBody extends StatelessWidget {
 
     return MDSTheme(
       data: t,
-      child: Container(
+      child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: context.mdsTheme.primaryGradient.colors,
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          gradient: isFromOnboarding
+              ? LinearGradient(
+                  colors: context.mdsTheme.primaryGradient.colors,
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                )
+              : null,
         ),
         child: Column(
           children: [
@@ -32,8 +34,10 @@ class PaywallBody extends StatelessWidget {
             PaywallBodyTopSection(
               isFromOnboarding: isFromOnboarding,
             ),
-            const Expanded(
-              child: PaywallBodyBottomSection(),
+            Expanded(
+              child: PaywallBodyBottomSection(
+                isFromOnboarding: isFromOnboarding,
+              ),
             )
           ],
         ),

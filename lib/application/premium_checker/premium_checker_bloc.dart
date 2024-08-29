@@ -29,10 +29,6 @@ class PremiumCheckerBloc
     _Check event,
     Emitter<PremiumCheckerState> emit,
   ) async {
-    emit(const PremiumCheckerState.premium());
-
-    return;
-
     final bool isPremium = _premiumCheckerManager.hasPremium;
 
     if (isPremium) {

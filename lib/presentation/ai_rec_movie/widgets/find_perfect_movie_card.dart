@@ -10,6 +10,7 @@ import 'package:movie_tracker/presentation/ai_rec_movie/form/movie_ai_rec_form_s
 
 import 'package:movie_tracker/presentation/ai_rec_movie/widgets/majic_ball.dart';
 import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
+import 'package:movie_tracker/presentation/paywall/sheet/paywall_sheet.dart';
 
 class FindPerfectMovieCard extends StatelessWidget {
   const FindPerfectMovieCard({
@@ -25,7 +26,7 @@ class FindPerfectMovieCard extends StatelessWidget {
         if (context.generateAiEnabled) {
           MovieAiRecFormSheet.show(context);
         } else {
-          const MDSToast(message: 'Ai Limit').show(); // TODO: show Paywall
+          PaywallSheet.show(context);
         }
       },
       child: Container(
