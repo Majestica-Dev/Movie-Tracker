@@ -51,7 +51,7 @@ class MovieAiRecImpl implements IMovieAiRec {
       (l) => Right(randomMovieByGenre),
       (movieTitle) async {
         final apiSearchResult =
-            await _tmdbSearchService.searchByTitle(movieTitle);
+            await _tmdbSearchService.searchByTitle(movieTitle, maxResult: 1);
 
         return apiSearchResult.fold(
           (l) => Right(randomMovieByGenre),

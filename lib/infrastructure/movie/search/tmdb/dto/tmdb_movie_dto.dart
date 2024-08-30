@@ -27,7 +27,7 @@ class TmdbMovieDto {
         releaseDate: DateTime.tryParse(json['release_date'] as String),
       );
 
-  Movie get toEntity {
+  Movie toEntity({required String? trailerLink}) {
     return Movie(
       rating: voteAverage,
       editedAt: DateTime.now(),
@@ -39,6 +39,7 @@ class TmdbMovieDto {
           : 'https://image.tmdb.org/t/p/w342$posterPath',
       status: WatchStatus.toWatch,
       releaseDate: releaseDate,
+      trailerLink: trailerLink,
     );
   }
 }

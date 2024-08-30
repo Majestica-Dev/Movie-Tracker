@@ -1,10 +1,10 @@
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
+
 import 'package:movie_tracker/presentation/core/widgets/movie/cover/movie_cover.dart';
 
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/presentation/movie_details/widgets/animated_movie_description.dart';
-import 'package:movie_tracker/presentation/movie_details/widgets/movie_vote_average_stars.dart';
 
 class MovieOverview extends StatelessWidget {
   final Movie movie;
@@ -39,14 +39,6 @@ class MovieOverview extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              if (movie.rating != null) ...[
-                SizedBox(height: t.spacing.x3),
-                MovieVoteAverageStars(
-                  itemPadding: 1,
-                  rating: movie.rating!,
-                ),
-                SizedBox(height: t.spacing.x3),
-              ],
               if (movie.description != null) ...[
                 SizedBox(height: t.spacing.x3),
                 AnimatedMovieDescription(description: movie.description!),

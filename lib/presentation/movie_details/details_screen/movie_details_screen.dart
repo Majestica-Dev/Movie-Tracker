@@ -12,9 +12,9 @@ import 'package:movie_tracker/core/di/locator.dart';
 import 'package:movie_tracker/core/extensions/movie/movie_watcher_state_x.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/presentation/core/scafold.dart';
-import 'package:movie_tracker/presentation/movie_details/movie_details_screen_app_bar.dart';
+import 'package:movie_tracker/presentation/movie_details/details_screen/widgets/movie_details_screen_app_bar.dart';
 import 'package:movie_tracker/presentation/movie_details/widgets/movie_overview.dart';
-import 'package:movie_tracker/presentation/movie_details/widgets/movie_status_chooser.dart';
+import 'package:movie_tracker/presentation/movie_details/details_screen/widgets/movie_status_chooser.dart';
 
 @RoutePage()
 class MovieDetailsScreen extends StatelessWidget {

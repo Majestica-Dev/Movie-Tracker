@@ -9,6 +9,7 @@ final class Movie {
   final WatchStatus status;
   final double? rating;
   final DateTime? releaseDate;
+  final String? trailerLink;
 
   const Movie({
     required this.id,
@@ -19,5 +20,17 @@ final class Movie {
     required this.editedAt,
     required this.rating,
     required this.releaseDate,
+    required this.trailerLink,
   });
+
+  const Movie.withoutTrailerLink({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.posterImageUrl,
+    required this.status,
+    required this.editedAt,
+    required this.rating,
+    required this.releaseDate,
+  }) : trailerLink = null;
 }

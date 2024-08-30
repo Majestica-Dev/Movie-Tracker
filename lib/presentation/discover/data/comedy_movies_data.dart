@@ -6,7 +6,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
   genre: 'Comedy',
   description: 'Side-Splitting Fun with Hilarious Moments and Endless Laughs.',
   movies: [
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(1994, 12, 16),
       id: '8467',
       title: 'Dumb and Dumber',
@@ -18,7 +18,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.6,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2001, 8, 18),
       id: '808',
       title: 'Shrek',
@@ -30,7 +30,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.7,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2005, 7, 15),
       id: '9522',
       title: 'Wedding Crashers',
@@ -42,7 +42,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.5,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2012, 6, 19),
       id: '72105',
       title: 'Ted',
@@ -54,7 +54,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.4,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2009, 6, 5),
       id: '18785',
       title: 'The Hangover',
@@ -66,7 +66,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.3,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 5, 24),
       id: '748783',
       title: 'The Garfield Movie',
@@ -78,7 +78,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.2,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2007, 8, 17),
       id: '8363',
       title: 'Superbad',
@@ -90,7 +90,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.3,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2014, 3, 7),
       id: '120467',
       title: 'The Grand Budapest Hotel',
@@ -102,7 +102,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.1,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2008, 7, 25),
       id: '69983219',
       title: 'Step Brothers',
@@ -114,7 +114,7 @@ final DiscoverMovies comedyMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.6,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2016, 5, 20),
       id: '290250',
       title: 'The Nice Guys',

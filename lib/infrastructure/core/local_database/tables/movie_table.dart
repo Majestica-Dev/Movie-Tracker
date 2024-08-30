@@ -12,6 +12,7 @@ class MovieTable extends Table {
   DateTimeColumn get editedAt => dateTime()();
   RealColumn get rating => real().nullable()();
   DateTimeColumn get releaseDate => dateTime().nullable()();
+  TextColumn get trailerLink => text().nullable()();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -28,6 +29,7 @@ extension MovieTableMapper on MovieTableData {
       status: status,
       editedAt: editedAt,
       releaseDate: releaseDate,
+      trailerLink: trailerLink,
     );
   }
 
@@ -41,6 +43,7 @@ extension MovieTableMapper on MovieTableData {
       editedAt: Value(movie.editedAt),
       rating: Value(movie.rating),
       releaseDate: Value(movie.releaseDate),
+      trailerLink: Value(movie.trailerLink),
     );
   }
 }

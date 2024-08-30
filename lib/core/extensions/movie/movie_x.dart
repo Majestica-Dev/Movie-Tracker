@@ -11,6 +11,7 @@ extension MovieX on Movie {
     final WatchStatus? status,
     final double? rating,
     final DateTime? releaseDate,
+    final String? trailerLink,
   }) {
     return Movie(
       id: id ?? this.id,
@@ -21,6 +22,13 @@ extension MovieX on Movie {
       editedAt: editedAt ?? this.editedAt,
       rating: rating ?? this.rating,
       releaseDate: releaseDate ?? this.releaseDate,
+      trailerLink: trailerLink ?? this.trailerLink,
     );
+  }
+
+  String? get ratingPercentAsString {
+    if (rating == null) return null;
+
+    return (rating! * 100).toString() + r'%';
   }
 }

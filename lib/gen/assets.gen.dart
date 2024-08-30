@@ -22,15 +22,12 @@ class $AssetsIconsGen {
 class $AssetsIntroGen {
   const $AssetsIntroGen();
 
-  /// File path: assets/intro/app_icon.svg
-  String get appIcon => 'assets/intro/app_icon.svg';
-
   /// File path: assets/intro/background.jpeg
   AssetGenImage get background =>
       const AssetGenImage('assets/intro/background.jpeg');
 
   /// List of all assets
-  List<dynamic> get values => [appIcon, background];
+  List<AssetGenImage> get values => [background];
 }
 
 class $AssetsLottiesGen {
