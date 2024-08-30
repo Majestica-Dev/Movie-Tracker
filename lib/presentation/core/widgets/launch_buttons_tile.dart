@@ -12,7 +12,12 @@ import 'package:flutter/widgets.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 
 class LaunchButtonsTile extends StatelessWidget {
-  const LaunchButtonsTile({super.key});
+  final bool showRestore;
+
+  const LaunchButtonsTile({
+    this.showRestore = true,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +36,22 @@ class LaunchButtonsTile extends StatelessWidget {
             ),
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            context.read<PurchaseActorBloc>().add(
-                  const PurchaseActorEvent.restore(),
-                );
-          },
-          child: Text(
-            'Restore Purchases',
-            maxLines: 1,
-            style: t.textTheme.bodyXSRegular.copyWith(
-              color: t.colors.neutralMedContent,
-              fontFamily: FontFamily.sFPro,
+        if (showRestore)
+          GestureDetector(
+            onTap: () {
+              context.read<PurchaseActorBloc>().add(
+                    const PurchaseActorEvent.restore(),
+                  );
+            },
+            child: Text(
+              'Restore Purchases',
+              maxLines: 1,
+              style: t.textTheme.bodyXSRegular.copyWith(
+                color: t.colors.neutralMedContent,
+                fontFamily: FontFamily.sFPro,
+              ),
             ),
           ),
-        ),
         GestureDetector(
           onTap: () => UrlLauncher.launchUrl(MTUrls.privacyPolicy),
           child: Text(

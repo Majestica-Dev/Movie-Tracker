@@ -108,7 +108,7 @@ class _IntroScreenBody extends StatelessWidget {
             },
           ),
           SizedBox(height: t.spacing.x3),
-          const LaunchButtonsTile(),
+          const LaunchButtonsTile(showRestore: false),
         ],
       ),
     );
