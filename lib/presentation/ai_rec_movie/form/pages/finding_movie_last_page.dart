@@ -11,6 +11,7 @@ import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/form/loading/movie_ai_rec_loading.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/widgets/majic_ball.dart';
 import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
+import 'package:movie_tracker/presentation/core/managers/animations/cnafeti_animation.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 
 class FindingMovieLastPage extends StatefulWidget {
@@ -76,6 +77,11 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
                                   movie: movie!,
                                   isFromAI: true,
                                 ),
+                              );
+
+                              CanfetiAnimation.show(
+                                waitingDuration:
+                                    const Duration(milliseconds: 500),
                               );
                             },
                           ),
