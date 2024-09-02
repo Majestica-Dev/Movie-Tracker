@@ -16,6 +16,10 @@ class PaywallBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.mdsTheme.copyWith(colors: MTColors.glossy);
 
+    final double screenHeight = MediaQuery.of(context).size.height;
+
+    final bool isSmallScreen = screenHeight < 700;
+
     return MDSTheme(
       data: t,
       child: DecoratedBox(
@@ -30,7 +34,7 @@ class PaywallBody extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 68),
+            SizedBox(height: isSmallScreen ? 0 : 68),
             PaywallBodyTopSection(
               isFromOnboarding: isFromOnboarding,
             ),
