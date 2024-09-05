@@ -13,8 +13,10 @@ import 'package:movie_tracker/core/extensions/movie/movie_watcher_state_x.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/presentation/core/scafold.dart';
 import 'package:movie_tracker/presentation/movie_details/details_screen/widgets/movie_details_screen_app_bar.dart';
+import 'package:movie_tracker/presentation/movie_details/widgets/movie_details_card.dart';
 import 'package:movie_tracker/presentation/movie_details/widgets/movie_overview.dart';
 import 'package:movie_tracker/presentation/movie_details/details_screen/widgets/movie_status_chooser.dart';
+import 'package:movie_tracker/presentation/movie_details/widgets/movie_trailer_launch_button.dart';
 
 @RoutePage()
 class MovieDetailsScreen extends StatelessWidget {
@@ -65,10 +67,13 @@ class MovieDetailsScreen extends StatelessWidget {
                           status: movie.status,
                         ),
                         SizedBox(height: t.spacing.x6),
-                        // MovieDetailsCard(
-                        //   Movie: Movie,
-                        //   showEditButton: true,
-                        // ),
+                        MovieTrailerLaunchButton(
+                          trailerLink: movie.trailerLink,
+                          movieTitle: movie.title,
+                        ),
+                        SizedBox(height: t.spacing.x6),
+                        MovieDetailsCard(movie: movie),
+                        SizedBox(height: t.spacing.x6),
                       ],
                     ),
                   ),

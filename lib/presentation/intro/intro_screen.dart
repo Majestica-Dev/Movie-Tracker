@@ -33,20 +33,24 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return MTScafold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(Assets.intro.background.path),
-          ),
+      body: MDSTheme(
+        data: context.mdsTheme.copyWith(
+          colors: MTColors.glossy,
         ),
-        child: MDSTheme(
-          data: context.mdsTheme.copyWith(
-            colors: MTColors.glossy,
-          ),
-          child: const _IntroScreenBody(),
+        child: Stack(
+          children: [
+            Assets.intro.background.image(
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.4),
+              ),
+            ),
+            const _IntroScreenBody(),
+          ],
         ),
       ),
     );
@@ -79,7 +83,7 @@ class _IntroScreenBody extends StatelessWidget {
                 ),
                 SizedBox(height: t.spacing.x3),
                 Text(
-                  'WatchList',
+                  'AI movie finder and tracker',
                   style: t.textTheme.titleLargeBold.copyWith(
                     color: t.colors.primaryHighContent,
                   ),

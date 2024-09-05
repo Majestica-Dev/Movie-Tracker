@@ -29,6 +29,6 @@ extension MovieX on Movie {
   String? get ratingPercentAsString {
     if (rating == null) return null;
 
-    return (rating! * 100).toString() + r'%';
+    return (rating! * 10).toStringAsFixed(0) + r' %';
   }
 }

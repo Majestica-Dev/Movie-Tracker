@@ -18,6 +18,6 @@ extension BuildContextX on BuildContext {
 
   bool get generateAiEnabled =>
       hasPremium ||
-      Locator.aiMoviesPrefManager.aiGeneratedMoviesCount <
+      Locator.movieAiRecManager.aiGeneratedMoviesCount <
           FreemiumLimits.aiGeneratedMovies;
 }

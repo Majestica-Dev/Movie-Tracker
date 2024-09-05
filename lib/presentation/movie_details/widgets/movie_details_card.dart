@@ -40,6 +40,7 @@ class MovieDetailsCard extends StatelessWidget {
                 ),
               ],
             ),
+          SizedBox(height: t.spacing.x4),
           if (movie.ratingPercentAsString != null)
             Row(
               children: [

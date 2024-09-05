@@ -42,8 +42,8 @@ import '../../infrastructure/core/shared_prefs/shared_prefs_manager.dart'
 import '../../infrastructure/fisrt_visit/fisrt_visit_pref_manager.dart'
     as _i657;
 import '../../infrastructure/movie/ai_rec/gpt_movie_rec_impl.dart' as _i914;
-import '../../infrastructure/movie/ai_rec/manager/ai_movies_pref_manager.dart'
-    as _i1046;
+import '../../infrastructure/movie/ai_rec/manager/movie_ai_rec_pref_manager.dart'
+    as _i1053;
 import '../../infrastructure/movie/ai_rec/movie_ai_rec_impl.dart' as _i691;
 import '../../infrastructure/movie/manager/movie_pref_manager.dart' as _i661;
 import '../../infrastructure/movie/movie_repo_impl.dart' as _i338;
@@ -102,10 +102,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i352.SharedPrefsManager(gh<_i541.SharedPrefsRawManager>()));
   gh.singleton<_i1069.IMovieSearchRepo>(
       () => _i437.MovieSearchRepoImpl(gh<_i71.TmdbSearchService>()));
-  gh.singleton<_i561.IMovieAiRec>(() => _i691.MovieAiRecImpl(
-        gh<_i914.GptMovieRecImpl>(),
-        gh<_i71.TmdbSearchService>(),
-      ));
   gh.factory<_i195.MovieActorBloc>(
       () => _i195.MovieActorBloc(gh<_i72.IMovieRepo>()));
   gh.factory<_i1024.MovieSearchBloc>(
@@ -114,14 +110,14 @@ Future<_i174.GetIt> $initGetIt(
       () => _i630.ReviewPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i661.MoviePrefManager>(
       () => _i661.MoviePrefManager(gh<_i352.SharedPrefsManager>()));
-  gh.singleton<_i1046.AiMoviesPrefManager>(
-      () => _i1046.AiMoviesPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i657.FisrtVisitPrefManager>(
       () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i125.PremiumPrefManager>(
       () => _i125.PremiumPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i947.ReminderPrefManager>(
       () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i1053.MovieAiRecPrefManager>(
+      () => _i1053.MovieAiRecPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i495.ReviewService>(() => _i495.ReviewService(
         gh<_i553.InAppReview>(),
         gh<_i630.ReviewPrefManager>(),
@@ -134,10 +130,6 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i5.IPurchaseActionRepo>(),
         gh<_i495.ReviewService>(),
       ));
-  gh.factory<_i501.MovieAiRecBloc>(() => _i501.MovieAiRecBloc(
-        gh<_i561.IMovieAiRec>(),
-        gh<_i1046.AiMoviesPrefManager>(),
-      ));
   gh.singleton<_i277.PremiumCheckerBloc>(() => _i277.PremiumCheckerBloc(
         gh<_i125.PremiumPrefManager>(),
         gh<_i5.IPurchaseActionRepo>(),
@@ -148,6 +140,15 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.singleton<_i808.FirstVisitCubit>(
       () => _i808.FirstVisitCubit(gh<_i657.FisrtVisitPrefManager>()));
+  gh.singleton<_i561.IMovieAiRec>(() => _i691.MovieAiRecImpl(
+        gh<_i914.GptMovieRecImpl>(),
+        gh<_i71.TmdbSearchService>(),
+        gh<_i1053.MovieAiRecPrefManager>(),
+      ));
+  gh.factory<_i501.MovieAiRecBloc>(() => _i501.MovieAiRecBloc(
+        gh<_i561.IMovieAiRec>(),
+        gh<_i1053.MovieAiRecPrefManager>(),
+      ));
   return getIt;
 }
 

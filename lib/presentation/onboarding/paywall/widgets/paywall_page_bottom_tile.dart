@@ -2,24 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
-import 'package:movie_tracker/presentation/paywall/widgets/features_tile.dart';
-import 'package:movie_tracker/presentation/paywall/widgets/paywall_button_tile.dart';
+import 'package:movie_tracker/presentation/onboarding/paywall/widgets/paywall_page_button_tile.dart';
+
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_plan_chooser_card.dart';
 
-class PaywallBodyBottomSection extends StatefulWidget {
-  final bool isFromOnboarding;
-
-  const PaywallBodyBottomSection({
-    required this.isFromOnboarding,
+class PaywallPageBottomTile extends StatefulWidget {
+  const PaywallPageBottomTile({
     super.key,
   });
 
   @override
-  State<PaywallBodyBottomSection> createState() =>
-      _PaywallBodyBottomSectionState();
+  State<PaywallPageBottomTile> createState() => _PaywallPageBottomTileState();
 }
 
-class _PaywallBodyBottomSectionState extends State<PaywallBodyBottomSection> {
+class _PaywallPageBottomTileState extends State<PaywallPageBottomTile> {
   bool isYearlyChosen = true;
 
   @override
@@ -51,18 +47,17 @@ class _PaywallBodyBottomSectionState extends State<PaywallBodyBottomSection> {
                     subscriptionPlans: plans,
                   ),
                 ),
-                SizedBox(height: isSmallScreen ? 20 : t.spacing.x6),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
-                  child: const FeaturesTile(),
-                ),
+                // SizedBox(height: isSmallScreen ? 20 : t.spacing.x6),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
+                //   child: const FeaturesTile(),
+                // ),
                 SizedBox(height: t.spacing.x6),
                 if (!isSmallScreen) const SecuredByAppleCard(),
                 const Spacer(),
-                PaywallButtonTile(
+                PaywallPageButtonTile(
                   productToPurchase:
                       isYearlyChosen ? plans.yearly : plans.weekly,
-                  isFromOnboarding: widget.isFromOnboarding,
                 ),
               ],
             );

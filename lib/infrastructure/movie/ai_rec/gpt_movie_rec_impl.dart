@@ -21,6 +21,7 @@ class GptMovieRecImpl {
     required List<MovieGenre> genres,
     required List<StreamingService> streamingServices,
     required Movies movies,
+    required List<String> alreadyRecMoviesTitle,
   }) async {
     final List<String> moviesTitles = movies.map((e) => e.title).toList();
 
@@ -30,6 +31,7 @@ class GptMovieRecImpl {
         genres: genres,
         streamingServices: streamingServices,
         moviesTitles: moviesTitles,
+        alreadyRecMoviesTitle: alreadyRecMoviesTitle,
       );
 
       final request = ChatCompleteText(
@@ -60,11 +62,13 @@ class GptMovieRecImpl {
     required List<MovieGenre> genres,
     required List<StreamingService> streamingServices,
     required List<String> moviesTitles,
+    required List<String> alreadyRecMoviesTitle,
   }) {
     final currentMood = mood.title;
     final preferredGenres = genres.map((e) => e.title).toString();
     final favoriteMovies = moviesTitles.toString();
     final services = streamingServices.toString();
+    final alreadyRecMovies = alreadyRecMoviesTitle.toString();
 
     return '''Task:
 Recommend a movie title based on the user’s favorite movies,current mood, preferred genres and available streaming platforms (if specified). The movie must not be on the user’s list of favorite movies and should be available on one of the user’s streaming platforms (if provided).
@@ -76,7 +80,7 @@ Parameters:
 	•	Streaming Platforms: $services (optional)
 
 Instructions:
-  1.  The movie should not already be in the favorite movies
+  1.  The movie should not already be in the favorite movies and in this list $alreadyRecMovies
 	2.	Select a movie that fits the user’s favorite movies,current mood and preferred genres.
 	3.	If streaming platforms are provided, ensure the movie is available on one of those platforms.
 	4.	Return only the movie title.''';

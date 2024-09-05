@@ -25,6 +25,7 @@ class PrefsKeys {
   static const aiGeneratedMoviesCount = 'addedAiMoviesCount';
 
   static const hasPremium = 'hasPremium';
+  static const alreadyAiRecMovies = 'alreadyAiRecMovies';
 
   PrefsKeys._();
 }
@@ -40,6 +41,7 @@ class SharedPrefsManager {
   final Pref<bool> showedReviewFromAdded10Moves;
   final Pref<bool> showedReviewFromAIMovieResult;
   final Pref<List<String>> reminderNotificationsIds;
+  final Pref<List<String>> alreadyAiRecMovies;
 
   final Pref<int> addedMoviesCount;
   final Pref<int> aiGeneratedMoviesCount;
@@ -90,6 +92,10 @@ class SharedPrefsManager {
         ),
         hasPremium = BoolPref(
           PrefsKeys.hasPremium,
+          sharedPreferences,
+        ),
+        alreadyAiRecMovies = StringListPref(
+          PrefsKeys.alreadyAiRecMovies,
           sharedPreferences,
         );
 }

@@ -48,6 +48,9 @@ class $AssetsOnboardingGen {
 
   /// Directory path: assets/onboarding/icons
   $AssetsOnboardingIconsGen get icons => const $AssetsOnboardingIconsGen();
+
+  /// Directory path: assets/onboarding/images
+  $AssetsOnboardingImagesGen get images => const $AssetsOnboardingImagesGen();
 }
 
 class $AssetsOnboardingIconsGen {
@@ -64,6 +67,26 @@ class $AssetsOnboardingIconsGen {
 
   /// List of all assets
   List<String> get values => [clock, crying, film];
+}
+
+class $AssetsOnboardingImagesGen {
+  const $AssetsOnboardingImagesGen();
+
+  /// File path: assets/onboarding/images/extra_page_header_card.png
+  AssetGenImage get extraPageHeaderCard => const AssetGenImage(
+      'assets/onboarding/images/extra_page_header_card.png');
+
+  /// File path: assets/onboarding/images/extra_page_logos_1.svg
+  String get extraPageLogos1 =>
+      'assets/onboarding/images/extra_page_logos_1.svg';
+
+  /// File path: assets/onboarding/images/extra_page_logos_2.svg
+  String get extraPageLogos2 =>
+      'assets/onboarding/images/extra_page_logos_2.svg';
+
+  /// List of all assets
+  List<dynamic> get values =>
+      [extraPageHeaderCard, extraPageLogos1, extraPageLogos2];
 }
 
 class Assets {

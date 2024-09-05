@@ -5,7 +5,6 @@ import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 
 import 'package:movie_tracker/presentation/core/scafold.dart';
-import 'package:movie_tracker/presentation/core/utils/url_launcher.dart';
 
 import 'package:movie_tracker/presentation/movie_details/overwiew/widgets/movie_save_button.dart';
 import 'package:movie_tracker/presentation/movie_details/widgets/movie_details_card.dart';
@@ -15,6 +14,7 @@ import 'package:movie_tracker/presentation/movie_details/widgets/movie_overview.
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/icons/icons.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/presentation/movie_details/widgets/movie_trailer_launch_button.dart';
 
 @RoutePage()
 class MovieOverviewScreen extends StatelessWidget {
@@ -56,16 +56,11 @@ class MovieOverviewScreen extends StatelessWidget {
             children: [
               MovieOverview(movie: movie),
               SizedBox(height: t.spacing.x6),
-              if (movie.trailerLink != null) ...[
-                PrimaryButton(
-                  expand: true,
-                  buttonSize: MDSButtonSize.L,
-                  onPressed: () => UrlLauncher.launchUrl(trailerLink!),
-                  text: 'Watch trailer on YouTube',
-                  leftIcon: const PhosphorIcon(PhosphorIconsFill.youtubeLogo),
-                ),
-                SizedBox(height: t.spacing.x3),
-              ],
+              MovieTrailerLaunchButton(
+                trailerLink: trailerLink,
+                movieTitle: movie.title,
+              ),
+              SizedBox(height: t.spacing.x3),
               MovieSaveButton(movie: movie, isFromAi: isFromAi),
               SizedBox(height: t.spacing.x6),
               MovieDetailsCard(movie: movie),

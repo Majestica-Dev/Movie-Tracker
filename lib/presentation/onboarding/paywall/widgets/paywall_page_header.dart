@@ -7,11 +7,8 @@ import 'package:movie_tracker/application/fisrt_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_review_with_stars_tile.dart';
 
-class PaywallBodyTopSection extends StatelessWidget {
-  final bool isFromOnboarding;
-
-  const PaywallBodyTopSection({
-    required this.isFromOnboarding,
+class PaywallPageHeader extends StatelessWidget {
+  const PaywallPageHeader({
     super.key,
   });
 
@@ -23,27 +20,25 @@ class PaywallBodyTopSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
       child: Column(
         children: [
-          if (isFromOnboarding) ...[
-            Align(
-              alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                onTap: () {
-                  context.read<FirstVisitCubit>().recordVisit();
+          Align(
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              onTap: () {
+                context.read<FirstVisitCubit>().recordVisit();
 
-                  context.router.pushAndPopUntil(
-                    const HomeRoute(),
-                    predicate: (route) => false,
-                  );
-                },
-                child: PhosphorIcon(
-                  PhosphorIconsRegular.x,
-                  size: 24,
-                  color: t.colors.primaryMedContent,
-                ),
+                context.router.pushAndPopUntil(
+                  const HomeRoute(),
+                  predicate: (route) => false,
+                );
+              },
+              child: PhosphorIcon(
+                PhosphorIconsRegular.x,
+                size: 24,
+                color: t.colors.primaryMedContent,
               ),
             ),
-            SizedBox(height: t.spacing.x3),
-          ],
+          ),
+          SizedBox(height: t.spacing.x3),
           const PaywallReviewWithStarsTile(),
         ],
       ),

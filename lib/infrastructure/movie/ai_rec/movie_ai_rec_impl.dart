@@ -14,6 +14,7 @@ import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/domain/movie/repositories/i_movie_ai_rec.dart';
 
 import 'package:movie_tracker/infrastructure/movie/ai_rec/gpt_movie_rec_impl.dart';
+import 'package:movie_tracker/infrastructure/movie/ai_rec/manager/movie_ai_rec_pref_manager.dart';
 import 'package:movie_tracker/infrastructure/movie/search/tmdb/tmdb_search_service.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -21,10 +22,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class MovieAiRecImpl implements IMovieAiRec {
   final GptMovieRecImpl _gptMovieRecImpl;
   final TmdbSearchService _tmdbSearchService;
+  final MovieAiRecPrefManager _movieAiRecPrefManager;
 
   MovieAiRecImpl(
     this._gptMovieRecImpl,
     this._tmdbSearchService,
+    this._movieAiRecPrefManager,
   );
 
   @override
@@ -35,6 +38,7 @@ class MovieAiRecImpl implements IMovieAiRec {
     required Movies movies,
   }) async {
     final gptRecResult = await _gptMovieRecImpl.getRecomendedMovieTitle(
+      alreadyRecMoviesTitle: _movieAiRecPrefManager.alreadyAiRecMovies,
       genres: genres,
       mood: mood,
       streamingServices: streamingServices,
@@ -48,22 +52,38 @@ class MovieAiRecImpl implements IMovieAiRec {
         genreMovies[Random().nextInt(genreMovies.length)];
 
     return gptRecResult.fold(
-      (l) => Right(randomMovieByGenre),
+      (l) async {
+        await _movieAiRecPrefManager.recordRecMovie(randomMovieByGenre.title);
+
+        return Right(randomMovieByGenre);
+      },
       (movieTitle) async {
-        final apiSearchResult =
-            await _tmdbSearchService.searchByTitle(movieTitle, maxResult: 1);
+        final apiSearchResult = await _tmdbSearchService.searchByTitle(
+          movieTitle,
+          maxResult: 1,
+        );
 
         return apiSearchResult.fold(
-          (l) => Right(randomMovieByGenre),
-          (r) {
+          (l) async {
+            await _movieAiRecPrefManager
+                .recordRecMovie(randomMovieByGenre.title);
+
+            return Right(randomMovieByGenre);
+          },
+          (r) async {
             if (r.isEmpty) {
               Sentry.captureMessage(
                 'Gpt rec is not found from api : $movieTitle',
                 level: SentryLevel.error,
               );
 
+              await _movieAiRecPrefManager
+                  .recordRecMovie(randomMovieByGenre.title);
+
               return Right(randomMovieByGenre);
             } else {
+              await _movieAiRecPrefManager.recordRecMovie(r.first.title);
+
               return Right(r.first);
             }
           },
