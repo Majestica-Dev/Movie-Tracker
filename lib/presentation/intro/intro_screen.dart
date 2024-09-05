@@ -7,6 +7,7 @@ import 'package:movie_tracker/presentation/core/modals/cupertion_style_notificat
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/core/scafold.dart';
 import 'package:movie_tracker/presentation/core/widgets/launch_buttons_tile.dart';
+import 'package:movie_tracker/presentation/intro/listener/intro_screen_listener.dart';
 
 import '../../gen/assets.gen.dart';
 
@@ -32,25 +33,27 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MTScafold(
-      body: MDSTheme(
-        data: context.mdsTheme.copyWith(
-          colors: MTColors.glossy,
-        ),
-        child: Stack(
-          children: [
-            Assets.intro.background.image(
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.4),
+    return IntroScreenListener(
+      child: MTScafold(
+        body: MDSTheme(
+          data: context.mdsTheme.copyWith(
+            colors: MTColors.glossy,
+          ),
+          child: Stack(
+            children: [
+              Assets.intro.background.image(
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
               ),
-            ),
-            const _IntroScreenBody(),
-          ],
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.4),
+                ),
+              ),
+              const _IntroScreenBody(),
+            ],
+          ),
         ),
       ),
     );
@@ -112,7 +115,7 @@ class _IntroScreenBody extends StatelessWidget {
             },
           ),
           SizedBox(height: t.spacing.x3),
-          const LaunchButtonsTile(showRestore: false),
+          const LaunchButtonsTile(),
         ],
       ),
     );

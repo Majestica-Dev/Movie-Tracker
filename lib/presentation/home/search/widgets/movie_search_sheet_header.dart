@@ -10,7 +10,7 @@ class MovieSearchSheetHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MDSBottomSheetHeader(
-      title: const Text('Add Movie'),
+      title: const Text('Add a movie'),
       showBorderLine: false,
       centerTitle: false,
       trailing: MDSTextButton(

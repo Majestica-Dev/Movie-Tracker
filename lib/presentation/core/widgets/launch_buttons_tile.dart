@@ -12,10 +12,7 @@ import 'package:flutter/widgets.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 
 class LaunchButtonsTile extends StatelessWidget {
-  final bool showRestore;
-
   const LaunchButtonsTile({
-    this.showRestore = true,
     super.key,
   });
 
@@ -25,7 +22,7 @@ class LaunchButtonsTile extends StatelessWidget {
 
     return Row(
       children: [
-        if (!showRestore) const Spacer(),
+        const Spacer(),
         GestureDetector(
           onTap: () => UrlLauncher.launchUrl(MTUrls.terms),
           child: Text(
@@ -37,24 +34,22 @@ class LaunchButtonsTile extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        if (showRestore) ...[
-          GestureDetector(
-            onTap: () {
-              context.read<PurchaseActorBloc>().add(
-                    const PurchaseActorEvent.restore(),
-                  );
-            },
-            child: Text(
-              'Restore Purchases',
-              maxLines: 1,
-              style: t.textTheme.bodyXSRegular.copyWith(
-                color: t.colors.neutralMedContent,
-                fontFamily: FontFamily.sFPro,
-              ),
+        GestureDetector(
+          onTap: () {
+            context.read<PurchaseActorBloc>().add(
+                  const PurchaseActorEvent.restore(),
+                );
+          },
+          child: Text(
+            'Restore Purchases',
+            maxLines: 1,
+            style: t.textTheme.bodyXSRegular.copyWith(
+              color: t.colors.neutralMedContent,
+              fontFamily: FontFamily.sFPro,
             ),
           ),
-          const Spacer(),
-        ],
+        ),
+        const Spacer(),
         GestureDetector(
           onTap: () => UrlLauncher.launchUrl(MTUrls.privacyPolicy),
           child: Text(
@@ -65,7 +60,7 @@ class LaunchButtonsTile extends StatelessWidget {
             ),
           ),
         ),
-        if (!showRestore) const Spacer(),
+        const Spacer(),
       ],
     );
   }

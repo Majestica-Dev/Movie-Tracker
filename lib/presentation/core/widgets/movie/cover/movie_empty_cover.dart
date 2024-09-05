@@ -27,7 +27,7 @@ class MovieEmptyCover extends StatelessWidget {
   const MovieEmptyCover.addingMovie({
     required this.onTap,
     this.icon = PhosphorIconsRegular.filmReel,
-    this.title = 'Add Movie',
+    this.title = 'Add a movie',
     this.isActive = true,
     this.coverSize = MovieCoverSize.S,
     super.key,
