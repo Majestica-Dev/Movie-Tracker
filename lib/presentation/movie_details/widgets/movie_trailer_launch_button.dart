@@ -19,8 +19,6 @@ class MovieTrailerLaunchButton extends StatelessWidget {
       expand: true,
       buttonSize: MDSButtonSize.L,
       onPressed: () {
-        print(trailerLink);
-
         if (trailerLink == null) {
           UrlLauncher.searchInYoutube(query: movieTitle);
         } else {
