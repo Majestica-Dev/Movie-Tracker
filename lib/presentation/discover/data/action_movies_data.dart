@@ -7,7 +7,7 @@ final actionMovies = DiscoverMovies(
   description:
       'High-octane movies filled with thrilling sequences and intense moments.',
   movies: [
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2010, 8, 10),
       id: '27205',
       title: 'Inception',
@@ -19,7 +19,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.4,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2023, 8, 9),
       id: '724209',
       title: 'Heart of Stone',
@@ -31,7 +31,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.8,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(1999, 3, 31),
       id: '603',
       title: 'The Matrix',
@@ -43,7 +43,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.2,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(1984, 10, 26),
       id: '218',
       title: 'The Terminator',
@@ -55,7 +55,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.7,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2008, 8, 28),
       id: '155',
       title: 'The Dark Knight',
@@ -67,7 +67,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.5,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2015, 5, 14),
       id: '76341',
       title: 'Mad Max: Fury Road',
@@ -79,7 +79,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.6,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2000, 6, 3),
       id: '98',
       title: 'Gladiator',
@@ -91,7 +91,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.2,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2012, 5, 10),
       id: '24428',
       title: 'The Avengers',
@@ -103,7 +103,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.7,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2018, 7, 27),
       id: '353081',
       title: 'Mission: Impossible - Fallout',
@@ -115,7 +115,7 @@ final actionMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.4,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2021, 9, 31),
       id: '370172',
       title: 'No Time to Die',

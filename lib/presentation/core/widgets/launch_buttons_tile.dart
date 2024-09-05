@@ -24,8 +24,8 @@ class LaunchButtonsTile extends StatelessWidget {
     final t = context.mdsTheme;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        if (!showRestore) const Spacer(),
         GestureDetector(
           onTap: () => UrlLauncher.launchUrl(MTUrls.terms),
           child: Text(
@@ -36,7 +36,8 @@ class LaunchButtonsTile extends StatelessWidget {
             ),
           ),
         ),
-        if (showRestore)
+        const Spacer(),
+        if (showRestore) ...[
           GestureDetector(
             onTap: () {
               context.read<PurchaseActorBloc>().add(
@@ -52,6 +53,8 @@ class LaunchButtonsTile extends StatelessWidget {
               ),
             ),
           ),
+          const Spacer(),
+        ],
         GestureDetector(
           onTap: () => UrlLauncher.launchUrl(MTUrls.privacyPolicy),
           child: Text(
@@ -62,6 +65,7 @@ class LaunchButtonsTile extends StatelessWidget {
             ),
           ),
         ),
+        if (!showRestore) const Spacer(),
       ],
     );
   }

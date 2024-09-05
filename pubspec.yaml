@@ -60,7 +60,7 @@ dev_dependencies:
   json_serializable: ^6.8.0
   envied_generator: ^0.5.4+1
   freezed: ^2.5.7
- 
+
 flutter:
   generate: true
   uses-material-design: true
@@ -71,6 +71,7 @@ flutter:
     - assets/icons/
     - assets/onboarding/
     - assets/onboarding/icons/
+    - assets/onboarding/images/
 
   fonts:
     - family: SF-Pro

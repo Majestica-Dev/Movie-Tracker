@@ -6,6 +6,7 @@ import 'package:movie_tracker/application/movie/ai_rec/bloc/movie_ai_rec_bloc.da
 import 'package:movie_tracker/application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart';
 import 'package:movie_tracker/core/di/locator.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_mood.dart';
+import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 
 import 'package:movie_tracker/presentation/ai_rec_movie/form/loading/movie_ai_rec_loading.dart';
@@ -75,7 +76,8 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
                               context.router.popAndPush(
                                 MovieOverviewRoute(
                                   movie: movie!,
-                                  isFromAI: true,
+                                  isFromAi: true,
+                                  watchStatus: WatchStatus.toWatch,
                                 ),
                               );
 

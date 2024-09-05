@@ -10,7 +10,8 @@ import 'package:movie_tracker/application/movie/search/movie_search_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
 import 'package:movie_tracker/application/premium_checker/premium_checker_bloc.dart';
 import 'package:movie_tracker/core/utils/review/review_service.dart';
-import 'package:movie_tracker/infrastructure/movie/ai_rec/manager/ai_movies_pref_manager.dart';
+import 'package:movie_tracker/infrastructure/movie/ai_rec/manager/movie_ai_rec_pref_manager.dart';
+
 import 'package:movie_tracker/infrastructure/notifications/reminder/reminder_functions.dart';
 
 import 'package:movie_tracker/presentation/core/router/app_router.dart';
@@ -47,6 +48,6 @@ abstract final class Locator {
 
   static PurchaseActorBloc get purchaseActorBloc => _getIt<PurchaseActorBloc>();
 
-  static AiMoviesPrefManager get aiMoviesPrefManager =>
-      _getIt<AiMoviesPrefManager>();
+  static MovieAiRecPrefManager get movieAiRecManager =>
+      _getIt<MovieAiRecPrefManager>();
 }

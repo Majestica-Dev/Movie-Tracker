@@ -10,7 +10,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/cupertino.dart' as _i11;
-import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/material.dart' as _i14;
+import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart'
+    as _i13;
 import 'package:movie_tracker/domain/movie/entities/movie.dart' as _i12;
 import 'package:movie_tracker/presentation/base/base_screen.dart' as _i1;
 import 'package:movie_tracker/presentation/discover/discover_screen.dart'
@@ -18,9 +20,9 @@ import 'package:movie_tracker/presentation/discover/discover_screen.dart'
 import 'package:movie_tracker/presentation/home/home_screen.dart' as _i3;
 import 'package:movie_tracker/presentation/initial/initial_view.dart' as _i4;
 import 'package:movie_tracker/presentation/intro/intro_screen.dart' as _i5;
-import 'package:movie_tracker/presentation/movie_details/movie_details_screen.dart'
+import 'package:movie_tracker/presentation/movie_details/details_screen/movie_details_screen.dart'
     as _i6;
-import 'package:movie_tracker/presentation/movie_details/overwiew/move_overview_screen.dart'
+import 'package:movie_tracker/presentation/movie_details/overwiew/movie_overview_screen.dart'
     as _i7;
 import 'package:movie_tracker/presentation/onboarding/onboarding_screen.dart'
     as _i8;
@@ -173,14 +175,16 @@ class MovieDetailsRouteArgs {
 class MovieOverviewRoute extends _i10.PageRouteInfo<MovieOverviewRouteArgs> {
   MovieOverviewRoute({
     required _i12.Movie movie,
-    required bool isFromAI,
-    _i13.Key? key,
+    required bool isFromAi,
+    required _i13.WatchStatus? watchStatus,
+    _i14.Key? key,
     List<_i10.PageRouteInfo>? children,
   }) : super(
           MovieOverviewRoute.name,
           args: MovieOverviewRouteArgs(
             movie: movie,
-            isFromAI: isFromAI,
+            isFromAi: isFromAi,
+            watchStatus: watchStatus,
             key: key,
           ),
           initialChildren: children,
@@ -194,7 +198,8 @@ class MovieOverviewRoute extends _i10.PageRouteInfo<MovieOverviewRouteArgs> {
       final args = data.argsAs<MovieOverviewRouteArgs>();
       return _i7.MovieOverviewScreen(
         movie: args.movie,
-        isFromAI: args.isFromAI,
+        isFromAi: args.isFromAi,
+        watchStatus: args.watchStatus,
         key: args.key,
       );
     },
@@ -204,19 +209,22 @@ class MovieOverviewRoute extends _i10.PageRouteInfo<MovieOverviewRouteArgs> {
 class MovieOverviewRouteArgs {
   const MovieOverviewRouteArgs({
     required this.movie,
-    required this.isFromAI,
+    required this.isFromAi,
+    required this.watchStatus,
     this.key,
   });
 
   final _i12.Movie movie;
 
-  final bool isFromAI;
+  final bool isFromAi;
 
-  final _i13.Key? key;
+  final _i13.WatchStatus? watchStatus;
+
+  final _i14.Key? key;
 
   @override
   String toString() {
-    return 'MovieOverviewRouteArgs{movie: $movie, isFromAI: $isFromAI, key: $key}';
+    return 'MovieOverviewRouteArgs{movie: $movie, isFromAi: $isFromAi, watchStatus: $watchStatus, key: $key}';
   }
 }
 

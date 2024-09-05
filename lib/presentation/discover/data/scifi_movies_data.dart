@@ -7,7 +7,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
   description:
       'Explore futuristic worlds and mind-bending adventures in our sci-fi selection!',
   movies: [
-    Movie(
+    Movie.withoutTrailerLink(
       id: '157336',
       title: 'Interstellar',
       description:
@@ -19,7 +19,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       rating: 8.4,
       releaseDate: DateTime(2014, 11, 6),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2018, 4, 27),
       id: '299536',
       title: 'Avengers: Infinity War',
@@ -31,7 +31,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.2,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       id: '329865',
       title: 'Arrival',
       description:
@@ -43,7 +43,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       rating: 7.6,
       releaseDate: DateTime(2016, 11, 11),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       id: '801688',
       title: 'Kalki 2898-AD',
       description:
@@ -55,7 +55,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       rating: 7.0,
       releaseDate: DateTime(2024, 6, 27),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       id: '1272',
       title: 'Sunshine',
       description:
@@ -67,7 +67,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       rating: 7.0,
       releaseDate: DateTime(2007, 4, 5),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2017, 10, 15),
       id: '335984',
       title: 'Blade Runner 2049',
@@ -79,7 +79,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.6,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(20221, 10, 22),
       id: '438631',
       title: 'Dune',
@@ -91,7 +91,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.8,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2014, 6, 6),
       id: '137113',
       title: 'Edge of Tomorrow',
@@ -103,7 +103,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.6,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 8, 16),
       id: '945961',
       title: 'Alien: Romulus',
@@ -115,7 +115,7 @@ final DiscoverMovies sciFiMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.3,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2022, 12, 16),
       id: '76600',
       title: 'Avatar: The Way of Water',

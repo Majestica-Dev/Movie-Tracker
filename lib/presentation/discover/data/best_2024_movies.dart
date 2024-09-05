@@ -7,7 +7,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
   description:
       "Explore 2024's top films with action, drama, and stunning visuals. Don't miss these cinematic gems!",
   movies: [
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 2, 29),
       id: '693134',
       title: 'Dune: Part Two',
@@ -19,7 +19,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.2,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 6, 7),
       id: '1086747',
       title: 'The Watchers',
@@ -31,7 +31,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.5,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2023, 10, 19),
       id: '466420',
       title: 'Killers of the Flower Moon',
@@ -43,7 +43,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.5,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 6, 7),
       id: '573435',
       title: 'Bad Boys: Ride or Die',
@@ -55,7 +55,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.6,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2023, 7, 21),
       id: '346698',
       title: 'Barbie',
@@ -67,7 +67,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.0,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 6, 23),
       id: '970347',
       title: 'The Killer',
@@ -79,7 +79,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.1,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2023, 12, 8),
       id: '792307',
       title: 'Poor Things',
@@ -91,7 +91,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.8,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2023, 6, 8),
       id: '1010581',
       title: 'My Fault',
@@ -103,7 +103,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.0,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 4, 4),
       id: '1127166',
       title: 'The Tearsmith',
@@ -115,7 +115,7 @@ final DiscoverMovies best2024Movies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 6.5,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 6, 28),
       id: '762441',
       title: 'A Quiet Place: Day One',

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
+
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 
 import '../../application/fisrt_visit/first_visit_cubit.dart';

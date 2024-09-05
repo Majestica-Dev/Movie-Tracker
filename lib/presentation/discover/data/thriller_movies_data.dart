@@ -7,7 +7,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
   description:
       'Edge-of-your-seat suspense, twists, and nonstop excitement—these thrillers will keep you hooked!',
   movies: [
-    Movie(
+    Movie.withoutTrailerLink(
       id: '872585',
       title: 'Oppenheimer',
       description:
@@ -19,7 +19,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       rating: 8.2,
       releaseDate: DateTime(2023, 11, 9),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2010, 2, 19),
       id: '11324',
       title: 'Shutter Island',
@@ -31,7 +31,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 8.2,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       id: '475557',
       title: 'Joker',
       description:
@@ -43,7 +43,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       rating: 8.2,
       releaseDate: DateTime(1019, 10, 4),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2024, 7, 19),
       id: '718821',
       title: 'Twisters',
@@ -55,7 +55,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.0,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       id: '49047',
       title: 'Gravity',
       description:
@@ -67,7 +67,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       rating: 7.2,
       releaseDate: DateTime(2013, 10, 4),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       id: '945961',
       title: 'Alien: Romulus',
       description:
@@ -79,7 +79,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       rating: 7.2,
       releaseDate: DateTime(2024, 8, 16),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       id: '263115',
       title: 'Logan',
       description:
@@ -91,7 +91,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       rating: 7.8,
       releaseDate: DateTime(2017, 3, 3),
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2014, 10, 15),
       id: '210577',
       title: 'Gone Girl',
@@ -103,7 +103,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 7.9,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2013, 9, 20),
       id: '146233',
       title: 'Prisoners',
@@ -115,7 +115,7 @@ final DiscoverMovies thrillerMovies = DiscoverMovies(
       editedAt: DateTime.now(),
       rating: 9.1,
     ),
-    Movie(
+    Movie.withoutTrailerLink(
       releaseDate: DateTime(2014, 10, 31),
       id: '242582',
       title: 'Nightcrawler',

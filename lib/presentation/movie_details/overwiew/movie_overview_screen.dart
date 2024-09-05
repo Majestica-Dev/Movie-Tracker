@@ -1,37 +1,38 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:movie_tracker/core/extensions/movie/movie_x.dart';
+
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
+
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
+
 import 'package:movie_tracker/presentation/core/scafold.dart';
-import 'package:movie_tracker/presentation/movie_details/overwiew/widgets/move_overview_right_button.dart';
+
+import 'package:movie_tracker/presentation/movie_details/overwiew/widgets/movie_save_button.dart';
+import 'package:movie_tracker/presentation/movie_details/widgets/movie_details_card.dart';
+
 import 'package:movie_tracker/presentation/movie_details/widgets/movie_overview.dart';
-import 'package:movie_tracker/presentation/movie_details/widgets/movie_status_chooser.dart';
 
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/icons/icons.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/presentation/movie_details/widgets/movie_trailer_launch_button.dart';
 
 @RoutePage()
-class MovieOverviewScreen extends StatefulWidget {
+class MovieOverviewScreen extends StatelessWidget {
   final Movie movie;
-  final bool isFromAI;
+  final bool isFromAi;
+  final WatchStatus? watchStatus;
 
   const MovieOverviewScreen({
     required this.movie,
-    required this.isFromAI,
+    required this.isFromAi,
+    required this.watchStatus,
     super.key,
   });
 
   @override
-  State<MovieOverviewScreen> createState() => _MovieOverviewScreenState();
-}
-
-class _MovieOverviewScreenState extends State<MovieOverviewScreen> {
-  WatchStatus watchStatus = WatchStatus.toWatch;
-
-  @override
   Widget build(BuildContext context) {
     final t = context.mdsTheme;
+    final trailerLink = movie.trailerLink;
 
     return MTScafold(
       appBar: MDSAppBar(
@@ -43,34 +44,27 @@ class _MovieOverviewScreenState extends State<MovieOverviewScreen> {
           onTap: () => context.router.maybePop(),
         ),
         forceMaterialTransparency: true,
-        trailing: MoveOverviewRightButton(
-          movie: widget.movie.copyWith(
-            status: watchStatus,
-            editedAt: DateTime.now(),
-          ),
-          isFromAI: widget.isFromAI,
-        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(
           left: t.spacing.x5,
           right: t.spacing.x5,
-          top: t.spacing.x8,
           bottom: t.spacing.x4,
         ),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              MovieOverview(movie: widget.movie),
-              SizedBox(height: t.spacing.x4),
-              MovieStatusChooser(
-                onChanged: (status) {
-                  setState(() {
-                    watchStatus = status;
-                  });
-                },
-                status: watchStatus,
+              MovieOverview(movie: movie),
+              SizedBox(height: t.spacing.x6),
+              MovieTrailerLaunchButton(
+                trailerLink: trailerLink,
+                movieTitle: movie.title,
               ),
+              SizedBox(height: t.spacing.x3),
+              MovieSaveButton(movie: movie, isFromAi: isFromAi),
+              SizedBox(height: t.spacing.x6),
+              MovieDetailsCard(movie: movie),
+              SizedBox(height: t.spacing.x6),
             ],
           ),
         ),
