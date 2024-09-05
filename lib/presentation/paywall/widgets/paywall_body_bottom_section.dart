@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
+import 'package:movie_tracker/presentation/paywall/widgets/features_tile.dart';
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_button_tile.dart';
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_plan_chooser_card.dart';
 
@@ -25,6 +26,10 @@ class _PaywallBodyBottomSectionState extends State<PaywallBodyBottomSection> {
   Widget build(BuildContext context) {
     final t = context.mdsTheme;
 
+    final double screenHeight = MediaQuery.of(context).size.height;
+
+    final bool isSmallScreen = screenHeight < 700;
+
     return BlocBuilder<SubscriptionsFetcherBloc, SubscriptionsFetcherState>(
       builder: (context, fetcherState) {
         return fetcherState.maybeMap(
@@ -46,8 +51,13 @@ class _PaywallBodyBottomSectionState extends State<PaywallBodyBottomSection> {
                     subscriptionPlans: plans,
                   ),
                 ),
+                SizedBox(height: isSmallScreen ? 20 : t.spacing.x6),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
+                  child: const FeaturesTile(),
+                ),
                 SizedBox(height: t.spacing.x6),
-                const SecuredByAppleCard(),
+                if (!isSmallScreen) const SecuredByAppleCard(),
                 const Spacer(),
                 PaywallButtonTile(
                   productToPurchase:

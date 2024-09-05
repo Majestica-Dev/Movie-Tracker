@@ -25,10 +25,14 @@ class OnboardingQuestionStructure extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.mdsTheme;
 
+    final double screenHeight = MediaQuery.of(context).size.height;
+
+    final bool isSmallScreen = screenHeight < 700;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        const SizedBox(height: 64),
+        SizedBox(height: isSmallScreen ? 30 : 64),
         GestureDetector(
           onTap: changePage,
           child: Padding(
@@ -41,7 +45,7 @@ class OnboardingQuestionStructure extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: t.spacing.x10),
+        SizedBox(height: isSmallScreen ? 20 : t.spacing.x10),
         Expanded(
           child: Container(
             width: double.infinity,
@@ -57,8 +61,8 @@ class OnboardingQuestionStructure extends StatelessWidget {
             padding: EdgeInsets.only(
               left: t.spacing.x4,
               right: t.spacing.x4,
-              bottom: 48,
-              top: t.spacing.x9,
+              bottom: isSmallScreen ? 10 : 48,
+              top: isSmallScreen ? 0 : t.spacing.x9,
             ),
             child: Column(
               children: [
