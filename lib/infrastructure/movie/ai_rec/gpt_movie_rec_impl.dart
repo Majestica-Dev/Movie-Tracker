@@ -71,18 +71,22 @@ class GptMovieRecImpl {
     final alreadyRecMovies = alreadyRecMoviesTitle.toString();
 
     return '''Task:
-Recommend a movie title based on the user’s favorite movies,current mood, preferred genres and available streaming platforms (if specified). The movie must not be on the user’s list of favorite movies and should be available on one of the user’s streaming platforms (if provided).
+Recommend a movie that fits the user’s preferences and is likely to be enjoyed based on their favorite movies, current mood, preferred genres, and streaming platforms. The movie must not be on the user’s list of favorite or already recommended movies and should be available on the user’s specified streaming platforms.
 
 Parameters:
-  •	Favorite Movies: $favoriteMovies
+
+	•	Favorite Movies: $favoriteMovies
 	•	Current Mood: $currentMood
 	•	Preferred Genres: $preferredGenres
 	•	Streaming Platforms: $services (optional)
+	•	Already Recommended Movies: $alreadyRecMovies
 
 Instructions:
-  1.  The movie should not already be in the favorite movies and in this list $alreadyRecMovies
-	2.	Select a movie that fits the user’s favorite movies,current mood and preferred genres.
-	3.	If streaming platforms are provided, ensure the movie is available on one of those platforms.
-	4.	Return only the movie title.''';
+
+	1.	Suggest a movie that hasn’t been included in the user’s Favorite Movies list or Already Recommended Movies list.
+	2.	The recommendation should align with the user’s mood, preferred genres, and favorite movies, focusing on finding a match that feels fresh yet enjoyable.
+	3.	If streaming platforms are provided, ensure the movie is available on at least one of the specified services.
+	4.	Aim for the best possible fit to the user’s preferences and mood.
+	5.	Return only the movie title.''';
   }
 }
