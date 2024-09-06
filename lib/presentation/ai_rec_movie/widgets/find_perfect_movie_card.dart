@@ -24,7 +24,10 @@ class FindPerfectMovieCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (context.generateAiEnabled) {
-          MovieAiRecFormSheet.show(context);
+          MovieAiRecFormSheet.show(
+            context,
+            null,
+          );
         } else {
           PaywallSheet.show(context);
         }

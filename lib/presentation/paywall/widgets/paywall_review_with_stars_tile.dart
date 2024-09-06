@@ -17,14 +17,14 @@ class PaywallReviewWithStarsTile extends StatelessWidget {
           const PaywallStars(),
           SizedBox(height: t.spacing.x3),
           Text(
-            'Small changes, big impact',
+            'More watching time, less searching',
             style: t.textTheme.bodyMBold.copyWith(
               color: t.colors.neutralHighContent,
             ),
           ),
           SizedBox(height: t.spacing.x3),
           Text(
-            'Love it! This app has transformed how I feel about myself and my life.',
+            'This app saves me so much time and energy by finding the perfect movie for me',
             textAlign: TextAlign.center,
             style: t.textTheme.bodySRegular.copyWith(
               color: t.colors.neutralHighContent,
@@ -33,7 +33,7 @@ class PaywallReviewWithStarsTile extends StatelessWidget {
           SizedBox(height: t.spacing.x3),
           Text(
             'LiamVenn 99',
-            style: t.textTheme.bodyMRegular.copyWith(
+            style: t.textTheme.bodyXSRegular.copyWith(
               color: t.colors.neutralLowContent,
             ),
           ),

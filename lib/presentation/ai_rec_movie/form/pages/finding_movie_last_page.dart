@@ -75,6 +75,7 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
                             onPressed: () {
                               context.router.popAndPush(
                                 MovieOverviewRoute(
+                                  movieAiRecFormState: movieAiRecFormState,
                                   movie: movie!,
                                   isFromAi: true,
                                   watchStatus: WatchStatus.toWatch,

@@ -110,14 +110,14 @@ Future<_i174.GetIt> $initGetIt(
       () => _i630.ReviewPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i661.MoviePrefManager>(
       () => _i661.MoviePrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i1053.MovieAiRecPrefManager>(
+      () => _i1053.MovieAiRecPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i657.FisrtVisitPrefManager>(
       () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i125.PremiumPrefManager>(
       () => _i125.PremiumPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i947.ReminderPrefManager>(
       () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
-  gh.singleton<_i1053.MovieAiRecPrefManager>(
-      () => _i1053.MovieAiRecPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i495.ReviewService>(() => _i495.ReviewService(
         gh<_i553.InAppReview>(),
         gh<_i630.ReviewPrefManager>(),

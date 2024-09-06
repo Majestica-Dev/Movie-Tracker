@@ -1,4 +1,5 @@
 enum StreamingService {
+  any,
   netflix,
   hulu,
   amazonPrime,

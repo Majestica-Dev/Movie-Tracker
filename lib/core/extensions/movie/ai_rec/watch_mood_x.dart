@@ -9,6 +9,7 @@ import 'package:movie_tracker/presentation/discover/data/thriller_movies_data.da
 extension WatchMoodX on WatchMood {
   String get title {
     return switch (this) {
+      WatchMood.any => 'Any',
       WatchMood.relaxed => 'Relaxed',
       WatchMood.excited => 'Excited',
       WatchMood.nostalgic => 'Nostalgic',
@@ -20,6 +21,7 @@ extension WatchMoodX on WatchMood {
 
   String get emoji {
     return switch (this) {
+      WatchMood.any => '😇',
       WatchMood.relaxed => '😌',
       WatchMood.excited => '😃',
       WatchMood.nostalgic => '🎞️',
@@ -37,6 +39,7 @@ extension WatchMoodX on WatchMood {
       WatchMood.reflective => thrillerMovies.movies,
       WatchMood.needALaugh => comedyMovies.movies,
       WatchMood.inForAThrill => thrillerMovies.movies,
+      WatchMood.any => best2024Movies.movies,
     };
   }
 }

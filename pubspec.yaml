@@ -72,6 +72,7 @@ flutter:
     - assets/onboarding/
     - assets/onboarding/icons/
     - assets/onboarding/images/
+    - assets/icons/spike/
 
   fonts:
     - family: SF-Pro

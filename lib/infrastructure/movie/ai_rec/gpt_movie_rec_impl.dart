@@ -87,7 +87,8 @@ Instructions:
   2.  The recommendation should align with the user’s mood, preferred genres, and favorite movies, focusing on finding a match that feels fresh yet enjoyable.
   3.  If streaming platforms are provided, ensure the movie is available on at least one of the specified services.
   4.  Aim for the best possible fit to the user’s preferences and mood.
-  5.  Return only the movie title.
+  5.  Return only the movie title without an other text in any case.
+
 
 Take a deep breath and work on this problem step-by-step.''';
   }

@@ -3,6 +3,7 @@ import 'package:movie_tracker/domain/movie/entities/ai_rec/streaming_service.dar
 extension StreamingServiceX on StreamingService {
   String get title {
     return switch (this) {
+      StreamingService.any => 'Any',
       StreamingService.netflix => 'Netflix',
       StreamingService.hulu => 'Hulu',
       StreamingService.amazonPrime => 'Amazon Prime',

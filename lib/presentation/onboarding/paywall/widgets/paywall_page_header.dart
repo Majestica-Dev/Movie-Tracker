@@ -5,7 +5,7 @@ import 'package:majestica_ds/icons/icons.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/fisrt_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
-import 'package:movie_tracker/presentation/paywall/widgets/paywall_review_with_stars_tile.dart';
+import 'package:movie_tracker/presentation/onboarding/paywall/widgets/paywall_page_review_tile.dart';
 
 class PaywallPageHeader extends StatelessWidget {
   const PaywallPageHeader({
@@ -27,7 +27,7 @@ class PaywallPageHeader extends StatelessWidget {
                 context.read<FirstVisitCubit>().recordVisit();
 
                 context.router.pushAndPopUntil(
-                  const HomeRoute(),
+                  const FavoriteMoviesChooserRoute(),
                   predicate: (route) => false,
                 );
               },
@@ -39,7 +39,7 @@ class PaywallPageHeader extends StatelessWidget {
             ),
           ),
           SizedBox(height: t.spacing.x3),
-          const PaywallReviewWithStarsTile(),
+          const PaywallPageReviewTile(),
         ],
       ),
     );

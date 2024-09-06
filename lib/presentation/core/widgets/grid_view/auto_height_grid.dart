@@ -10,6 +10,7 @@ class ResponsiveGridView extends StatelessWidget {
   final double mainAxisSpacing;
   final ScrollPhysics? physics;
   final bool shrinkWrap;
+  final EdgeInsets? padding;
 
   const ResponsiveGridView({
     required this.itemCount,
@@ -18,6 +19,7 @@ class ResponsiveGridView extends StatelessWidget {
     required this.itemWidth,
     this.mainAxisSpacing = 0,
     this.shrinkWrap = false,
+    this.padding,
     this.physics,
     super.key,
   });
@@ -25,6 +27,7 @@ class ResponsiveGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: padding,
       shrinkWrap: shrinkWrap,
       physics: physics,
       itemBuilder: (ctx, rowIndex) {

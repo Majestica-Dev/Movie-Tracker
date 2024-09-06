@@ -31,4 +31,18 @@ extension MovieX on Movie {
 
     return (rating! * 10).toStringAsFixed(0) + r' %';
   }
+
+  String get print {
+    return '''Movie(
+      id: '$id',
+      title: '$title',
+      description: "$description",
+      posterImageUrl: '$posterImageUrl',
+      status: $status,
+      editedAt:'DateTime.now()',
+      rating: $rating,
+      releaseDate: '$releaseDate',
+      trailerLink:  '$trailerLink',
+    )''';
+  }
 }
