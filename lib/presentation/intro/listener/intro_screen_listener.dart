@@ -42,7 +42,7 @@ class IntroScreenListener extends StatelessWidget {
                 .add(const PremiumCheckerEvent.check());
 
             context.router.pushAndPopUntil(
-              const HomeRoute(),
+              const FavoriteMoviesChooserRoute(),
               predicate: (route) => false,
             );
 

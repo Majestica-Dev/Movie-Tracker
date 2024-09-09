@@ -25,6 +25,8 @@ import '../../application/movie/actor/movie_actor_bloc.dart' as _i195;
 import '../../application/movie/ai_rec/bloc/movie_ai_rec_bloc.dart' as _i501;
 import '../../application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart'
     as _i481;
+import '../../application/movie/ai_rec/use_count/movie_ai_rec_use_count_cubit.dart'
+    as _i892;
 import '../../application/movie/saver/movie_saver_bloc.dart' as _i47;
 import '../../application/movie/search/movie_search_bloc.dart' as _i1024;
 import '../../application/movie/watcher/movie_watcher_bloc.dart' as _i756;
@@ -110,14 +112,14 @@ Future<_i174.GetIt> $initGetIt(
       () => _i630.ReviewPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i661.MoviePrefManager>(
       () => _i661.MoviePrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i1053.MovieAiRecPrefManager>(
+      () => _i1053.MovieAiRecPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i657.FisrtVisitPrefManager>(
       () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i125.PremiumPrefManager>(
       () => _i125.PremiumPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i947.ReminderPrefManager>(
       () => _i947.ReminderPrefManager(gh<_i352.SharedPrefsManager>()));
-  gh.singleton<_i1053.MovieAiRecPrefManager>(
-      () => _i1053.MovieAiRecPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i495.ReviewService>(() => _i495.ReviewService(
         gh<_i553.InAppReview>(),
         gh<_i630.ReviewPrefManager>(),
@@ -145,10 +147,10 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i71.TmdbSearchService>(),
         gh<_i1053.MovieAiRecPrefManager>(),
       ));
-  gh.factory<_i501.MovieAiRecBloc>(() => _i501.MovieAiRecBloc(
-        gh<_i561.IMovieAiRec>(),
-        gh<_i1053.MovieAiRecPrefManager>(),
-      ));
+  gh.singleton<_i892.MovieAiRecUseCountCubit>(
+      () => _i892.MovieAiRecUseCountCubit(gh<_i1053.MovieAiRecPrefManager>()));
+  gh.factory<_i501.MovieAiRecBloc>(
+      () => _i501.MovieAiRecBloc(gh<_i561.IMovieAiRec>()));
   return getIt;
 }
 

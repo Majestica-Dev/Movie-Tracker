@@ -17,52 +17,44 @@ class ExtraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.mdsTheme.copyWith(colors: MTColors.glossy);
 
-    return Stack(
-      children: [
-        Assets.intro.background.image(
+    return Container(
+      padding: EdgeInsets.only(
+        left: t.spacing.x5,
+        bottom: 44,
+        top: 78,
+        right: t.spacing.x5,
+      ),
+      decoration: BoxDecoration(
+        image: DecorationImage(
           fit: BoxFit.cover,
-          height: double.infinity,
-          width: double.infinity,
+          image: AssetImage(Assets.intro.background.path),
         ),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.4),
+      ),
+      child: Column(
+        children: [
+          Assets.onboarding.images.extraPageHeaderCard.image(),
+          const Spacer(),
+          SvgPicture.asset(Assets.onboarding.images.extraPageLogos1),
+          SizedBox(height: t.spacing.x4),
+          SvgPicture.asset(Assets.onboarding.images.extraPageLogos2),
+          SizedBox(height: t.spacing.x4),
+          Text(
+            'Discover movies from all platform',
+            style: t.textTheme.bodySRegular
+                .copyWith(color: t.colors.neutralHighContent),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: t.spacing.x5,
-            bottom: 44,
-            top: 78,
-            right: t.spacing.x5,
+          const SizedBox(height: 34),
+          MDSTheme(
+            data: t,
+            child: PrimaryButton(
+              buttonSize: MDSButtonSize.L,
+              expand: true,
+              onPressed: changePage,
+              text: 'Continue',
+            ),
           ),
-          child: Column(
-            children: [
-              Assets.onboarding.images.extraPageHeaderCard.image(),
-              const Spacer(),
-              SvgPicture.asset(Assets.onboarding.images.extraPageLogos1),
-              SizedBox(height: t.spacing.x4),
-              SvgPicture.asset(Assets.onboarding.images.extraPageLogos2),
-              SizedBox(height: t.spacing.x4),
-              Text(
-                'Discover movies from all platform',
-                style: t.textTheme.bodySRegular
-                    .copyWith(color: t.colors.neutralHighContent),
-              ),
-              const SizedBox(height: 34),
-              MDSTheme(
-                data: t,
-                child: PrimaryButton(
-                  buttonSize: MDSButtonSize.L,
-                  expand: true,
-                  onPressed: changePage,
-                  text: 'Continue',
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

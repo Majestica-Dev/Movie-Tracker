@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart';
 
 import 'package:movie_tracker/presentation/ai_rec_movie/form/pages/finding_movie_last_page.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/form/pages/movie_genre_chooser_page.dart';
@@ -12,6 +13,7 @@ import 'package:movie_tracker/presentation/ai_rec_movie/form/widgets/movie_ai_re
 abstract final class MovieAiRecFormSheet {
   static Future<T?> show<T>(
     BuildContext context,
+    MovieAiRecFormState? movieAiRecFormState,
   ) {
     final PageController controller = PageController();
 
@@ -25,7 +27,10 @@ abstract final class MovieAiRecFormSheet {
         const FindingMovieLastPage(),
       ],
       context: context,
-      wrapper: (child) => MovieAiRecFormSheetProviders(child: child),
+      wrapper: (child) => MovieAiRecFormSheetProviders(
+        movieAiRecFormState: movieAiRecFormState,
+        child: child,
+      ),
       header: MovieAiRecFormHeader(controller: controller),
       controller: controller,
     ).then((value) {

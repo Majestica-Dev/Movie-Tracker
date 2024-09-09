@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:movie_tracker/application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart';
 
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 
 import 'package:movie_tracker/presentation/core/scafold.dart';
+import 'package:movie_tracker/presentation/movie_details/overwiew/widgets/movie_ai_rec_regenerate_button.dart';
 
 import 'package:movie_tracker/presentation/movie_details/overwiew/widgets/movie_save_button.dart';
 import 'package:movie_tracker/presentation/movie_details/widgets/movie_details_card.dart';
@@ -21,11 +23,13 @@ class MovieOverviewScreen extends StatelessWidget {
   final Movie movie;
   final bool isFromAi;
   final WatchStatus? watchStatus;
+  final MovieAiRecFormState? movieAiRecFormState;
 
   const MovieOverviewScreen({
     required this.movie,
     required this.isFromAi,
     required this.watchStatus,
+    required this.movieAiRecFormState,
     super.key,
   });
 
@@ -62,6 +66,12 @@ class MovieOverviewScreen extends StatelessWidget {
               ),
               SizedBox(height: t.spacing.x3),
               MovieSaveButton(movie: movie, isFromAi: isFromAi),
+              if (isFromAi) ...[
+                SizedBox(height: t.spacing.x3),
+                MovieAiRecRegenerateButton(
+                  movieAiRecFormState: movieAiRecFormState,
+                ),
+              ],
               SizedBox(height: t.spacing.x6),
               MovieDetailsCard(movie: movie),
               SizedBox(height: t.spacing.x6),

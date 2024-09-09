@@ -31,7 +31,7 @@ class PaywallPageListener extends StatelessWidget {
                 );
 
             context.router.pushAndPopUntil(
-              const HomeRoute(),
+              const FavoriteMoviesChooserRoute(),
               predicate: (route) => false,
             );
 
@@ -52,7 +52,7 @@ class PaywallPageListener extends StatelessWidget {
                 );
 
             context.router.pushAndPopUntil(
-              const HomeRoute(),
+              const FavoriteMoviesChooserRoute(),
               predicate: (route) => false,
             );
 

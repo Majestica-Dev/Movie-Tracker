@@ -36,35 +36,66 @@ class MovieGenreChooserPage extends StatelessWidget {
         BlocBuilder<MovieAiRecFormCubit, MovieAiRecFormState>(
           builder: (context, state) {
             return Column(
-              children: List.generate(
-                MovieGenre.values.length,
-                (index) {
-                  final genre = MovieGenre.values[index];
+              children: [
+                Selector(
+                  margin: EdgeInsets.only(bottom: t.spacing.x2),
+                  showRadio: false,
+                  value: state.genres.contains(MovieGenre.any),
+                  onChanged: (value) {
+                    context
+                        .read<MovieAiRecFormCubit>()
+                        .setOrRemoveGenre(MovieGenre.any);
+                  },
+                  body: Row(
+                    children: [
+                      Text(
+                        MovieGenre.any.emoji,
+                        style: t.textTheme.title1Bold,
+                      ),
+                      SizedBox(width: t.spacing.x3),
+                      Text(MovieGenre.any.title)
+                    ],
+                  ),
+                ),
+                GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 175 / 80,
+                  ),
+                  itemCount: MovieGenreX.withoutAny.length,
+                  itemBuilder: (context, index) {
+                    final genre = MovieGenreX.withoutAny[index];
 
-                  return Selector(
-                    margin: index + 1 == MovieGenre.values.length
-                        ? null
-                        : EdgeInsets.only(bottom: t.spacing.x2),
-                    showRadio: false,
-                    value: state.genres.contains(genre),
-                    onChanged: (value) {
-                      context
-                          .read<MovieAiRecFormCubit>()
-                          .setOrRemoveGenre(genre);
-                    },
-                    body: Row(
-                      children: [
-                        Text(
-                          genre.emoji,
-                          style: t.textTheme.title1Bold,
+                    return Selector(
+                      margin: index + 1 == MovieGenre.values.length
+                          ? null
+                          : EdgeInsets.only(bottom: t.spacing.x2),
+                      showRadio: false,
+                      value: state.genres.contains(genre),
+                      onChanged: (value) {
+                        context
+                            .read<MovieAiRecFormCubit>()
+                            .setOrRemoveGenre(genre);
+                      },
+                      body: Expanded(
+                        child: Row(
+                          children: [
+                            Text(
+                              genre.emoji,
+                              style: t.textTheme.title1Bold,
+                            ),
+                            SizedBox(width: t.spacing.x3),
+                            Expanded(child: Text(genre.title))
+                          ],
                         ),
-                        SizedBox(width: t.spacing.x3),
-                        Text(genre.title)
-                      ],
-                    ),
-                  );
-                },
-              ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             );
           },
         ),

@@ -9,6 +9,7 @@ import 'package:movie_tracker/env/env.dart';
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 
 import 'package:movie_tracker/infrastructure/movie/search/tmdb/dto/tmdb_movie_dto.dart';
+
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 @Singleton()

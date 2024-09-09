@@ -10,7 +10,7 @@ import 'package:movie_tracker/presentation/home/search/widgets/movie_search_shee
 abstract final class MovieSearchSheet {
   static Future<void> show(
     BuildContext context, {
-    required WatchStatus? watchStatus,
+    WatchStatus? watchStatus,
   }) async {
     MDSBottomSheet.show(
       bodyPadding: EdgeInsets.zero,

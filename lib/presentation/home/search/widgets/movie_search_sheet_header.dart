@@ -11,7 +11,6 @@ class MovieSearchSheetHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return MDSBottomSheetHeader(
       title: const Text('Add a movie'),
-      showBorderLine: false,
       centerTitle: false,
       trailing: MDSTextButton(
         buttonSize: MDSTextButtonSize.L,

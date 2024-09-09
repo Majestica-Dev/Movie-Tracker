@@ -5,9 +5,11 @@ import 'package:movie_tracker/core/di/locator.dart';
 
 class MovieAiRecFormSheetProviders extends StatelessWidget {
   final Widget child;
+  final MovieAiRecFormState? movieAiRecFormState;
 
   const MovieAiRecFormSheetProviders({
     required this.child,
+    required this.movieAiRecFormState,
     super.key,
   });
 
@@ -16,7 +18,8 @@ class MovieAiRecFormSheetProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieAiRecFormCubit>(
-          create: (context) => Locator.movieAiRecFormCubit,
+          create: (context) =>
+              Locator.movieAiRecFormCubit..init(movieAiRecFormState),
         )
       ],
       child: child,

@@ -16,44 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MovieSaverEvent {
-  Movie get movie => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Movie movie) save,
+    required TResult Function(List<Movie> movies) saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Movie movie)? save,
+    TResult? Function(List<Movie> movies)? saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Movie movie)? save,
+    TResult Function(List<Movie> movies)? saveAll,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Save value) save,
+    required TResult Function(_SaveAll value) saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Save value)? save,
+    TResult? Function(_SaveAll value)? saveAll,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Save value)? save,
+    TResult Function(_SaveAll value)? saveAll,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of MovieSaverEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $MovieSaverEventCopyWith<MovieSaverEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +61,6 @@ abstract class $MovieSaverEventCopyWith<$Res> {
   factory $MovieSaverEventCopyWith(
           MovieSaverEvent value, $Res Function(MovieSaverEvent) then) =
       _$MovieSaverEventCopyWithImpl<$Res, MovieSaverEvent>;
-  @useResult
-  $Res call({Movie movie});
 }
 
 /// @nodoc
@@ -78,27 +75,13 @@ class _$MovieSaverEventCopyWithImpl<$Res, $Val extends MovieSaverEvent>
 
   /// Create a copy of MovieSaverEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? movie = null,
-  }) {
-    return _then(_value.copyWith(
-      movie: null == movie
-          ? _value.movie
-          : movie // ignore: cast_nullable_to_non_nullable
-              as Movie,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$SaveImplCopyWith<$Res>
-    implements $MovieSaverEventCopyWith<$Res> {
+abstract class _$$SaveImplCopyWith<$Res> {
   factory _$$SaveImplCopyWith(
           _$SaveImpl value, $Res Function(_$SaveImpl) then) =
       __$$SaveImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Movie movie});
 }
@@ -162,6 +145,7 @@ class _$SaveImpl implements _Save {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Movie movie) save,
+    required TResult Function(List<Movie> movies) saveAll,
   }) {
     return save(movie);
   }
@@ -170,6 +154,7 @@ class _$SaveImpl implements _Save {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Movie movie)? save,
+    TResult? Function(List<Movie> movies)? saveAll,
   }) {
     return save?.call(movie);
   }
@@ -178,6 +163,7 @@ class _$SaveImpl implements _Save {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Movie movie)? save,
+    TResult Function(List<Movie> movies)? saveAll,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -190,6 +176,7 @@ class _$SaveImpl implements _Save {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Save value) save,
+    required TResult Function(_SaveAll value) saveAll,
   }) {
     return save(this);
   }
@@ -198,6 +185,7 @@ class _$SaveImpl implements _Save {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Save value)? save,
+    TResult? Function(_SaveAll value)? saveAll,
   }) {
     return save?.call(this);
   }
@@ -206,6 +194,7 @@ class _$SaveImpl implements _Save {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Save value)? save,
+    TResult Function(_SaveAll value)? saveAll,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -218,14 +207,158 @@ class _$SaveImpl implements _Save {
 abstract class _Save implements MovieSaverEvent {
   const factory _Save({required final Movie movie}) = _$SaveImpl;
 
-  @override
   Movie get movie;
 
   /// Create a copy of MovieSaverEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SaveImplCopyWith<_$SaveImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaveAllImplCopyWith<$Res> {
+  factory _$$SaveAllImplCopyWith(
+          _$SaveAllImpl value, $Res Function(_$SaveAllImpl) then) =
+      __$$SaveAllImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Movie> movies});
+}
+
+/// @nodoc
+class __$$SaveAllImplCopyWithImpl<$Res>
+    extends _$MovieSaverEventCopyWithImpl<$Res, _$SaveAllImpl>
+    implements _$$SaveAllImplCopyWith<$Res> {
+  __$$SaveAllImplCopyWithImpl(
+      _$SaveAllImpl _value, $Res Function(_$SaveAllImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MovieSaverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? movies = null,
+  }) {
+    return _then(_$SaveAllImpl(
+      movies: null == movies
+          ? _value._movies
+          : movies // ignore: cast_nullable_to_non_nullable
+              as List<Movie>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SaveAllImpl implements _SaveAll {
+  const _$SaveAllImpl({required final List<Movie> movies}) : _movies = movies;
+
+  final List<Movie> _movies;
+  @override
+  List<Movie> get movies {
+    if (_movies is EqualUnmodifiableListView) return _movies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_movies);
+  }
+
+  @override
+  String toString() {
+    return 'MovieSaverEvent.saveAll(movies: $movies)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveAllImpl &&
+            const DeepCollectionEquality().equals(other._movies, _movies));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_movies));
+
+  /// Create a copy of MovieSaverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveAllImplCopyWith<_$SaveAllImpl> get copyWith =>
+      __$$SaveAllImplCopyWithImpl<_$SaveAllImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Movie movie) save,
+    required TResult Function(List<Movie> movies) saveAll,
+  }) {
+    return saveAll(movies);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Movie movie)? save,
+    TResult? Function(List<Movie> movies)? saveAll,
+  }) {
+    return saveAll?.call(movies);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Movie movie)? save,
+    TResult Function(List<Movie> movies)? saveAll,
+    required TResult orElse(),
+  }) {
+    if (saveAll != null) {
+      return saveAll(movies);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Save value) save,
+    required TResult Function(_SaveAll value) saveAll,
+  }) {
+    return saveAll(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Save value)? save,
+    TResult? Function(_SaveAll value)? saveAll,
+  }) {
+    return saveAll?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Save value)? save,
+    TResult Function(_SaveAll value)? saveAll,
+    required TResult orElse(),
+  }) {
+    if (saveAll != null) {
+      return saveAll(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveAll implements MovieSaverEvent {
+  const factory _SaveAll({required final List<Movie> movies}) = _$SaveAllImpl;
+
+  List<Movie> get movies;
+
+  /// Create a copy of MovieSaverEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SaveAllImplCopyWith<_$SaveAllImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

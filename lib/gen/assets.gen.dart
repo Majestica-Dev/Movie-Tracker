@@ -15,6 +15,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/app_icon.png
   AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.png');
 
+  /// Directory path: assets/icons/spike
+  $AssetsIconsSpikeGen get spike => const $AssetsIconsSpikeGen();
+
   /// List of all assets
   List<AssetGenImage> get values => [appIcon];
 }
@@ -22,9 +25,9 @@ class $AssetsIconsGen {
 class $AssetsIntroGen {
   const $AssetsIntroGen();
 
-  /// File path: assets/intro/background.jpeg
+  /// File path: assets/intro/background.jpg
   AssetGenImage get background =>
-      const AssetGenImage('assets/intro/background.jpeg');
+      const AssetGenImage('assets/intro/background.jpg');
 
   /// List of all assets
   List<AssetGenImage> get values => [background];
@@ -51,6 +54,19 @@ class $AssetsOnboardingGen {
 
   /// Directory path: assets/onboarding/images
   $AssetsOnboardingImagesGen get images => const $AssetsOnboardingImagesGen();
+}
+
+class $AssetsIconsSpikeGen {
+  const $AssetsIconsSpikeGen();
+
+  /// File path: assets/icons/spike/left.svg
+  String get left => 'assets/icons/spike/left.svg';
+
+  /// File path: assets/icons/spike/right.svg
+  String get right => 'assets/icons/spike/right.svg';
+
+  /// List of all assets
+  List<String> get values => [left, right];
 }
 
 class $AssetsOnboardingIconsGen {

@@ -33,26 +33,30 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.mdsTheme;
+
     return IntroScreenListener(
       child: MTScafold(
         body: MDSTheme(
           data: context.mdsTheme.copyWith(
             colors: MTColors.glossy,
           ),
-          child: Stack(
-            children: [
-              Assets.intro.background.image(
+          child: Container(
+            padding: EdgeInsets.only(
+              left: t.spacing.x5,
+              right: t.spacing.x5,
+              top: 78,
+              bottom: 44,
+            ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
                 fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.4),
+                image: AssetImage(
+                  Assets.intro.background.path,
                 ),
               ),
-              const _IntroScreenBody(),
-            ],
+            ),
+            child: const _IntroScreenBody(),
           ),
         ),
       ),
@@ -67,57 +71,49 @@ class _IntroScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.mdsTheme;
 
-    return Padding(
-      padding: EdgeInsets.only(
-        left: t.spacing.x5,
-        right: t.spacing.x5,
-        top: 78,
-        bottom: 44,
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  Assets.icons.appIcon.path,
-                  width: 64,
+    return Column(
+      children: [
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                Assets.icons.appIcon.path,
+                width: 64,
+              ),
+              SizedBox(height: t.spacing.x3),
+              Text(
+                'AI movie finder and tracker',
+                style: t.textTheme.titleLargeBold.copyWith(
+                  color: t.colors.primaryHighContent,
                 ),
-                SizedBox(height: t.spacing.x3),
-                Text(
-                  'AI movie finder and tracker',
-                  style: t.textTheme.titleLargeBold.copyWith(
-                    color: t.colors.primaryHighContent,
-                  ),
-                  textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: t.spacing.x4),
+              Text(
+                'Find you next perfect movie in 1 minute',
+                style: t.textTheme.title3Regular.copyWith(
+                  color: t.colors.primaryHighContent,
                 ),
-                SizedBox(height: t.spacing.x4),
-                Text(
-                  'Find you next perfect movie in 1 minute',
-                  style: t.textTheme.title3Regular.copyWith(
-                    color: t.colors.primaryHighContent,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-          PrimaryButton(
-            expand: true,
-            buttonSize: MDSButtonSize.L,
-            text: 'Continue',
-            onPressed: () {
-              context.router.pushAndPopUntil(
-                const OnboardingRoute(),
-                predicate: (route) => false,
-              );
-            },
-          ),
-          SizedBox(height: t.spacing.x3),
-          const LaunchButtonsTile(),
-        ],
-      ),
+        ),
+        PrimaryButton(
+          expand: true,
+          buttonSize: MDSButtonSize.L,
+          text: 'Continue',
+          onPressed: () {
+            context.router.pushAndPopUntil(
+              const OnboardingRoute(),
+              predicate: (route) => false,
+            );
+          },
+        ),
+        SizedBox(height: t.spacing.x3),
+        const LaunchButtonsTile(),
+      ],
     );
   }
 }

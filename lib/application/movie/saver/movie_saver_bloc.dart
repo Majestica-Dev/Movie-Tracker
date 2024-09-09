@@ -1,3 +1,4 @@
+import 'package:movie_tracker/core/typdefs/typdef.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/domain/movie/repositories/i_movie_repo.dart';
 
@@ -22,6 +23,7 @@ class MovieSaverBloc extends Bloc<MovieSaverEvent, MovieSaverState> {
           const MovieSaverState.initial(),
         ) {
     on<_Save>(_onSave);
+    on<_SaveAll>(_saveAll);
   }
 
   Future<void> _onSave(
@@ -33,6 +35,21 @@ class MovieSaverBloc extends Bloc<MovieSaverEvent, MovieSaverState> {
     await _iMovieRepo.save(movie: event.movie);
 
     await _moviePrefManager.plusToAddedMoviesCount();
+
+    emit(MovieSaverState.saved(
+      addedMoviesCount: _moviePrefManager.addedMoviesCount,
+    ));
+  }
+
+  Future<void> _saveAll(
+    _SaveAll event,
+    Emitter<MovieSaverState> emit,
+  ) async {
+    emit(const MovieSaverState.inProgress());
+
+    for (var movie in event.movies) {
+      await _iMovieRepo.save(movie: movie);
+    }
 
     emit(MovieSaverState.saved(
       addedMoviesCount: _moviePrefManager.addedMoviesCount,

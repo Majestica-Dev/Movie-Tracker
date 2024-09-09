@@ -45,6 +45,7 @@ class MovieTile extends StatelessWidget {
               );
             } else {
               context.router.push(MovieOverviewRoute(
+                movieAiRecFormState: null,
                 movie: movie,
                 watchStatus: watchStatus,
                 isFromAi: false,

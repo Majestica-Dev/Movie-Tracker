@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_tracker/application/fisrt_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
+import 'package:movie_tracker/application/movie/ai_rec/use_count/movie_ai_rec_use_count_cubit.dart';
 import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
 import 'package:movie_tracker/application/premium_checker/premium_checker_bloc.dart';
@@ -50,6 +51,9 @@ class AppGlobalProviders extends StatelessWidget {
         BlocProvider<FirstVisitCubit>(
           create: (_) => Locator.firstVisitCubit,
           lazy: false,
+        ),
+        BlocProvider<MovieAiRecUseCountCubit>(
+          create: (_) => Locator.movieAiRecUseCountCubit,
         ),
       ],
       child: child,
