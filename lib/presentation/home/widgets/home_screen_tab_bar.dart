@@ -20,7 +20,7 @@ class HomeScreenTabBar extends StatelessWidget {
         isScrollable: true,
         tabs: [
           MDSTab(
-            title: 'My Favorites',
+            title: 'All Movies',
             width: tabWidth,
           ),
           MDSTab(

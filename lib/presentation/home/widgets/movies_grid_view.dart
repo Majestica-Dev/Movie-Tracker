@@ -28,7 +28,7 @@ class MoviesGridView extends StatelessWidget {
     final t = context.mdsTheme;
 
     return ResponsiveGridView(
-      itemCount: movies.isEmpty ? 6 : movies.length + 1,
+      itemCount: movies.isEmpty ? 9 : movies.length + 1,
       crossAxisCount: 3,
       shrinkWrap: true,
       itemWidth: MovieCoverSize.S.width,

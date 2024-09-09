@@ -14,7 +14,6 @@ class PrefsKeys {
 
   //Review
   static const lastReviewShownDate = 'lastReviewShownDate';
-  static const showedReviewFromOnboarding = 'showedReviewFromOnboarding';
   static const showedReviewFromPremiumPurchased =
       'showedReviewFromPremiumPurchased';
   static const showedReviewFromAdded10Moves = 'showedReviewFromAdded10Moves';
@@ -22,8 +21,6 @@ class PrefsKeys {
   static const reminderNotificationsIds = 'reminderNotificationsIds';
 
   static const addedMoviesCount = 'addedMoviesCount';
-  static const aiGeneratedMoviesCount = 'addedAiMoviesCount';
-
   static const hasPremium = 'hasPremium';
   static const alreadyAiRecMovies = 'alreadyAiRecMovies';
 
@@ -36,7 +33,7 @@ class SharedPrefsManager {
 
   //Review
   final Pref<String> lastReviewShownDate;
-  final Pref<bool> showedReviewFromOnboarding;
+
   final Pref<bool> showedReviewFromPremiumPurchased;
   final Pref<bool> showedReviewFromAdded10Moves;
   final Pref<bool> showedReviewFromAIMovieResult;
@@ -44,7 +41,6 @@ class SharedPrefsManager {
   final Pref<List<String>> alreadyAiRecMovies;
 
   final Pref<int> addedMoviesCount;
-  final Pref<int> aiGeneratedMoviesCount;
 
   final Pref<bool> hasPremium;
 
@@ -58,10 +54,6 @@ class SharedPrefsManager {
         //Review
         lastReviewShownDate = StringPref(
           PrefsKeys.lastReviewShownDate,
-          sharedPreferences,
-        ),
-        showedReviewFromOnboarding = BoolPref(
-          PrefsKeys.showedReviewFromOnboarding,
           sharedPreferences,
         ),
         showedReviewFromPremiumPurchased = BoolPref(
@@ -84,10 +76,6 @@ class SharedPrefsManager {
         ),
         addedMoviesCount = IntPref(
           PrefsKeys.addedMoviesCount,
-          sharedPreferences,
-        ),
-        aiGeneratedMoviesCount = IntPref(
-          PrefsKeys.aiGeneratedMoviesCount,
           sharedPreferences,
         ),
         hasPremium = BoolPref(

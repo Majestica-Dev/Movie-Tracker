@@ -3,6 +3,7 @@ import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/widgets/find_perfect_movie_card.dart';
+import 'package:movie_tracker/presentation/home/widgets/add_movies_button.dart';
 import 'package:movie_tracker/presentation/home/widgets/movies_grid_view.dart';
 
 class HomeScreenTabBarView extends StatelessWidget {
@@ -27,7 +28,8 @@ class HomeScreenTabBarView extends StatelessWidget {
             child: Column(
               children: [
                 const FindPerfectMovieCard(),
-                SizedBox(height: t.spacing.x3),
+                SizedBox(height: t.spacing.x4),
+                if (allMovies.length < 5) const AddMoviesButton(),
                 MoviesGridView(
                   physics: const NeverScrollableScrollPhysics(),
                   watchStatus: null,

@@ -60,7 +60,6 @@ class ReviewPrefManager {
 
   Pref<bool> _getReviewPref(ReviewFrom reviewFrom) {
     return switch (reviewFrom) {
-      ReviewFrom.onboarding => _sharedPrefsManager.showedReviewFromOnboarding,
       ReviewFrom.added10movies =>
         _sharedPrefsManager.showedReviewFromAdded10Moves,
       ReviewFrom.boughtPremium =>

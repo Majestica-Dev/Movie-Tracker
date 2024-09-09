@@ -7,17 +7,10 @@ class MovieAiRecPrefManager {
 
   MovieAiRecPrefManager(this._sharedPrefsManager);
 
-  int get aiGeneratedMoviesCount =>
-      _sharedPrefsManager.aiGeneratedMoviesCount.get() ?? 0;
-
   List<String> get alreadyAiRecMovies =>
       _sharedPrefsManager.alreadyAiRecMovies.get() ?? [];
 
-  Future<void> plusToAiGeneratedMoviesCount() async {
-    await _sharedPrefsManager.aiGeneratedMoviesCount.set(
-      aiGeneratedMoviesCount + 1,
-    );
-  }
+  int get aiGeneratedMoviesCount => alreadyAiRecMovies.length;
 
   Future<void> recordRecMovie(String movieTitle) async {
     List<String> recMovies = List.from(alreadyAiRecMovies);

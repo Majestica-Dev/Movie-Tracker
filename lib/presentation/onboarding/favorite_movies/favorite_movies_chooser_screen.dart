@@ -63,6 +63,8 @@ class _FavoriteMoviesChooserScreenState
             FavoriteMovieChooserGridView(
               onChoose: (movie) {
                 setState(() {
+                  MDSHapticFeedback.selectionClick();
+
                   chosenMovieFromOurRec.add(movie);
                 });
               },
