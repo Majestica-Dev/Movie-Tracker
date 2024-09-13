@@ -16,22 +16,24 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MovieActorEvent {
-  String get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, WatchStatus status) updateStatus,
+    required TResult Function(Movie movie) updateStatus,
+    required TResult Function(Movie movie) updateIsFavorite,
     required TResult Function(String id) remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id, WatchStatus status)? updateStatus,
+    TResult? Function(Movie movie)? updateStatus,
+    TResult? Function(Movie movie)? updateIsFavorite,
     TResult? Function(String id)? remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, WatchStatus status)? updateStatus,
+    TResult Function(Movie movie)? updateStatus,
+    TResult Function(Movie movie)? updateIsFavorite,
     TResult Function(String id)? remove,
     required TResult orElse(),
   }) =>
@@ -39,27 +41,24 @@ mixin _$MovieActorEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateStatus value) updateStatus,
+    required TResult Function(_UpdateIsFavorite value) updateIsFavorite,
     required TResult Function(_Remove value) remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateStatus value)? updateStatus,
+    TResult? Function(_UpdateIsFavorite value)? updateIsFavorite,
     TResult? Function(_Remove value)? remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateStatus value)? updateStatus,
+    TResult Function(_UpdateIsFavorite value)? updateIsFavorite,
     TResult Function(_Remove value)? remove,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of MovieActorEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $MovieActorEventCopyWith<MovieActorEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -68,8 +67,6 @@ abstract class $MovieActorEventCopyWith<$Res> {
   factory $MovieActorEventCopyWith(
           MovieActorEvent value, $Res Function(MovieActorEvent) then) =
       _$MovieActorEventCopyWithImpl<$Res, MovieActorEvent>;
-  @useResult
-  $Res call({String id});
 }
 
 /// @nodoc
@@ -84,29 +81,15 @@ class _$MovieActorEventCopyWithImpl<$Res, $Val extends MovieActorEvent>
 
   /// Create a copy of MovieActorEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$UpdateStatusImplCopyWith<$Res>
-    implements $MovieActorEventCopyWith<$Res> {
+abstract class _$$UpdateStatusImplCopyWith<$Res> {
   factory _$$UpdateStatusImplCopyWith(
           _$UpdateStatusImpl value, $Res Function(_$UpdateStatusImpl) then) =
       __$$UpdateStatusImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String id, WatchStatus status});
+  $Res call({Movie movie});
 }
 
 /// @nodoc
@@ -122,18 +105,13 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? status = null,
+    Object? movie = null,
   }) {
     return _then(_$UpdateStatusImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as WatchStatus,
+      movie: null == movie
+          ? _value.movie
+          : movie // ignore: cast_nullable_to_non_nullable
+              as Movie,
     ));
   }
 }
@@ -141,16 +119,14 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateStatusImpl implements _UpdateStatus {
-  const _$UpdateStatusImpl({required this.id, required this.status});
+  const _$UpdateStatusImpl({required this.movie});
 
   @override
-  final String id;
-  @override
-  final WatchStatus status;
+  final Movie movie;
 
   @override
   String toString() {
-    return 'MovieActorEvent.updateStatus(id: $id, status: $status)';
+    return 'MovieActorEvent.updateStatus(movie: $movie)';
   }
 
   @override
@@ -158,12 +134,11 @@ class _$UpdateStatusImpl implements _UpdateStatus {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateStatusImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.movie, movie) || other.movie == movie));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, status);
+  int get hashCode => Object.hash(runtimeType, movie);
 
   /// Create a copy of MovieActorEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -176,30 +151,33 @@ class _$UpdateStatusImpl implements _UpdateStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, WatchStatus status) updateStatus,
+    required TResult Function(Movie movie) updateStatus,
+    required TResult Function(Movie movie) updateIsFavorite,
     required TResult Function(String id) remove,
   }) {
-    return updateStatus(id, status);
+    return updateStatus(movie);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id, WatchStatus status)? updateStatus,
+    TResult? Function(Movie movie)? updateStatus,
+    TResult? Function(Movie movie)? updateIsFavorite,
     TResult? Function(String id)? remove,
   }) {
-    return updateStatus?.call(id, status);
+    return updateStatus?.call(movie);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, WatchStatus status)? updateStatus,
+    TResult Function(Movie movie)? updateStatus,
+    TResult Function(Movie movie)? updateIsFavorite,
     TResult Function(String id)? remove,
     required TResult orElse(),
   }) {
     if (updateStatus != null) {
-      return updateStatus(id, status);
+      return updateStatus(movie);
     }
     return orElse();
   }
@@ -208,6 +186,7 @@ class _$UpdateStatusImpl implements _UpdateStatus {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateStatus value) updateStatus,
+    required TResult Function(_UpdateIsFavorite value) updateIsFavorite,
     required TResult Function(_Remove value) remove,
   }) {
     return updateStatus(this);
@@ -217,6 +196,7 @@ class _$UpdateStatusImpl implements _UpdateStatus {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateStatus value)? updateStatus,
+    TResult? Function(_UpdateIsFavorite value)? updateIsFavorite,
     TResult? Function(_Remove value)? remove,
   }) {
     return updateStatus?.call(this);
@@ -226,6 +206,7 @@ class _$UpdateStatusImpl implements _UpdateStatus {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateStatus value)? updateStatus,
+    TResult Function(_UpdateIsFavorite value)? updateIsFavorite,
     TResult Function(_Remove value)? remove,
     required TResult orElse(),
   }) {
@@ -237,29 +218,171 @@ class _$UpdateStatusImpl implements _UpdateStatus {
 }
 
 abstract class _UpdateStatus implements MovieActorEvent {
-  const factory _UpdateStatus(
-      {required final String id,
-      required final WatchStatus status}) = _$UpdateStatusImpl;
+  const factory _UpdateStatus({required final Movie movie}) =
+      _$UpdateStatusImpl;
 
-  @override
-  String get id;
-  WatchStatus get status;
+  Movie get movie;
 
   /// Create a copy of MovieActorEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RemoveImplCopyWith<$Res>
-    implements $MovieActorEventCopyWith<$Res> {
+abstract class _$$UpdateIsFavoriteImplCopyWith<$Res> {
+  factory _$$UpdateIsFavoriteImplCopyWith(_$UpdateIsFavoriteImpl value,
+          $Res Function(_$UpdateIsFavoriteImpl) then) =
+      __$$UpdateIsFavoriteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Movie movie});
+}
+
+/// @nodoc
+class __$$UpdateIsFavoriteImplCopyWithImpl<$Res>
+    extends _$MovieActorEventCopyWithImpl<$Res, _$UpdateIsFavoriteImpl>
+    implements _$$UpdateIsFavoriteImplCopyWith<$Res> {
+  __$$UpdateIsFavoriteImplCopyWithImpl(_$UpdateIsFavoriteImpl _value,
+      $Res Function(_$UpdateIsFavoriteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MovieActorEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? movie = null,
+  }) {
+    return _then(_$UpdateIsFavoriteImpl(
+      movie: null == movie
+          ? _value.movie
+          : movie // ignore: cast_nullable_to_non_nullable
+              as Movie,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateIsFavoriteImpl implements _UpdateIsFavorite {
+  const _$UpdateIsFavoriteImpl({required this.movie});
+
+  @override
+  final Movie movie;
+
+  @override
+  String toString() {
+    return 'MovieActorEvent.updateIsFavorite(movie: $movie)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateIsFavoriteImpl &&
+            (identical(other.movie, movie) || other.movie == movie));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, movie);
+
+  /// Create a copy of MovieActorEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateIsFavoriteImplCopyWith<_$UpdateIsFavoriteImpl> get copyWith =>
+      __$$UpdateIsFavoriteImplCopyWithImpl<_$UpdateIsFavoriteImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Movie movie) updateStatus,
+    required TResult Function(Movie movie) updateIsFavorite,
+    required TResult Function(String id) remove,
+  }) {
+    return updateIsFavorite(movie);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Movie movie)? updateStatus,
+    TResult? Function(Movie movie)? updateIsFavorite,
+    TResult? Function(String id)? remove,
+  }) {
+    return updateIsFavorite?.call(movie);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Movie movie)? updateStatus,
+    TResult Function(Movie movie)? updateIsFavorite,
+    TResult Function(String id)? remove,
+    required TResult orElse(),
+  }) {
+    if (updateIsFavorite != null) {
+      return updateIsFavorite(movie);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateStatus value) updateStatus,
+    required TResult Function(_UpdateIsFavorite value) updateIsFavorite,
+    required TResult Function(_Remove value) remove,
+  }) {
+    return updateIsFavorite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateStatus value)? updateStatus,
+    TResult? Function(_UpdateIsFavorite value)? updateIsFavorite,
+    TResult? Function(_Remove value)? remove,
+  }) {
+    return updateIsFavorite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateStatus value)? updateStatus,
+    TResult Function(_UpdateIsFavorite value)? updateIsFavorite,
+    TResult Function(_Remove value)? remove,
+    required TResult orElse(),
+  }) {
+    if (updateIsFavorite != null) {
+      return updateIsFavorite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateIsFavorite implements MovieActorEvent {
+  const factory _UpdateIsFavorite({required final Movie movie}) =
+      _$UpdateIsFavoriteImpl;
+
+  Movie get movie;
+
+  /// Create a copy of MovieActorEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateIsFavoriteImplCopyWith<_$UpdateIsFavoriteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoveImplCopyWith<$Res> {
   factory _$$RemoveImplCopyWith(
           _$RemoveImpl value, $Res Function(_$RemoveImpl) then) =
       __$$RemoveImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String id});
 }
@@ -323,7 +446,8 @@ class _$RemoveImpl implements _Remove {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id, WatchStatus status) updateStatus,
+    required TResult Function(Movie movie) updateStatus,
+    required TResult Function(Movie movie) updateIsFavorite,
     required TResult Function(String id) remove,
   }) {
     return remove(id);
@@ -332,7 +456,8 @@ class _$RemoveImpl implements _Remove {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id, WatchStatus status)? updateStatus,
+    TResult? Function(Movie movie)? updateStatus,
+    TResult? Function(Movie movie)? updateIsFavorite,
     TResult? Function(String id)? remove,
   }) {
     return remove?.call(id);
@@ -341,7 +466,8 @@ class _$RemoveImpl implements _Remove {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id, WatchStatus status)? updateStatus,
+    TResult Function(Movie movie)? updateStatus,
+    TResult Function(Movie movie)? updateIsFavorite,
     TResult Function(String id)? remove,
     required TResult orElse(),
   }) {
@@ -355,6 +481,7 @@ class _$RemoveImpl implements _Remove {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateStatus value) updateStatus,
+    required TResult Function(_UpdateIsFavorite value) updateIsFavorite,
     required TResult Function(_Remove value) remove,
   }) {
     return remove(this);
@@ -364,6 +491,7 @@ class _$RemoveImpl implements _Remove {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateStatus value)? updateStatus,
+    TResult? Function(_UpdateIsFavorite value)? updateIsFavorite,
     TResult? Function(_Remove value)? remove,
   }) {
     return remove?.call(this);
@@ -373,6 +501,7 @@ class _$RemoveImpl implements _Remove {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateStatus value)? updateStatus,
+    TResult Function(_UpdateIsFavorite value)? updateIsFavorite,
     TResult Function(_Remove value)? remove,
     required TResult orElse(),
   }) {
@@ -386,12 +515,10 @@ class _$RemoveImpl implements _Remove {
 abstract class _Remove implements MovieActorEvent {
   const factory _Remove({required final String id}) = _$RemoveImpl;
 
-  @override
   String get id;
 
   /// Create a copy of MovieActorEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoveImplCopyWith<_$RemoveImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -403,21 +530,27 @@ mixin _$MovieActorState {
   TResult when<TResult extends Object?>({
     required TResult Function() intial,
     required TResult Function() inProgress,
-    required TResult Function() succeeded,
+    required TResult Function(WatchStatus status) updatedStatus,
+    required TResult Function(bool isFavorite) updatedIsFavorite,
+    required TResult Function() removed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? intial,
     TResult? Function()? inProgress,
-    TResult? Function()? succeeded,
+    TResult? Function(WatchStatus status)? updatedStatus,
+    TResult? Function(bool isFavorite)? updatedIsFavorite,
+    TResult? Function()? removed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? intial,
     TResult Function()? inProgress,
-    TResult Function()? succeeded,
+    TResult Function(WatchStatus status)? updatedStatus,
+    TResult Function(bool isFavorite)? updatedIsFavorite,
+    TResult Function()? removed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -425,21 +558,27 @@ mixin _$MovieActorState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Intial value) intial,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Succeeded value) succeeded,
+    required TResult Function(_UpdatedStatus value) updatedStatus,
+    required TResult Function(_UpdatedIsFavorite value) updatedIsFavorite,
+    required TResult Function(_Removed value) removed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Intial value)? intial,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Succeeded value)? succeeded,
+    TResult? Function(_UpdatedStatus value)? updatedStatus,
+    TResult? Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult? Function(_Removed value)? removed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Intial value)? intial,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Succeeded value)? succeeded,
+    TResult Function(_UpdatedStatus value)? updatedStatus,
+    TResult Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult Function(_Removed value)? removed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -509,7 +648,9 @@ class _$IntialImpl implements _Intial {
   TResult when<TResult extends Object?>({
     required TResult Function() intial,
     required TResult Function() inProgress,
-    required TResult Function() succeeded,
+    required TResult Function(WatchStatus status) updatedStatus,
+    required TResult Function(bool isFavorite) updatedIsFavorite,
+    required TResult Function() removed,
   }) {
     return intial();
   }
@@ -519,7 +660,9 @@ class _$IntialImpl implements _Intial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? intial,
     TResult? Function()? inProgress,
-    TResult? Function()? succeeded,
+    TResult? Function(WatchStatus status)? updatedStatus,
+    TResult? Function(bool isFavorite)? updatedIsFavorite,
+    TResult? Function()? removed,
   }) {
     return intial?.call();
   }
@@ -529,7 +672,9 @@ class _$IntialImpl implements _Intial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? intial,
     TResult Function()? inProgress,
-    TResult Function()? succeeded,
+    TResult Function(WatchStatus status)? updatedStatus,
+    TResult Function(bool isFavorite)? updatedIsFavorite,
+    TResult Function()? removed,
     required TResult orElse(),
   }) {
     if (intial != null) {
@@ -543,7 +688,9 @@ class _$IntialImpl implements _Intial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Intial value) intial,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Succeeded value) succeeded,
+    required TResult Function(_UpdatedStatus value) updatedStatus,
+    required TResult Function(_UpdatedIsFavorite value) updatedIsFavorite,
+    required TResult Function(_Removed value) removed,
   }) {
     return intial(this);
   }
@@ -553,7 +700,9 @@ class _$IntialImpl implements _Intial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Intial value)? intial,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Succeeded value)? succeeded,
+    TResult? Function(_UpdatedStatus value)? updatedStatus,
+    TResult? Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult? Function(_Removed value)? removed,
   }) {
     return intial?.call(this);
   }
@@ -563,7 +712,9 @@ class _$IntialImpl implements _Intial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Intial value)? intial,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Succeeded value)? succeeded,
+    TResult Function(_UpdatedStatus value)? updatedStatus,
+    TResult Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult Function(_Removed value)? removed,
     required TResult orElse(),
   }) {
     if (intial != null) {
@@ -620,7 +771,9 @@ class _$InProgressImpl implements _InProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() intial,
     required TResult Function() inProgress,
-    required TResult Function() succeeded,
+    required TResult Function(WatchStatus status) updatedStatus,
+    required TResult Function(bool isFavorite) updatedIsFavorite,
+    required TResult Function() removed,
   }) {
     return inProgress();
   }
@@ -630,7 +783,9 @@ class _$InProgressImpl implements _InProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? intial,
     TResult? Function()? inProgress,
-    TResult? Function()? succeeded,
+    TResult? Function(WatchStatus status)? updatedStatus,
+    TResult? Function(bool isFavorite)? updatedIsFavorite,
+    TResult? Function()? removed,
   }) {
     return inProgress?.call();
   }
@@ -640,7 +795,9 @@ class _$InProgressImpl implements _InProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? intial,
     TResult Function()? inProgress,
-    TResult Function()? succeeded,
+    TResult Function(WatchStatus status)? updatedStatus,
+    TResult Function(bool isFavorite)? updatedIsFavorite,
+    TResult Function()? removed,
     required TResult orElse(),
   }) {
     if (inProgress != null) {
@@ -654,7 +811,9 @@ class _$InProgressImpl implements _InProgress {
   TResult map<TResult extends Object?>({
     required TResult Function(_Intial value) intial,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Succeeded value) succeeded,
+    required TResult Function(_UpdatedStatus value) updatedStatus,
+    required TResult Function(_UpdatedIsFavorite value) updatedIsFavorite,
+    required TResult Function(_Removed value) removed,
   }) {
     return inProgress(this);
   }
@@ -664,7 +823,9 @@ class _$InProgressImpl implements _InProgress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Intial value)? intial,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Succeeded value)? succeeded,
+    TResult? Function(_UpdatedStatus value)? updatedStatus,
+    TResult? Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult? Function(_Removed value)? removed,
   }) {
     return inProgress?.call(this);
   }
@@ -674,7 +835,9 @@ class _$InProgressImpl implements _InProgress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Intial value)? intial,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Succeeded value)? succeeded,
+    TResult Function(_UpdatedStatus value)? updatedStatus,
+    TResult Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult Function(_Removed value)? removed,
     required TResult orElse(),
   }) {
     if (inProgress != null) {
@@ -689,18 +852,338 @@ abstract class _InProgress implements MovieActorState {
 }
 
 /// @nodoc
-abstract class _$$SucceededImplCopyWith<$Res> {
-  factory _$$SucceededImplCopyWith(
-          _$SucceededImpl value, $Res Function(_$SucceededImpl) then) =
-      __$$SucceededImplCopyWithImpl<$Res>;
+abstract class _$$UpdatedStatusImplCopyWith<$Res> {
+  factory _$$UpdatedStatusImplCopyWith(
+          _$UpdatedStatusImpl value, $Res Function(_$UpdatedStatusImpl) then) =
+      __$$UpdatedStatusImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({WatchStatus status});
 }
 
 /// @nodoc
-class __$$SucceededImplCopyWithImpl<$Res>
-    extends _$MovieActorStateCopyWithImpl<$Res, _$SucceededImpl>
-    implements _$$SucceededImplCopyWith<$Res> {
-  __$$SucceededImplCopyWithImpl(
-      _$SucceededImpl _value, $Res Function(_$SucceededImpl) _then)
+class __$$UpdatedStatusImplCopyWithImpl<$Res>
+    extends _$MovieActorStateCopyWithImpl<$Res, _$UpdatedStatusImpl>
+    implements _$$UpdatedStatusImplCopyWith<$Res> {
+  __$$UpdatedStatusImplCopyWithImpl(
+      _$UpdatedStatusImpl _value, $Res Function(_$UpdatedStatusImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MovieActorState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+  }) {
+    return _then(_$UpdatedStatusImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as WatchStatus,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdatedStatusImpl implements _UpdatedStatus {
+  const _$UpdatedStatusImpl({required this.status});
+
+  @override
+  final WatchStatus status;
+
+  @override
+  String toString() {
+    return 'MovieActorState.updatedStatus(status: $status)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdatedStatusImpl &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, status);
+
+  /// Create a copy of MovieActorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdatedStatusImplCopyWith<_$UpdatedStatusImpl> get copyWith =>
+      __$$UpdatedStatusImplCopyWithImpl<_$UpdatedStatusImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() intial,
+    required TResult Function() inProgress,
+    required TResult Function(WatchStatus status) updatedStatus,
+    required TResult Function(bool isFavorite) updatedIsFavorite,
+    required TResult Function() removed,
+  }) {
+    return updatedStatus(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? intial,
+    TResult? Function()? inProgress,
+    TResult? Function(WatchStatus status)? updatedStatus,
+    TResult? Function(bool isFavorite)? updatedIsFavorite,
+    TResult? Function()? removed,
+  }) {
+    return updatedStatus?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? intial,
+    TResult Function()? inProgress,
+    TResult Function(WatchStatus status)? updatedStatus,
+    TResult Function(bool isFavorite)? updatedIsFavorite,
+    TResult Function()? removed,
+    required TResult orElse(),
+  }) {
+    if (updatedStatus != null) {
+      return updatedStatus(status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Intial value) intial,
+    required TResult Function(_InProgress value) inProgress,
+    required TResult Function(_UpdatedStatus value) updatedStatus,
+    required TResult Function(_UpdatedIsFavorite value) updatedIsFavorite,
+    required TResult Function(_Removed value) removed,
+  }) {
+    return updatedStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Intial value)? intial,
+    TResult? Function(_InProgress value)? inProgress,
+    TResult? Function(_UpdatedStatus value)? updatedStatus,
+    TResult? Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult? Function(_Removed value)? removed,
+  }) {
+    return updatedStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Intial value)? intial,
+    TResult Function(_InProgress value)? inProgress,
+    TResult Function(_UpdatedStatus value)? updatedStatus,
+    TResult Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult Function(_Removed value)? removed,
+    required TResult orElse(),
+  }) {
+    if (updatedStatus != null) {
+      return updatedStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdatedStatus implements MovieActorState {
+  const factory _UpdatedStatus({required final WatchStatus status}) =
+      _$UpdatedStatusImpl;
+
+  WatchStatus get status;
+
+  /// Create a copy of MovieActorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdatedStatusImplCopyWith<_$UpdatedStatusImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdatedIsFavoriteImplCopyWith<$Res> {
+  factory _$$UpdatedIsFavoriteImplCopyWith(_$UpdatedIsFavoriteImpl value,
+          $Res Function(_$UpdatedIsFavoriteImpl) then) =
+      __$$UpdatedIsFavoriteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isFavorite});
+}
+
+/// @nodoc
+class __$$UpdatedIsFavoriteImplCopyWithImpl<$Res>
+    extends _$MovieActorStateCopyWithImpl<$Res, _$UpdatedIsFavoriteImpl>
+    implements _$$UpdatedIsFavoriteImplCopyWith<$Res> {
+  __$$UpdatedIsFavoriteImplCopyWithImpl(_$UpdatedIsFavoriteImpl _value,
+      $Res Function(_$UpdatedIsFavoriteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MovieActorState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isFavorite = null,
+  }) {
+    return _then(_$UpdatedIsFavoriteImpl(
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdatedIsFavoriteImpl implements _UpdatedIsFavorite {
+  const _$UpdatedIsFavoriteImpl({required this.isFavorite});
+
+  @override
+  final bool isFavorite;
+
+  @override
+  String toString() {
+    return 'MovieActorState.updatedIsFavorite(isFavorite: $isFavorite)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdatedIsFavoriteImpl &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isFavorite);
+
+  /// Create a copy of MovieActorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdatedIsFavoriteImplCopyWith<_$UpdatedIsFavoriteImpl> get copyWith =>
+      __$$UpdatedIsFavoriteImplCopyWithImpl<_$UpdatedIsFavoriteImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() intial,
+    required TResult Function() inProgress,
+    required TResult Function(WatchStatus status) updatedStatus,
+    required TResult Function(bool isFavorite) updatedIsFavorite,
+    required TResult Function() removed,
+  }) {
+    return updatedIsFavorite(isFavorite);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? intial,
+    TResult? Function()? inProgress,
+    TResult? Function(WatchStatus status)? updatedStatus,
+    TResult? Function(bool isFavorite)? updatedIsFavorite,
+    TResult? Function()? removed,
+  }) {
+    return updatedIsFavorite?.call(isFavorite);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? intial,
+    TResult Function()? inProgress,
+    TResult Function(WatchStatus status)? updatedStatus,
+    TResult Function(bool isFavorite)? updatedIsFavorite,
+    TResult Function()? removed,
+    required TResult orElse(),
+  }) {
+    if (updatedIsFavorite != null) {
+      return updatedIsFavorite(isFavorite);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Intial value) intial,
+    required TResult Function(_InProgress value) inProgress,
+    required TResult Function(_UpdatedStatus value) updatedStatus,
+    required TResult Function(_UpdatedIsFavorite value) updatedIsFavorite,
+    required TResult Function(_Removed value) removed,
+  }) {
+    return updatedIsFavorite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Intial value)? intial,
+    TResult? Function(_InProgress value)? inProgress,
+    TResult? Function(_UpdatedStatus value)? updatedStatus,
+    TResult? Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult? Function(_Removed value)? removed,
+  }) {
+    return updatedIsFavorite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Intial value)? intial,
+    TResult Function(_InProgress value)? inProgress,
+    TResult Function(_UpdatedStatus value)? updatedStatus,
+    TResult Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult Function(_Removed value)? removed,
+    required TResult orElse(),
+  }) {
+    if (updatedIsFavorite != null) {
+      return updatedIsFavorite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdatedIsFavorite implements MovieActorState {
+  const factory _UpdatedIsFavorite({required final bool isFavorite}) =
+      _$UpdatedIsFavoriteImpl;
+
+  bool get isFavorite;
+
+  /// Create a copy of MovieActorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdatedIsFavoriteImplCopyWith<_$UpdatedIsFavoriteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemovedImplCopyWith<$Res> {
+  factory _$$RemovedImplCopyWith(
+          _$RemovedImpl value, $Res Function(_$RemovedImpl) then) =
+      __$$RemovedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RemovedImplCopyWithImpl<$Res>
+    extends _$MovieActorStateCopyWithImpl<$Res, _$RemovedImpl>
+    implements _$$RemovedImplCopyWith<$Res> {
+  __$$RemovedImplCopyWithImpl(
+      _$RemovedImpl _value, $Res Function(_$RemovedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of MovieActorState
@@ -709,18 +1192,18 @@ class __$$SucceededImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SucceededImpl implements _Succeeded {
-  const _$SucceededImpl();
+class _$RemovedImpl implements _Removed {
+  const _$RemovedImpl();
 
   @override
   String toString() {
-    return 'MovieActorState.succeeded()';
+    return 'MovieActorState.removed()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SucceededImpl);
+        (other.runtimeType == runtimeType && other is _$RemovedImpl);
   }
 
   @override
@@ -731,9 +1214,11 @@ class _$SucceededImpl implements _Succeeded {
   TResult when<TResult extends Object?>({
     required TResult Function() intial,
     required TResult Function() inProgress,
-    required TResult Function() succeeded,
+    required TResult Function(WatchStatus status) updatedStatus,
+    required TResult Function(bool isFavorite) updatedIsFavorite,
+    required TResult Function() removed,
   }) {
-    return succeeded();
+    return removed();
   }
 
   @override
@@ -741,9 +1226,11 @@ class _$SucceededImpl implements _Succeeded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? intial,
     TResult? Function()? inProgress,
-    TResult? Function()? succeeded,
+    TResult? Function(WatchStatus status)? updatedStatus,
+    TResult? Function(bool isFavorite)? updatedIsFavorite,
+    TResult? Function()? removed,
   }) {
-    return succeeded?.call();
+    return removed?.call();
   }
 
   @override
@@ -751,11 +1238,13 @@ class _$SucceededImpl implements _Succeeded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? intial,
     TResult Function()? inProgress,
-    TResult Function()? succeeded,
+    TResult Function(WatchStatus status)? updatedStatus,
+    TResult Function(bool isFavorite)? updatedIsFavorite,
+    TResult Function()? removed,
     required TResult orElse(),
   }) {
-    if (succeeded != null) {
-      return succeeded();
+    if (removed != null) {
+      return removed();
     }
     return orElse();
   }
@@ -765,9 +1254,11 @@ class _$SucceededImpl implements _Succeeded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Intial value) intial,
     required TResult Function(_InProgress value) inProgress,
-    required TResult Function(_Succeeded value) succeeded,
+    required TResult Function(_UpdatedStatus value) updatedStatus,
+    required TResult Function(_UpdatedIsFavorite value) updatedIsFavorite,
+    required TResult Function(_Removed value) removed,
   }) {
-    return succeeded(this);
+    return removed(this);
   }
 
   @override
@@ -775,9 +1266,11 @@ class _$SucceededImpl implements _Succeeded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Intial value)? intial,
     TResult? Function(_InProgress value)? inProgress,
-    TResult? Function(_Succeeded value)? succeeded,
+    TResult? Function(_UpdatedStatus value)? updatedStatus,
+    TResult? Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult? Function(_Removed value)? removed,
   }) {
-    return succeeded?.call(this);
+    return removed?.call(this);
   }
 
   @override
@@ -785,16 +1278,18 @@ class _$SucceededImpl implements _Succeeded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Intial value)? intial,
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Succeeded value)? succeeded,
+    TResult Function(_UpdatedStatus value)? updatedStatus,
+    TResult Function(_UpdatedIsFavorite value)? updatedIsFavorite,
+    TResult Function(_Removed value)? removed,
     required TResult orElse(),
   }) {
-    if (succeeded != null) {
-      return succeeded(this);
+    if (removed != null) {
+      return removed(this);
     }
     return orElse();
   }
 }
 
-abstract class _Succeeded implements MovieActorState {
-  const factory _Succeeded() = _$SucceededImpl;
+abstract class _Removed implements MovieActorState {
+  const factory _Removed() = _$RemovedImpl;
 }

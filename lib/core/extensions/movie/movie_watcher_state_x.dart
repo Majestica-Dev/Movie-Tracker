@@ -15,4 +15,11 @@ extension MovieWatcherStateX on MovieWatcherState {
       succeeded: (succeededState) => succeededState.allMovies,
     );
   }
+
+  List<Movie> get favorites {
+    return maybeMap(
+      orElse: () => [],
+      succeeded: (succeededState) => succeededState.favoriteMovies,
+    );
+  }
 }

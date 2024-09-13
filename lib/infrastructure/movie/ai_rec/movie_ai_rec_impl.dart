@@ -35,14 +35,14 @@ class MovieAiRecImpl implements IMovieAiRec {
     required WatchMood mood,
     required List<MovieGenre> genres,
     required List<StreamingService> streamingServices,
-    required Movies movies,
+    required Movies favoriteMovies,
   }) async {
     final gptRecResult = await _gptMovieRecImpl.getRecomendedMovieTitle(
       alreadyRecMoviesTitle: _movieAiRecPrefManager.alreadyAiRecMovies,
       genres: genres,
       mood: mood,
       streamingServices: streamingServices,
-      movies: movies,
+      favoriteMovies: favoriteMovies,
     );
 
     final genreMovies =

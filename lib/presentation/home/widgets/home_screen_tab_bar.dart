@@ -11,28 +11,31 @@ class HomeScreenTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.mdsTheme;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      final tabWidth =
-          (constraints.maxWidth - (2 * t.spacing.x1) - (2 * t.spacing.x05)) / 3;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final tabWidth =
+            (constraints.maxWidth - (2 * t.spacing.x1) - (2 * t.spacing.x05)) /
+                3;
 
-      return MDSTabBar(
-        colorMode: ColorMode.neutral,
-        isScrollable: true,
-        tabs: [
-          MDSTab(
-            title: 'All Movies',
-            width: tabWidth,
-          ),
-          MDSTab(
-            title: 'To Watch',
-            width: tabWidth,
-          ),
-          MDSTab(
-            title: 'Watched',
-            width: tabWidth,
-          ),
-        ],
-      );
-    });
+        return MDSTabBar(
+          colorMode: ColorMode.neutral,
+          isScrollable: true,
+          tabs: [
+            MDSTab(
+              title: 'Favorites',
+              width: tabWidth,
+            ),
+            MDSTab(
+              title: 'To Watch',
+              width: tabWidth,
+            ),
+            MDSTab(
+              title: 'Watched',
+              width: tabWidth,
+            ),
+          ],
+        );
+      },
+    );
   }
 }

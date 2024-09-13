@@ -6,6 +6,6 @@ class MovieAiRecEvent with _$MovieAiRecEvent {
     required WatchMood mood,
     required List<MovieGenre> genres,
     required List<StreamingService> streamingServices,
-    required Movies movies,
+    required Movies favoriteMovies,
   }) = _GetRecomended;
 }

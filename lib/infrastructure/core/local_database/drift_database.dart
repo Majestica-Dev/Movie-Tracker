@@ -23,7 +23,7 @@ class AppDriftDatabase extends _$AppDriftDatabase {
   AppDriftDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration {
@@ -44,6 +44,12 @@ class AppDriftDatabase extends _$AppDriftDatabase {
                 await m.addColumn(
                   schema.movieTable,
                   schema.movieTable.trailerLink,
+                );
+              },
+              from2To3: (Migrator m, Schema3 schema) async {
+                await m.addColumn(
+                  schema.movieTable,
+                  schema.movieTable.isFavorite,
                 );
               },
             ),

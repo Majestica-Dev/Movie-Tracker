@@ -42,7 +42,7 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
             mood: movieAiRecFormState.mood ?? WatchMood.relaxed,
             genres: movieAiRecFormState.genres,
             streamingServices: movieAiRecFormState.streamingServices,
-            movies: context.allMovies,
+            favoriteMovies: context.favoriteMovies,
           ),
         ),
       child: BlocListener<MovieAiRecBloc, MovieAiRecState>(
@@ -91,6 +91,7 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
 
                                 context.router.popAndPush(
                                   MovieOverviewRoute(
+                                    isFavorite: false,
                                     movieAiRecFormState: movieAiRecFormState,
                                     movie: movie!,
                                     isFromAi: true,

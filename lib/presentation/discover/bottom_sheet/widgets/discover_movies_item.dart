@@ -40,6 +40,7 @@ class DiscoverMoviesItem extends StatelessWidget {
         } else {
           context.router.push(
             MovieOverviewRoute(
+              isFavorite: false,
               movieAiRecFormState: null,
               movie: movie,
               isFromAi: false,

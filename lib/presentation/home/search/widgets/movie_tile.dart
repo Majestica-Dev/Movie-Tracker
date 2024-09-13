@@ -19,11 +19,13 @@ import 'package:movie_tracker/presentation/paywall/sheet/paywall_sheet.dart';
 class MovieTile extends StatelessWidget {
   final WatchStatus? watchStatus;
   final Movie movie;
+  final bool isFavorite;
 
   const MovieTile({
     required this.movie,
     required this.watchStatus,
     super.key,
+    required this.isFavorite,
   });
 
   @override
@@ -44,12 +46,15 @@ class MovieTile extends StatelessWidget {
                 ),
               );
             } else {
-              context.router.push(MovieOverviewRoute(
-                movieAiRecFormState: null,
-                movie: movie,
-                watchStatus: watchStatus,
-                isFromAi: false,
-              ));
+              context.router.push(
+                MovieOverviewRoute(
+                  movieAiRecFormState: null,
+                  movie: movie,
+                  watchStatus: watchStatus,
+                  isFromAi: false,
+                  isFavorite: isFavorite,
+                ),
+              );
             }
           },
           child: ConstrainedBox(
@@ -107,8 +112,14 @@ class MovieTile extends StatelessWidget {
                     buttonSize: MDSButtonSize.XS,
                     onPressed: () async {
                       if (context.addMovieEnabled) {
-                        context.read<MovieSaverBloc>().add(MovieSaverEvent.save(
-                            movie: movie.copyWith(status: watchStatus)));
+                        context.read<MovieSaverBloc>().add(
+                              MovieSaverEvent.save(
+                                movie: movie.copyWith(
+                                  status: watchStatus,
+                                  isFavorite: isFavorite,
+                                ),
+                              ),
+                            );
                       } else {
                         PaywallSheet.show(context);
                       }

@@ -15,10 +15,12 @@ class MoviesGridView extends StatelessWidget {
   final Movies movies;
   final WatchStatus? watchStatus;
   final ScrollPhysics? physics;
+  final bool isFavorite;
 
   const MoviesGridView({
     required this.movies,
     required this.watchStatus,
+    required this.isFavorite,
     this.physics,
     super.key,
   });
@@ -41,6 +43,7 @@ class MoviesGridView extends StatelessWidget {
             onTap: () => MovieSearchSheet.show(
               context,
               watchStatus: watchStatus,
+              isFavorite: isFavorite,
             ),
           );
         }
@@ -54,6 +57,7 @@ class MoviesGridView extends StatelessWidget {
             onTap: () => MovieSearchSheet.show(
               context,
               watchStatus: watchStatus,
+              isFavorite: isFavorite,
             ),
           );
         }

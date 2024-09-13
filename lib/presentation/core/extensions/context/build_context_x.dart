@@ -13,6 +13,8 @@ extension BuildContextX on BuildContext {
 
   Movies get allMovies => read<MovieWatcherBloc>().state.allMovies;
 
+  Movies get favoriteMovies => read<MovieWatcherBloc>().state.favorites;
+
   bool get addMovieEnabled =>
       hasPremium || allMovies.length < FreemiumLimits.addMovieLimit;
 

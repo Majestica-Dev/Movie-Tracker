@@ -7,11 +7,11 @@ import 'package:movie_tracker/presentation/home/widgets/add_movies_button.dart';
 import 'package:movie_tracker/presentation/home/widgets/movies_grid_view.dart';
 
 class HomeScreenTabBarView extends StatelessWidget {
-  final Movies allMovies;
+  final Movies favoriteMovies;
   final Map<WatchStatus, Movies> moviesMap;
 
   const HomeScreenTabBarView({
-    required this.allMovies,
+    required this.favoriteMovies,
     required this.moviesMap,
     super.key,
   });
@@ -29,11 +29,12 @@ class HomeScreenTabBarView extends StatelessWidget {
               children: [
                 const FindPerfectMovieCard(),
                 SizedBox(height: t.spacing.x4),
-                if (allMovies.length < 5) const AddMoviesButton(),
+                if (favoriteMovies.length < 5) const AddMoviesButton(),
                 MoviesGridView(
+                  isFavorite: true,
                   physics: const NeverScrollableScrollPhysics(),
                   watchStatus: null,
-                  movies: allMovies,
+                  movies: favoriteMovies,
                 ),
               ],
             ),
@@ -42,6 +43,7 @@ class HomeScreenTabBarView extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
           child: MoviesGridView(
+            isFavorite: false,
             watchStatus: WatchStatus.toWatch,
             movies: moviesMap[WatchStatus.toWatch] ?? [],
           ),
@@ -49,6 +51,7 @@ class HomeScreenTabBarView extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
           child: MoviesGridView(
+            isFavorite: false,
             watchStatus: WatchStatus.watched,
             movies: moviesMap[WatchStatus.watched] ?? [],
           ),

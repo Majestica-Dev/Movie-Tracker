@@ -1,4 +1,5 @@
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
+
 import 'package:movie_tracker/core/typdefs/typdef.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 
@@ -40,6 +41,7 @@ class HomeScreenBody extends StatelessWidget {
                         const FindPerfectMovieCard(),
                         SizedBox(height: t.spacing.x4),
                         MoviesGridView(
+                          isFavorite: true,
                           physics: const NeverScrollableScrollPhysics(),
                           watchStatus: null,
                           movies: succeededState.allMovies,
@@ -56,7 +58,7 @@ class HomeScreenBody extends StatelessWidget {
                   SizedBox(height: t.spacing.x4),
                   Expanded(
                     child: HomeScreenTabBarView(
-                      allMovies: allMovies,
+                      favoriteMovies: succeededState.favoriteMovies,
                       moviesMap: moviesMap,
                     ),
                   ),

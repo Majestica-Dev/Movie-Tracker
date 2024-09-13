@@ -38,6 +38,7 @@ class MovieSaverBloc extends Bloc<MovieSaverEvent, MovieSaverState> {
 
     emit(MovieSaverState.saved(
       addedMoviesCount: _moviePrefManager.addedMoviesCount,
+      movie: event.movie,
     ));
   }
 
@@ -51,8 +52,11 @@ class MovieSaverBloc extends Bloc<MovieSaverEvent, MovieSaverState> {
       await _iMovieRepo.save(movie: movie);
     }
 
-    emit(MovieSaverState.saved(
-      addedMoviesCount: _moviePrefManager.addedMoviesCount,
-    ));
+    emit(
+      MovieSaverState.saved(
+        addedMoviesCount: _moviePrefManager.addedMoviesCount,
+        movie: null,
+      ),
+    );
   }
 }

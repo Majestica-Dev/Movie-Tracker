@@ -20,10 +20,10 @@ class GptMovieRecImpl {
     required WatchMood mood,
     required List<MovieGenre> genres,
     required List<StreamingService> streamingServices,
-    required Movies movies,
+    required Movies favoriteMovies,
     required List<String> alreadyRecMoviesTitle,
   }) async {
-    final List<String> moviesTitles = movies.map((e) => e.title).toList();
+    final List<String> moviesTitles = favoriteMovies.map((e) => e.title).toList();
 
     try {
       final prompt = _generetePromptForGptRecomend(

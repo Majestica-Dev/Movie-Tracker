@@ -32,7 +32,7 @@ class MovieAiRecBloc extends Bloc<MovieAiRecEvent, MovieAiRecState> {
       genres: event.genres,
       mood: event.mood,
       streamingServices: event.streamingServices,
-      movies: event.movies,
+      favoriteMovies: event.favoriteMovies,
     );
 
     result.fold(

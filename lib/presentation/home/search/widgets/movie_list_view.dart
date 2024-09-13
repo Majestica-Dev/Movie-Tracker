@@ -10,11 +10,13 @@ import 'package:majestica_ds/majestica_ds.dart';
 class MovieListView extends StatelessWidget {
   final Movies movies;
   final WatchStatus? watchStatus;
+  final bool isFavorite;
 
   const MovieListView({
     required this.movies,
     required this.watchStatus,
     super.key,
+    required this.isFavorite,
   });
 
   @override
@@ -27,6 +29,7 @@ class MovieListView extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.only(top: context.mdsTheme.spacing.x3),
             child: MovieTile(
+              isFavorite: isFavorite,
               watchStatus: watchStatus,
               movie: movies[index],
             ),

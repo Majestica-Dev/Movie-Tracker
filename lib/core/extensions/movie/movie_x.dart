@@ -12,6 +12,7 @@ extension MovieX on Movie {
     final double? rating,
     final DateTime? releaseDate,
     final String? trailerLink,
+    final bool? isFavorite,
   }) {
     return Movie(
       id: id ?? this.id,
@@ -23,6 +24,7 @@ extension MovieX on Movie {
       rating: rating ?? this.rating,
       releaseDate: releaseDate ?? this.releaseDate,
       trailerLink: trailerLink ?? this.trailerLink,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 

@@ -10,6 +10,7 @@ final class Movie {
   final double? rating;
   final DateTime? releaseDate;
   final String? trailerLink;
+  final bool isFavorite;
 
   const Movie({
     required this.id,
@@ -21,6 +22,7 @@ final class Movie {
     required this.rating,
     required this.releaseDate,
     required this.trailerLink,
+    required this.isFavorite,
   });
 
   const Movie.withoutTrailerLink({
@@ -32,5 +34,6 @@ final class Movie {
     required this.editedAt,
     required this.rating,
     required this.releaseDate,
+    this.isFavorite = false,
   }) : trailerLink = null;
 }

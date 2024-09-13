@@ -13,6 +13,7 @@ class MovieTable extends Table {
   RealColumn get rating => real().nullable()();
   DateTimeColumn get releaseDate => dateTime().nullable()();
   TextColumn get trailerLink => text().nullable()();
+  BoolColumn get isFavorite => boolean().withDefault(const Constant(true))();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -22,6 +23,7 @@ extension MovieTableMapper on MovieTableData {
   Movie get toEntity {
     return Movie(
       rating: rating,
+      isFavorite: isFavorite,
       id: id,
       title: title,
       description: description,
@@ -44,6 +46,7 @@ extension MovieTableMapper on MovieTableData {
       rating: Value(movie.rating),
       releaseDate: Value(movie.releaseDate),
       trailerLink: Value(movie.trailerLink),
+      isFavorite: Value(movie.isFavorite),
     );
   }
 }

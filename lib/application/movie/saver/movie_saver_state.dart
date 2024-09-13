@@ -8,5 +8,6 @@ class MovieSaverState with _$MovieSaverState {
 
   const factory MovieSaverState.saved({
     required int addedMoviesCount,
+    required Movie? movie,
   }) = _Saved;
 }

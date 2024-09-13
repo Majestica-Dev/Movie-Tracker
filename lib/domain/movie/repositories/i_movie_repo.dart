@@ -1,4 +1,3 @@
-import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 
 abstract interface class IMovieRepo {
@@ -6,10 +5,7 @@ abstract interface class IMovieRepo {
 
   Future<void> remove({required String id});
 
-  Future<void> updateStatus({
-    required String id,
-    required WatchStatus status,
-  });
+  Future<void> update({required Movie movie});
 
   Stream<List<Movie>> get watchAll;
 }
