@@ -65,7 +65,7 @@ class MovieOverviewScreen extends StatelessWidget {
                 movieTitle: movie.title,
               ),
               SizedBox(height: t.spacing.x3),
-              MovieSaveButton(movie: movie, isFromAi: isFromAi),
+              MovieSaveButton(movie: movie),
               if (isFromAi) ...[
                 SizedBox(height: t.spacing.x3),
                 MovieAiRecRegenerateButton(

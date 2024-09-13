@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 
 import 'package:flutter/widgets.dart';
@@ -8,22 +6,19 @@ import 'package:majestica_ds/icons/icons.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
-import 'package:movie_tracker/core/di/locator.dart';
+
 import 'package:movie_tracker/core/extensions/movie/movie_watcher_state_x.dart';
 import 'package:movie_tracker/core/extensions/movie/movie_x.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
-import 'package:movie_tracker/domain/review/review_from.dart';
 
 class MovieSaveButton extends StatelessWidget {
   final WatchStatus? watchStatus;
   final Movie movie;
-  final bool isFromAi;
 
   const MovieSaveButton({
     this.watchStatus,
     required this.movie,
-    required this.isFromAi,
     super.key,
   });
 
@@ -44,17 +39,6 @@ class MovieSaveButton extends StatelessWidget {
             );
 
         context.router.maybePop();
-
-        if (isFromAi) {
-          Timer(
-            const Duration(seconds: 1),
-            () {
-              Locator.reviewService.checkAndRequestReviw(
-                reviewFrom: ReviewFrom.aiMovieResult,
-              );
-            },
-          );
-        }
       },
     );
   }
