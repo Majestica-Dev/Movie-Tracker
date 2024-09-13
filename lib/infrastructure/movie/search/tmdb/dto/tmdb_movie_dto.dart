@@ -27,8 +27,11 @@ class TmdbMovieDto {
         releaseDate: DateTime.tryParse(json['release_date'] as String),
       );
 
-  Movie toEntity({required String? trailerLink}) {
+  Movie toEntity({
+    required String? trailerLink,
+  }) {
     return Movie(
+      isFavorite: false,
       rating: voteAverage,
       editedAt: DateTime.now(),
       id: id.toString(),

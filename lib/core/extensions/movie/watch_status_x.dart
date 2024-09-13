@@ -7,4 +7,11 @@ extension WatchStatusX on WatchStatus {
       WatchStatus.toWatch => 'To Watch',
     };
   }
+
+  String get listName {
+    return switch (this) {
+      WatchStatus.watched => 'watched list',
+      WatchStatus.toWatch => 'watch later list',
+    };
+  }
 }

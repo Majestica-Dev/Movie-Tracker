@@ -16,4 +16,10 @@ extension MovieListX on Movies {
 
     return moviesMap;
   }
+
+  Movies get favorites {
+    return where(
+      (element) => element.isFavorite == true,
+    ).toList();
+  }
 }

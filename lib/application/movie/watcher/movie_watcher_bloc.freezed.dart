@@ -19,8 +19,8 @@ mixin _$MovieWatcherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)
+    required TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)
         succeeded,
     required TResult Function(String message) failed,
   }) =>
@@ -28,8 +28,8 @@ mixin _$MovieWatcherState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? inProgress,
-    TResult? Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult? Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult? Function(String message)? failed,
   }) =>
@@ -37,8 +37,8 @@ mixin _$MovieWatcherState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -131,8 +131,8 @@ class _$InProgressImpl implements _InProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)
+    required TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)
         succeeded,
     required TResult Function(String message) failed,
   }) {
@@ -143,8 +143,8 @@ class _$InProgressImpl implements _InProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? inProgress,
-    TResult? Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult? Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult? Function(String message)? failed,
   }) {
@@ -155,8 +155,8 @@ class _$InProgressImpl implements _InProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -212,7 +212,10 @@ abstract class _$$SucceededImplCopyWith<$Res> {
           _$SucceededImpl value, $Res Function(_$SucceededImpl) then) =
       __$$SucceededImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap});
+  $Res call(
+      {List<Movie> allMovies,
+      List<Movie> favoriteMovies,
+      Map<WatchStatus, List<Movie>> moviesMap});
 }
 
 /// @nodoc
@@ -229,12 +232,17 @@ class __$$SucceededImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? allMovies = null,
+    Object? favoriteMovies = null,
     Object? moviesMap = null,
   }) {
     return _then(_$SucceededImpl(
       allMovies: null == allMovies
           ? _value._allMovies
           : allMovies // ignore: cast_nullable_to_non_nullable
+              as List<Movie>,
+      favoriteMovies: null == favoriteMovies
+          ? _value._favoriteMovies
+          : favoriteMovies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
       moviesMap: null == moviesMap
           ? _value._moviesMap
@@ -249,8 +257,10 @@ class __$$SucceededImplCopyWithImpl<$Res>
 class _$SucceededImpl implements _Succeeded {
   const _$SucceededImpl(
       {required final List<Movie> allMovies,
+      required final List<Movie> favoriteMovies,
       required final Map<WatchStatus, List<Movie>> moviesMap})
       : _allMovies = allMovies,
+        _favoriteMovies = favoriteMovies,
         _moviesMap = moviesMap;
 
   final List<Movie> _allMovies;
@@ -259,6 +269,14 @@ class _$SucceededImpl implements _Succeeded {
     if (_allMovies is EqualUnmodifiableListView) return _allMovies;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_allMovies);
+  }
+
+  final List<Movie> _favoriteMovies;
+  @override
+  List<Movie> get favoriteMovies {
+    if (_favoriteMovies is EqualUnmodifiableListView) return _favoriteMovies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favoriteMovies);
   }
 
   final Map<WatchStatus, List<Movie>> _moviesMap;
@@ -271,7 +289,7 @@ class _$SucceededImpl implements _Succeeded {
 
   @override
   String toString() {
-    return 'MovieWatcherState.succeeded(allMovies: $allMovies, moviesMap: $moviesMap)';
+    return 'MovieWatcherState.succeeded(allMovies: $allMovies, favoriteMovies: $favoriteMovies, moviesMap: $moviesMap)';
   }
 
   @override
@@ -282,6 +300,8 @@ class _$SucceededImpl implements _Succeeded {
             const DeepCollectionEquality()
                 .equals(other._allMovies, _allMovies) &&
             const DeepCollectionEquality()
+                .equals(other._favoriteMovies, _favoriteMovies) &&
+            const DeepCollectionEquality()
                 .equals(other._moviesMap, _moviesMap));
   }
 
@@ -289,6 +309,7 @@ class _$SucceededImpl implements _Succeeded {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_allMovies),
+      const DeepCollectionEquality().hash(_favoriteMovies),
       const DeepCollectionEquality().hash(_moviesMap));
 
   /// Create a copy of MovieWatcherState
@@ -303,38 +324,38 @@ class _$SucceededImpl implements _Succeeded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)
+    required TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)
         succeeded,
     required TResult Function(String message) failed,
   }) {
-    return succeeded(allMovies, moviesMap);
+    return succeeded(allMovies, favoriteMovies, moviesMap);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? inProgress,
-    TResult? Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult? Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult? Function(String message)? failed,
   }) {
-    return succeeded?.call(allMovies, moviesMap);
+    return succeeded?.call(allMovies, favoriteMovies, moviesMap);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult Function(String message)? failed,
     required TResult orElse(),
   }) {
     if (succeeded != null) {
-      return succeeded(allMovies, moviesMap);
+      return succeeded(allMovies, favoriteMovies, moviesMap);
     }
     return orElse();
   }
@@ -377,10 +398,12 @@ class _$SucceededImpl implements _Succeeded {
 abstract class _Succeeded implements MovieWatcherState {
   const factory _Succeeded(
           {required final List<Movie> allMovies,
+          required final List<Movie> favoriteMovies,
           required final Map<WatchStatus, List<Movie>> moviesMap}) =
       _$SucceededImpl;
 
   List<Movie> get allMovies;
+  List<Movie> get favoriteMovies;
   Map<WatchStatus, List<Movie>> get moviesMap;
 
   /// Create a copy of MovieWatcherState
@@ -459,8 +482,8 @@ class _$FailedImpl implements _Failed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)
+    required TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)
         succeeded,
     required TResult Function(String message) failed,
   }) {
@@ -471,8 +494,8 @@ class _$FailedImpl implements _Failed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? inProgress,
-    TResult? Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult? Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult? Function(String message)? failed,
   }) {
@@ -483,8 +506,8 @@ class _$FailedImpl implements _Failed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+    TResult Function(List<Movie> allMovies, List<Movie> favoriteMovies,
+            Map<WatchStatus, List<Movie>> moviesMap)?
         succeeded,
     TResult Function(String message)? failed,
     required TResult orElse(),
@@ -547,8 +570,8 @@ mixin _$MovieWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)
+    required TResult Function(List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap, List<Movie> favoriteMovies)
         handleSucceeded,
   }) =>
       throw _privateConstructorUsedError;
@@ -556,7 +579,9 @@ mixin _$MovieWatcherEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+            List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap,
+            List<Movie> favoriteMovies)?
         handleSucceeded,
   }) =>
       throw _privateConstructorUsedError;
@@ -564,7 +589,9 @@ mixin _$MovieWatcherEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+            List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap,
+            List<Movie> favoriteMovies)?
         handleSucceeded,
     required TResult orElse(),
   }) =>
@@ -652,8 +679,8 @@ class _$InitImpl implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)
+    required TResult Function(List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap, List<Movie> favoriteMovies)
         handleSucceeded,
   }) {
     return init();
@@ -664,7 +691,9 @@ class _$InitImpl implements _Init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+            List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap,
+            List<Movie> favoriteMovies)?
         handleSucceeded,
   }) {
     return init?.call();
@@ -675,7 +704,9 @@ class _$InitImpl implements _Init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+            List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap,
+            List<Movie> favoriteMovies)?
         handleSucceeded,
     required TResult orElse(),
   }) {
@@ -727,7 +758,10 @@ abstract class _$$HandleSucceededImplCopyWith<$Res> {
           $Res Function(_$HandleSucceededImpl) then) =
       __$$HandleSucceededImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap});
+  $Res call(
+      {List<Movie> allMovies,
+      Map<WatchStatus, List<Movie>> moviesMap,
+      List<Movie> favoriteMovies});
 }
 
 /// @nodoc
@@ -745,6 +779,7 @@ class __$$HandleSucceededImplCopyWithImpl<$Res>
   $Res call({
     Object? allMovies = null,
     Object? moviesMap = null,
+    Object? favoriteMovies = null,
   }) {
     return _then(_$HandleSucceededImpl(
       allMovies: null == allMovies
@@ -755,6 +790,10 @@ class __$$HandleSucceededImplCopyWithImpl<$Res>
           ? _value._moviesMap
           : moviesMap // ignore: cast_nullable_to_non_nullable
               as Map<WatchStatus, List<Movie>>,
+      favoriteMovies: null == favoriteMovies
+          ? _value._favoriteMovies
+          : favoriteMovies // ignore: cast_nullable_to_non_nullable
+              as List<Movie>,
     ));
   }
 }
@@ -764,9 +803,11 @@ class __$$HandleSucceededImplCopyWithImpl<$Res>
 class _$HandleSucceededImpl implements _HandleSucceeded {
   const _$HandleSucceededImpl(
       {required final List<Movie> allMovies,
-      required final Map<WatchStatus, List<Movie>> moviesMap})
+      required final Map<WatchStatus, List<Movie>> moviesMap,
+      required final List<Movie> favoriteMovies})
       : _allMovies = allMovies,
-        _moviesMap = moviesMap;
+        _moviesMap = moviesMap,
+        _favoriteMovies = favoriteMovies;
 
   final List<Movie> _allMovies;
   @override
@@ -784,9 +825,17 @@ class _$HandleSucceededImpl implements _HandleSucceeded {
     return EqualUnmodifiableMapView(_moviesMap);
   }
 
+  final List<Movie> _favoriteMovies;
+  @override
+  List<Movie> get favoriteMovies {
+    if (_favoriteMovies is EqualUnmodifiableListView) return _favoriteMovies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_favoriteMovies);
+  }
+
   @override
   String toString() {
-    return 'MovieWatcherEvent.handleSucceeded(allMovies: $allMovies, moviesMap: $moviesMap)';
+    return 'MovieWatcherEvent.handleSucceeded(allMovies: $allMovies, moviesMap: $moviesMap, favoriteMovies: $favoriteMovies)';
   }
 
   @override
@@ -797,14 +846,17 @@ class _$HandleSucceededImpl implements _HandleSucceeded {
             const DeepCollectionEquality()
                 .equals(other._allMovies, _allMovies) &&
             const DeepCollectionEquality()
-                .equals(other._moviesMap, _moviesMap));
+                .equals(other._moviesMap, _moviesMap) &&
+            const DeepCollectionEquality()
+                .equals(other._favoriteMovies, _favoriteMovies));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_allMovies),
-      const DeepCollectionEquality().hash(_moviesMap));
+      const DeepCollectionEquality().hash(_moviesMap),
+      const DeepCollectionEquality().hash(_favoriteMovies));
 
   /// Create a copy of MovieWatcherEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -819,11 +871,11 @@ class _$HandleSucceededImpl implements _HandleSucceeded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)
+    required TResult Function(List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap, List<Movie> favoriteMovies)
         handleSucceeded,
   }) {
-    return handleSucceeded(allMovies, moviesMap);
+    return handleSucceeded(allMovies, moviesMap, favoriteMovies);
   }
 
   @override
@@ -831,10 +883,12 @@ class _$HandleSucceededImpl implements _HandleSucceeded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+            List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap,
+            List<Movie> favoriteMovies)?
         handleSucceeded,
   }) {
-    return handleSucceeded?.call(allMovies, moviesMap);
+    return handleSucceeded?.call(allMovies, moviesMap, favoriteMovies);
   }
 
   @override
@@ -842,12 +896,14 @@ class _$HandleSucceededImpl implements _HandleSucceeded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(
-            List<Movie> allMovies, Map<WatchStatus, List<Movie>> moviesMap)?
+            List<Movie> allMovies,
+            Map<WatchStatus, List<Movie>> moviesMap,
+            List<Movie> favoriteMovies)?
         handleSucceeded,
     required TResult orElse(),
   }) {
     if (handleSucceeded != null) {
-      return handleSucceeded(allMovies, moviesMap);
+      return handleSucceeded(allMovies, moviesMap, favoriteMovies);
     }
     return orElse();
   }
@@ -886,12 +942,13 @@ class _$HandleSucceededImpl implements _HandleSucceeded {
 
 abstract class _HandleSucceeded implements MovieWatcherEvent {
   const factory _HandleSucceeded(
-          {required final List<Movie> allMovies,
-          required final Map<WatchStatus, List<Movie>> moviesMap}) =
-      _$HandleSucceededImpl;
+      {required final List<Movie> allMovies,
+      required final Map<WatchStatus, List<Movie>> moviesMap,
+      required final List<Movie> favoriteMovies}) = _$HandleSucceededImpl;
 
   List<Movie> get allMovies;
   Map<WatchStatus, List<Movie>> get moviesMap;
+  List<Movie> get favoriteMovies;
 
   /// Create a copy of MovieWatcherEvent
   /// with the given fields replaced by the non-null parameter values.

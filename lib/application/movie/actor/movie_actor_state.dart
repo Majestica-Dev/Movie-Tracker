@@ -6,5 +6,13 @@ class MovieActorState with _$MovieActorState {
 
   const factory MovieActorState.inProgress() = _InProgress;
 
-  const factory MovieActorState.succeeded() = _Succeeded;
+  const factory MovieActorState.updatedStatus({
+    required WatchStatus status,
+  }) = _UpdatedStatus;
+
+  const factory MovieActorState.updatedIsFavorite({
+    required bool isFavorite,
+  }) = _UpdatedIsFavorite;
+
+  const factory MovieActorState.removed() = _Removed;
 }

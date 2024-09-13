@@ -20,25 +20,34 @@ mixin _$MovieAiRecEvent {
   List<MovieGenre> get genres => throw _privateConstructorUsedError;
   List<StreamingService> get streamingServices =>
       throw _privateConstructorUsedError;
-  List<Movie> get movies => throw _privateConstructorUsedError;
+  List<Movie> get favoriteMovies => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(WatchMood mood, List<MovieGenre> genres,
-            List<StreamingService> streamingServices, List<Movie> movies)
+    required TResult Function(
+            WatchMood mood,
+            List<MovieGenre> genres,
+            List<StreamingService> streamingServices,
+            List<Movie> favoriteMovies)
         getRecomended,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WatchMood mood, List<MovieGenre> genres,
-            List<StreamingService> streamingServices, List<Movie> movies)?
+    TResult? Function(
+            WatchMood mood,
+            List<MovieGenre> genres,
+            List<StreamingService> streamingServices,
+            List<Movie> favoriteMovies)?
         getRecomended,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WatchMood mood, List<MovieGenre> genres,
-            List<StreamingService> streamingServices, List<Movie> movies)?
+    TResult Function(
+            WatchMood mood,
+            List<MovieGenre> genres,
+            List<StreamingService> streamingServices,
+            List<Movie> favoriteMovies)?
         getRecomended,
     required TResult orElse(),
   }) =>
@@ -77,7 +86,7 @@ abstract class $MovieAiRecEventCopyWith<$Res> {
       {WatchMood mood,
       List<MovieGenre> genres,
       List<StreamingService> streamingServices,
-      List<Movie> movies});
+      List<Movie> favoriteMovies});
 }
 
 /// @nodoc
@@ -98,7 +107,7 @@ class _$MovieAiRecEventCopyWithImpl<$Res, $Val extends MovieAiRecEvent>
     Object? mood = null,
     Object? genres = null,
     Object? streamingServices = null,
-    Object? movies = null,
+    Object? favoriteMovies = null,
   }) {
     return _then(_value.copyWith(
       mood: null == mood
@@ -113,9 +122,9 @@ class _$MovieAiRecEventCopyWithImpl<$Res, $Val extends MovieAiRecEvent>
           ? _value.streamingServices
           : streamingServices // ignore: cast_nullable_to_non_nullable
               as List<StreamingService>,
-      movies: null == movies
-          ? _value.movies
-          : movies // ignore: cast_nullable_to_non_nullable
+      favoriteMovies: null == favoriteMovies
+          ? _value.favoriteMovies
+          : favoriteMovies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
     ) as $Val);
   }
@@ -133,7 +142,7 @@ abstract class _$$GetRecomendedImplCopyWith<$Res>
       {WatchMood mood,
       List<MovieGenre> genres,
       List<StreamingService> streamingServices,
-      List<Movie> movies});
+      List<Movie> favoriteMovies});
 }
 
 /// @nodoc
@@ -152,7 +161,7 @@ class __$$GetRecomendedImplCopyWithImpl<$Res>
     Object? mood = null,
     Object? genres = null,
     Object? streamingServices = null,
-    Object? movies = null,
+    Object? favoriteMovies = null,
   }) {
     return _then(_$GetRecomendedImpl(
       mood: null == mood
@@ -167,9 +176,9 @@ class __$$GetRecomendedImplCopyWithImpl<$Res>
           ? _value._streamingServices
           : streamingServices // ignore: cast_nullable_to_non_nullable
               as List<StreamingService>,
-      movies: null == movies
-          ? _value._movies
-          : movies // ignore: cast_nullable_to_non_nullable
+      favoriteMovies: null == favoriteMovies
+          ? _value._favoriteMovies
+          : favoriteMovies // ignore: cast_nullable_to_non_nullable
               as List<Movie>,
     ));
   }
@@ -182,10 +191,10 @@ class _$GetRecomendedImpl implements _GetRecomended {
       {required this.mood,
       required final List<MovieGenre> genres,
       required final List<StreamingService> streamingServices,
-      required final List<Movie> movies})
+      required final List<Movie> favoriteMovies})
       : _genres = genres,
         _streamingServices = streamingServices,
-        _movies = movies;
+        _favoriteMovies = favoriteMovies;
 
   @override
   final WatchMood mood;
@@ -206,17 +215,17 @@ class _$GetRecomendedImpl implements _GetRecomended {
     return EqualUnmodifiableListView(_streamingServices);
   }
 
-  final List<Movie> _movies;
+  final List<Movie> _favoriteMovies;
   @override
-  List<Movie> get movies {
-    if (_movies is EqualUnmodifiableListView) return _movies;
+  List<Movie> get favoriteMovies {
+    if (_favoriteMovies is EqualUnmodifiableListView) return _favoriteMovies;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_movies);
+    return EqualUnmodifiableListView(_favoriteMovies);
   }
 
   @override
   String toString() {
-    return 'MovieAiRecEvent.getRecomended(mood: $mood, genres: $genres, streamingServices: $streamingServices, movies: $movies)';
+    return 'MovieAiRecEvent.getRecomended(mood: $mood, genres: $genres, streamingServices: $streamingServices, favoriteMovies: $favoriteMovies)';
   }
 
   @override
@@ -228,7 +237,8 @@ class _$GetRecomendedImpl implements _GetRecomended {
             const DeepCollectionEquality().equals(other._genres, _genres) &&
             const DeepCollectionEquality()
                 .equals(other._streamingServices, _streamingServices) &&
-            const DeepCollectionEquality().equals(other._movies, _movies));
+            const DeepCollectionEquality()
+                .equals(other._favoriteMovies, _favoriteMovies));
   }
 
   @override
@@ -237,7 +247,7 @@ class _$GetRecomendedImpl implements _GetRecomended {
       mood,
       const DeepCollectionEquality().hash(_genres),
       const DeepCollectionEquality().hash(_streamingServices),
-      const DeepCollectionEquality().hash(_movies));
+      const DeepCollectionEquality().hash(_favoriteMovies));
 
   /// Create a copy of MovieAiRecEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -250,33 +260,42 @@ class _$GetRecomendedImpl implements _GetRecomended {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(WatchMood mood, List<MovieGenre> genres,
-            List<StreamingService> streamingServices, List<Movie> movies)
+    required TResult Function(
+            WatchMood mood,
+            List<MovieGenre> genres,
+            List<StreamingService> streamingServices,
+            List<Movie> favoriteMovies)
         getRecomended,
   }) {
-    return getRecomended(mood, genres, streamingServices, movies);
+    return getRecomended(mood, genres, streamingServices, favoriteMovies);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(WatchMood mood, List<MovieGenre> genres,
-            List<StreamingService> streamingServices, List<Movie> movies)?
+    TResult? Function(
+            WatchMood mood,
+            List<MovieGenre> genres,
+            List<StreamingService> streamingServices,
+            List<Movie> favoriteMovies)?
         getRecomended,
   }) {
-    return getRecomended?.call(mood, genres, streamingServices, movies);
+    return getRecomended?.call(mood, genres, streamingServices, favoriteMovies);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(WatchMood mood, List<MovieGenre> genres,
-            List<StreamingService> streamingServices, List<Movie> movies)?
+    TResult Function(
+            WatchMood mood,
+            List<MovieGenre> genres,
+            List<StreamingService> streamingServices,
+            List<Movie> favoriteMovies)?
         getRecomended,
     required TResult orElse(),
   }) {
     if (getRecomended != null) {
-      return getRecomended(mood, genres, streamingServices, movies);
+      return getRecomended(mood, genres, streamingServices, favoriteMovies);
     }
     return orElse();
   }
@@ -315,7 +334,7 @@ abstract class _GetRecomended implements MovieAiRecEvent {
       {required final WatchMood mood,
       required final List<MovieGenre> genres,
       required final List<StreamingService> streamingServices,
-      required final List<Movie> movies}) = _$GetRecomendedImpl;
+      required final List<Movie> favoriteMovies}) = _$GetRecomendedImpl;
 
   @override
   WatchMood get mood;
@@ -324,7 +343,7 @@ abstract class _GetRecomended implements MovieAiRecEvent {
   @override
   List<StreamingService> get streamingServices;
   @override
-  List<Movie> get movies;
+  List<Movie> get favoriteMovies;
 
   /// Create a copy of MovieAiRecEvent
   /// with the given fields replaced by the non-null parameter values.

@@ -6,9 +6,11 @@ import 'package:movie_tracker/application/movie/ai_rec/bloc/movie_ai_rec_bloc.da
 import 'package:movie_tracker/application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart';
 import 'package:movie_tracker/application/movie/ai_rec/use_count/movie_ai_rec_use_count_cubit.dart';
 import 'package:movie_tracker/core/di/locator.dart';
+
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_mood.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
+import 'package:movie_tracker/domain/review/review_from.dart';
 
 import 'package:movie_tracker/presentation/ai_rec_movie/form/loading/movie_ai_rec_loading.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/widgets/majic_ball.dart';
@@ -40,7 +42,7 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
             mood: movieAiRecFormState.mood ?? WatchMood.relaxed,
             genres: movieAiRecFormState.genres,
             streamingServices: movieAiRecFormState.streamingServices,
-            movies: context.allMovies,
+            favoriteMovies: context.favoriteMovies,
           ),
         ),
       child: BlocListener<MovieAiRecBloc, MovieAiRecState>(
@@ -83,8 +85,13 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
                               text: 'See result',
                               disabled: movie == null || !animationEnded,
                               onPressed: () {
+                                Locator.reviewService.checkAndRequestReviw(
+                                  reviewFrom: ReviewFrom.aiMovieResult,
+                                );
+
                                 context.router.popAndPush(
                                   MovieOverviewRoute(
+                                    isFavorite: false,
                                     movieAiRecFormState: movieAiRecFormState,
                                     movie: movie!,
                                     isFromAi: true,

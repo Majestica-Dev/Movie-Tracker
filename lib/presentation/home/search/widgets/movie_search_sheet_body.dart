@@ -13,9 +13,11 @@ import 'package:movie_tracker/presentation/home/search/widgets/movie_list_view.d
 
 class MovieSearchSheetBody extends StatefulWidget {
   final WatchStatus? watchStatus;
+  final bool isFavorite;
 
   const MovieSearchSheetBody({
     required this.watchStatus,
+    required this.isFavorite,
     super.key,
   });
 
@@ -98,6 +100,7 @@ class _MovieSearchSheetBodyState extends State<MovieSearchSheetBody> {
                   }
 
                   return MovieListView(
+                    isFavorite: widget.isFavorite,
                     movies: movies,
                     watchStatus: widget.watchStatus,
                   );

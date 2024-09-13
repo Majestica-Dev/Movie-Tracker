@@ -12,7 +12,10 @@ class AddMoviesButton extends StatelessWidget {
     final t = context.mdsTheme;
 
     return GestureDetector(
-      onTap: () => MovieSearchSheet.show(context),
+      onTap: () => MovieSearchSheet.show(
+        context,
+        isFavorite: true,
+      ),
       child: Container(
         height: 162,
         margin: EdgeInsets.only(bottom: t.spacing.x4),
@@ -34,7 +37,7 @@ class AddMoviesButton extends StatelessWidget {
             ),
             SizedBox(height: t.spacing.x1),
             Text(
-              'Add 5 movies to discover your perfect match!',
+              'Add 5 movies to your favorites list to discover your perfect match!',
               style: t.textTheme.bodyMBold
                   .copyWith(color: t.colors.primaryHighContent),
               textAlign: TextAlign.center,

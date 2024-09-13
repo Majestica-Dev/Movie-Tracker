@@ -73,6 +73,7 @@ class FavoriteMovieChooserGridView extends StatelessWidget {
 
 final Movies _recMovies = [
   Movie(
+    isFavorite: true,
     id: '299536',
     title: 'Avengers: Infinity War',
     description:
@@ -86,6 +87,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=QwievZ1Tx-8',
   ),
   Movie(
+    isFavorite: true,
     id: '533535',
     title: 'Deadpool & Wolverine',
     description:
@@ -99,6 +101,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watcotheh?v=Idh8n5XuYIA',
   ),
   Movie(
+    isFavorite: true,
     id: '872585',
     title: 'Oppenheimer',
     description:
@@ -112,6 +115,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=qiuSBWVdgLI',
   ),
   Movie(
+    isFavorite: true,
     id: '945961',
     title: 'Alien: Romulus',
     description:
@@ -125,6 +129,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=x0XDEhP4MQs',
   ),
   Movie(
+    isFavorite: true,
     id: '313369',
     title: 'La La Land',
     description:
@@ -138,6 +143,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=0pdqf4P9MB8',
   ),
   Movie(
+    isFavorite: true,
     id: '155',
     title: 'The Dark Knight',
     description:
@@ -151,6 +157,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=EXeTwQWrcwY',
   ),
   Movie(
+    isFavorite: true,
     id: '475557',
     title: 'Joker',
     description:
@@ -164,6 +171,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=-RFFRxcoKfA',
   ),
   Movie(
+    isFavorite: true,
     id: '27205',
     title: 'Inception',
     description:
@@ -177,6 +185,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=cdx31ak4KbQ',
   ),
   Movie(
+    isFavorite: true,
     id: '37799',
     title: 'The Social Network',
     description:
@@ -190,6 +199,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=rBCNU0XT9GY',
   ),
   Movie(
+    isFavorite: true,
     id: '98',
     title: 'Gladiator',
     description:
@@ -203,6 +213,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=P5ieIbInFpg',
   ),
   Movie(
+    isFavorite: true,
     id: '603',
     title: 'The Matrix',
     description:
@@ -216,6 +227,7 @@ final Movies _recMovies = [
     trailerLink: 'https://www.youtube.com/watch?v=d0XTFAMmhrE',
   ),
   Movie(
+    isFavorite: true,
     id: '746036',
     title: 'The Fall Guy',
     description:

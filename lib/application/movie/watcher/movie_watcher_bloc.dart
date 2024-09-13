@@ -36,6 +36,7 @@ class MovieWatcherBloc extends Bloc<MovieWatcherEvent, MovieWatcherState> {
           MovieWatcherEvent.handleSucceeded(
             allMovies: allMovies,
             moviesMap: allMovies.getFiltredMoviesByStatusAsMap,
+            favoriteMovies: allMovies.favorites,
           ),
         );
       },
@@ -49,6 +50,7 @@ class MovieWatcherBloc extends Bloc<MovieWatcherEvent, MovieWatcherState> {
     emit(MovieWatcherState.succeeded(
       allMovies: event.allMovies,
       moviesMap: event.moviesMap,
+      favoriteMovies: event.favoriteMovies,
     ));
   }
 }

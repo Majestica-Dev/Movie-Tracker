@@ -60,6 +60,16 @@ class $MovieTableTable extends MovieTable
   late final GeneratedColumn<String> trailerLink = GeneratedColumn<String>(
       'trailer_link', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _isFavoriteMeta =
+      const VerificationMeta('isFavorite');
+  @override
+  late final GeneratedColumn<bool> isFavorite = GeneratedColumn<bool>(
+      'is_favorite', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("is_favorite" IN (0, 1))'),
+      defaultValue: const Constant(true));
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -70,7 +80,8 @@ class $MovieTableTable extends MovieTable
         editedAt,
         rating,
         releaseDate,
-        trailerLink
+        trailerLink,
+        isFavorite
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -128,6 +139,12 @@ class $MovieTableTable extends MovieTable
           trailerLink.isAcceptableOrUnknown(
               data['trailer_link']!, _trailerLinkMeta));
     }
+    if (data.containsKey('is_favorite')) {
+      context.handle(
+          _isFavoriteMeta,
+          isFavorite.isAcceptableOrUnknown(
+              data['is_favorite']!, _isFavoriteMeta));
+    }
     return context;
   }
 
@@ -156,6 +173,8 @@ class $MovieTableTable extends MovieTable
           .read(DriftSqlType.dateTime, data['${effectivePrefix}release_date']),
       trailerLink: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}trailer_link']),
+      isFavorite: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_favorite'])!,
     );
   }
 
@@ -178,6 +197,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
   final double? rating;
   final DateTime? releaseDate;
   final String? trailerLink;
+  final bool isFavorite;
   const MovieTableData(
       {required this.id,
       required this.title,
@@ -187,7 +207,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       required this.editedAt,
       this.rating,
       this.releaseDate,
-      this.trailerLink});
+      this.trailerLink,
+      required this.isFavorite});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -213,6 +234,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
     if (!nullToAbsent || trailerLink != null) {
       map['trailer_link'] = Variable<String>(trailerLink);
     }
+    map['is_favorite'] = Variable<bool>(isFavorite);
     return map;
   }
 
@@ -236,6 +258,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       trailerLink: trailerLink == null && nullToAbsent
           ? const Value.absent()
           : Value(trailerLink),
+      isFavorite: Value(isFavorite),
     );
   }
 
@@ -253,6 +276,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       rating: serializer.fromJson<double?>(json['rating']),
       releaseDate: serializer.fromJson<DateTime?>(json['releaseDate']),
       trailerLink: serializer.fromJson<String?>(json['trailerLink']),
+      isFavorite: serializer.fromJson<bool>(json['isFavorite']),
     );
   }
   @override
@@ -269,6 +293,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
       'rating': serializer.toJson<double?>(rating),
       'releaseDate': serializer.toJson<DateTime?>(releaseDate),
       'trailerLink': serializer.toJson<String?>(trailerLink),
+      'isFavorite': serializer.toJson<bool>(isFavorite),
     };
   }
 
@@ -281,7 +306,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           DateTime? editedAt,
           Value<double?> rating = const Value.absent(),
           Value<DateTime?> releaseDate = const Value.absent(),
-          Value<String?> trailerLink = const Value.absent()}) =>
+          Value<String?> trailerLink = const Value.absent(),
+          bool? isFavorite}) =>
       MovieTableData(
         id: id ?? this.id,
         title: title ?? this.title,
@@ -293,6 +319,7 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
         rating: rating.present ? rating.value : this.rating,
         releaseDate: releaseDate.present ? releaseDate.value : this.releaseDate,
         trailerLink: trailerLink.present ? trailerLink.value : this.trailerLink,
+        isFavorite: isFavorite ?? this.isFavorite,
       );
   MovieTableData copyWithCompanion(MovieTableCompanion data) {
     return MovieTableData(
@@ -310,6 +337,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           data.releaseDate.present ? data.releaseDate.value : this.releaseDate,
       trailerLink:
           data.trailerLink.present ? data.trailerLink.value : this.trailerLink,
+      isFavorite:
+          data.isFavorite.present ? data.isFavorite.value : this.isFavorite,
     );
   }
 
@@ -324,14 +353,15 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           ..write('editedAt: $editedAt, ')
           ..write('rating: $rating, ')
           ..write('releaseDate: $releaseDate, ')
-          ..write('trailerLink: $trailerLink')
+          ..write('trailerLink: $trailerLink, ')
+          ..write('isFavorite: $isFavorite')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(id, title, description, posterImageUrl,
-      status, editedAt, rating, releaseDate, trailerLink);
+      status, editedAt, rating, releaseDate, trailerLink, isFavorite);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -344,7 +374,8 @@ class MovieTableData extends DataClass implements Insertable<MovieTableData> {
           other.editedAt == this.editedAt &&
           other.rating == this.rating &&
           other.releaseDate == this.releaseDate &&
-          other.trailerLink == this.trailerLink);
+          other.trailerLink == this.trailerLink &&
+          other.isFavorite == this.isFavorite);
 }
 
 class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
@@ -357,6 +388,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
   final Value<double?> rating;
   final Value<DateTime?> releaseDate;
   final Value<String?> trailerLink;
+  final Value<bool> isFavorite;
   final Value<int> rowid;
   const MovieTableCompanion({
     this.id = const Value.absent(),
@@ -368,6 +400,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     this.rating = const Value.absent(),
     this.releaseDate = const Value.absent(),
     this.trailerLink = const Value.absent(),
+    this.isFavorite = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   MovieTableCompanion.insert({
@@ -380,6 +413,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     this.rating = const Value.absent(),
     this.releaseDate = const Value.absent(),
     this.trailerLink = const Value.absent(),
+    this.isFavorite = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : id = Value(id),
         title = Value(title),
@@ -395,6 +429,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     Expression<double>? rating,
     Expression<DateTime>? releaseDate,
     Expression<String>? trailerLink,
+    Expression<bool>? isFavorite,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -407,6 +442,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       if (rating != null) 'rating': rating,
       if (releaseDate != null) 'release_date': releaseDate,
       if (trailerLink != null) 'trailer_link': trailerLink,
+      if (isFavorite != null) 'is_favorite': isFavorite,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -421,6 +457,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       Value<double?>? rating,
       Value<DateTime?>? releaseDate,
       Value<String?>? trailerLink,
+      Value<bool>? isFavorite,
       Value<int>? rowid}) {
     return MovieTableCompanion(
       id: id ?? this.id,
@@ -432,6 +469,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
       rating: rating ?? this.rating,
       releaseDate: releaseDate ?? this.releaseDate,
       trailerLink: trailerLink ?? this.trailerLink,
+      isFavorite: isFavorite ?? this.isFavorite,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -467,6 +505,9 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
     if (trailerLink.present) {
       map['trailer_link'] = Variable<String>(trailerLink.value);
     }
+    if (isFavorite.present) {
+      map['is_favorite'] = Variable<bool>(isFavorite.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -485,6 +526,7 @@ class MovieTableCompanion extends UpdateCompanion<MovieTableData> {
           ..write('rating: $rating, ')
           ..write('releaseDate: $releaseDate, ')
           ..write('trailerLink: $trailerLink, ')
+          ..write('isFavorite: $isFavorite, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -512,6 +554,7 @@ typedef $$MovieTableTableCreateCompanionBuilder = MovieTableCompanion Function({
   Value<double?> rating,
   Value<DateTime?> releaseDate,
   Value<String?> trailerLink,
+  Value<bool> isFavorite,
   Value<int> rowid,
 });
 typedef $$MovieTableTableUpdateCompanionBuilder = MovieTableCompanion Function({
@@ -524,6 +567,7 @@ typedef $$MovieTableTableUpdateCompanionBuilder = MovieTableCompanion Function({
   Value<double?> rating,
   Value<DateTime?> releaseDate,
   Value<String?> trailerLink,
+  Value<bool> isFavorite,
   Value<int> rowid,
 });
 
@@ -576,6 +620,11 @@ class $$MovieTableTableFilterComposer
       column: $state.table.trailerLink,
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<bool> get isFavorite => $state.composableBuilder(
+      column: $state.table.isFavorite,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 }
 
 class $$MovieTableTableOrderingComposer
@@ -625,6 +674,11 @@ class $$MovieTableTableOrderingComposer
       column: $state.table.trailerLink,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<bool> get isFavorite => $state.composableBuilder(
+      column: $state.table.isFavorite,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
 class $$MovieTableTableTableManager extends RootTableManager<
@@ -659,6 +713,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             Value<double?> rating = const Value.absent(),
             Value<DateTime?> releaseDate = const Value.absent(),
             Value<String?> trailerLink = const Value.absent(),
+            Value<bool> isFavorite = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               MovieTableCompanion(
@@ -671,6 +726,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             rating: rating,
             releaseDate: releaseDate,
             trailerLink: trailerLink,
+            isFavorite: isFavorite,
             rowid: rowid,
           ),
           createCompanionCallback: ({
@@ -683,6 +739,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             Value<double?> rating = const Value.absent(),
             Value<DateTime?> releaseDate = const Value.absent(),
             Value<String?> trailerLink = const Value.absent(),
+            Value<bool> isFavorite = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               MovieTableCompanion.insert(
@@ -695,6 +752,7 @@ class $$MovieTableTableTableManager extends RootTableManager<
             rating: rating,
             releaseDate: releaseDate,
             trailerLink: trailerLink,
+            isFavorite: isFavorite,
             rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0

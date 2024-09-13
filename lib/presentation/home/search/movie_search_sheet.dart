@@ -11,6 +11,7 @@ abstract final class MovieSearchSheet {
   static Future<void> show(
     BuildContext context, {
     WatchStatus? watchStatus,
+    required bool isFavorite,
   }) async {
     MDSBottomSheet.show(
       bodyPadding: EdgeInsets.zero,
@@ -24,6 +25,7 @@ abstract final class MovieSearchSheet {
       ),
       header: const MovieSearchSheetHeader(),
       body: MovieSearchSheetBody(
+        isFavorite: isFavorite,
         watchStatus: watchStatus,
       ),
     );

@@ -22,7 +22,11 @@ class HomeScreenHeader extends StatelessWidget {
           ),
         ),
         MDSTextButton(
-          onPressed: () => MovieSearchSheet.show(context, watchStatus: null),
+          onPressed: () => MovieSearchSheet.show(
+            context,
+            watchStatus: null,
+            isFavorite: true,
+          ),
           text: 'Add a movie',
           buttonSize: MDSTextButtonSize.M,
           rightIcon: const PhosphorIcon(

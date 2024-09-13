@@ -7,5 +7,6 @@ class MovieWatcherEvent with _$MovieWatcherEvent {
   const factory MovieWatcherEvent.handleSucceeded({
     required Movies allMovies,
     required Map<WatchStatus, Movies> moviesMap,
+    required Movies favoriteMovies,
   }) = _HandleSucceeded;
 }

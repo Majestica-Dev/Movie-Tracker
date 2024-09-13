@@ -201,6 +201,7 @@ class MovieOverviewRoute extends _i11.PageRouteInfo<MovieOverviewRouteArgs> {
     required bool isFromAi,
     required _i14.WatchStatus? watchStatus,
     required _i15.MovieAiRecFormState? movieAiRecFormState,
+    required bool isFavorite,
     _i16.Key? key,
     List<_i11.PageRouteInfo>? children,
   }) : super(
@@ -210,6 +211,7 @@ class MovieOverviewRoute extends _i11.PageRouteInfo<MovieOverviewRouteArgs> {
             isFromAi: isFromAi,
             watchStatus: watchStatus,
             movieAiRecFormState: movieAiRecFormState,
+            isFavorite: isFavorite,
             key: key,
           ),
           initialChildren: children,
@@ -226,6 +228,7 @@ class MovieOverviewRoute extends _i11.PageRouteInfo<MovieOverviewRouteArgs> {
         isFromAi: args.isFromAi,
         watchStatus: args.watchStatus,
         movieAiRecFormState: args.movieAiRecFormState,
+        isFavorite: args.isFavorite,
         key: args.key,
       );
     },
@@ -238,6 +241,7 @@ class MovieOverviewRouteArgs {
     required this.isFromAi,
     required this.watchStatus,
     required this.movieAiRecFormState,
+    required this.isFavorite,
     this.key,
   });
 
@@ -249,11 +253,13 @@ class MovieOverviewRouteArgs {
 
   final _i15.MovieAiRecFormState? movieAiRecFormState;
 
+  final bool isFavorite;
+
   final _i16.Key? key;
 
   @override
   String toString() {
-    return 'MovieOverviewRouteArgs{movie: $movie, isFromAi: $isFromAi, watchStatus: $watchStatus, movieAiRecFormState: $movieAiRecFormState, key: $key}';
+    return 'MovieOverviewRouteArgs{movie: $movie, isFromAi: $isFromAi, watchStatus: $watchStatus, movieAiRecFormState: $movieAiRecFormState, isFavorite: $isFavorite, key: $key}';
   }
 }
 

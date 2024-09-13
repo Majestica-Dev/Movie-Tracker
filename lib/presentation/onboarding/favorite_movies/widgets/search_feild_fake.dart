@@ -23,6 +23,7 @@ class _SearchFeildFakeState extends State<SearchFeildFake> {
       onTap: () => MovieSearchSheet.show(
         context,
         watchStatus: WatchStatus.toWatch,
+        isFavorite: true,
       ),
       child: Container(
         padding: EdgeInsets.symmetric(

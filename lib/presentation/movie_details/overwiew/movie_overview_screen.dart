@@ -24,12 +24,14 @@ class MovieOverviewScreen extends StatelessWidget {
   final bool isFromAi;
   final WatchStatus? watchStatus;
   final MovieAiRecFormState? movieAiRecFormState;
+  final bool isFavorite;
 
   const MovieOverviewScreen({
     required this.movie,
     required this.isFromAi,
     required this.watchStatus,
     required this.movieAiRecFormState,
+    required this.isFavorite,
     super.key,
   });
 
@@ -65,7 +67,11 @@ class MovieOverviewScreen extends StatelessWidget {
                 movieTitle: movie.title,
               ),
               SizedBox(height: t.spacing.x3),
-              MovieSaveButton(movie: movie, isFromAi: isFromAi),
+              MovieSaveButton(
+                movie: movie,
+                isFavorite: isFavorite,
+                watchStatus: watchStatus ?? WatchStatus.toWatch,
+              ),
               if (isFromAi) ...[
                 SizedBox(height: t.spacing.x3),
                 MovieAiRecRegenerateButton(

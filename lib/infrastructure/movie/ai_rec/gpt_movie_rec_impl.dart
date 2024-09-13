@@ -10,7 +10,7 @@ import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_mood.dart';
 import 'package:movie_tracker/domain/movie/entities/failures/ai_movie_rec_failure.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-@Singleton()
+@singleton
 class GptMovieRecImpl {
   final OpenAI openAI;
 
@@ -20,10 +20,10 @@ class GptMovieRecImpl {
     required WatchMood mood,
     required List<MovieGenre> genres,
     required List<StreamingService> streamingServices,
-    required Movies movies,
+    required Movies favoriteMovies,
     required List<String> alreadyRecMoviesTitle,
   }) async {
-    final List<String> moviesTitles = movies.map((e) => e.title).toList();
+    final List<String> moviesTitles = favoriteMovies.map((e) => e.title).toList();
 
     try {
       final prompt = _generetePromptForGptRecomend(
