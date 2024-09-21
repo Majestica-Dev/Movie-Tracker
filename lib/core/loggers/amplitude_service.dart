@@ -57,6 +57,17 @@ abstract final class AmplitudeService {
     );
   }
 
+  static void paywallSheetOpened({
+    required PaywallFrom from,
+  }) {
+    _logEvent(
+      name: 'paywall_sheet_opened',
+      parameters: {
+        'opened_from': from.name,
+      },
+    );
+  }
+
   static void premiumSold({
     required PaywallFrom from,
   }) {
