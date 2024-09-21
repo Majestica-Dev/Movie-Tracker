@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/gen/fonts.gen.dart';
 import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
 import 'package:movie_tracker/presentation/discover/bottom_sheet/discover_movies_sheet.dart';
@@ -30,7 +31,10 @@ class DiscoverMoviesCard extends StatelessWidget {
             discoverMovies: discoverMovies,
           );
         } else {
-          PaywallSheet.show(context);
+          PaywallSheet.show(
+            context,
+            paywalFrom: PaywallFrom.discover,
+          );
         }
       },
       child: SizedBox(

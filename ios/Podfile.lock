@@ -1,4 +1,8 @@
 PODS:
+  - Amplitude (8.5.0)
+  - amplitude_flutter (0.0.1):
+    - Amplitude (= 8.5.0)
+    - Flutter
   - Flutter (1.0.0)
   - flutter_app_badge (2.0.0):
     - Flutter
@@ -36,10 +40,13 @@ PODS:
   - sqflite (0.0.3):
     - Flutter
     - FlutterMacOS
+  - store_checker (0.0.1):
+    - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - amplitude_flutter (from `.symlinks/plugins/amplitude_flutter/ios`)
   - Flutter (from `Flutter`)
   - flutter_app_badge (from `.symlinks/plugins/flutter_app_badge/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
@@ -54,15 +61,19 @@ DEPENDENCIES:
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/darwin`)
+  - store_checker (from `.symlinks/plugins/store_checker/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
+    - Amplitude
     - PurchasesHybridCommon
     - RevenueCat
     - Sentry
 
 EXTERNAL SOURCES:
+  amplitude_flutter:
+    :path: ".symlinks/plugins/amplitude_flutter/ios"
   Flutter:
     :path: Flutter
   flutter_app_badge:
@@ -91,10 +102,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqflite:
     :path: ".symlinks/plugins/sqflite/darwin"
+  store_checker:
+    :path: ".symlinks/plugins/store_checker/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  Amplitude: ef9ed339ddd33c9183edf63fa4bbaa86cf873321
+  amplitude_flutter: 8ddb231989e68ed8c005c838d7fc59edbca09833
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_app_badge: edb873d09e1d7eb6a146c12f9a8db260f6465c8d
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
@@ -112,6 +127,7 @@ SPEC CHECKSUMS:
   sentry_flutter: a39c2a2d67d5e5b9cb0b94a4985c76dd5b3fc737
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
+  store_checker: a7be624ac44a4ba88e7917e71afe8433f197161e
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
 PODFILE CHECKSUM: 942712e7887fd47836dbfe6deea3ee8cc83d23c1

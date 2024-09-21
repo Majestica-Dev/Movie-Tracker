@@ -6,7 +6,10 @@ import 'package:movie_tracker/core/utils/permission/permission_status_checkers.d
 import 'package:permission_handler/permission_handler.dart';
 
 abstract final class CupertionStyleNotificationAlertDialog {
-  static Future<void> checkAndShow(BuildContext context) async {
+  static Future<void> checkAndShow(
+    BuildContext context, {
+    ValueChanged<bool>? onSelect,
+  }) async {
     final notificationStatus = await PermissionStatusChecker.notificationStatus;
 
     if (notificationStatus.isGranted ||
@@ -47,6 +50,10 @@ abstract final class CupertionStyleNotificationAlertDialog {
 
                 if (notifiactionAccessStatus.isGranted) {
                   Locator.reminderFunctions.reschedule();
+                }
+
+                if (onSelect != null) {
+                  onSelect(notifiactionAccessStatus.isGranted);
                 }
               },
             ),

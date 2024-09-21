@@ -9,6 +9,7 @@ import 'package:movie_tracker/core/extensions/movie/movie_watcher_state_x.dart';
 import 'package:movie_tracker/core/extensions/movie/movie_x.dart';
 import 'package:movie_tracker/domain/movie/entities/ai_rec/watch_status.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
+import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
 
 import 'package:movie_tracker/presentation/core/formatters/date_time_formater.dart';
@@ -121,7 +122,10 @@ class MovieTile extends StatelessWidget {
                               ),
                             );
                       } else {
-                        PaywallSheet.show(context);
+                        PaywallSheet.show(
+                          context,
+                          paywalFrom: PaywallFrom.addMovie,
+                        );
                       }
                     },
                   ),

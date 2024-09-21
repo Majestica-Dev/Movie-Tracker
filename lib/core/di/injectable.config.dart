@@ -60,6 +60,7 @@ import '../../infrastructure/premium/premium_pref_manager.dart' as _i125;
 import '../../infrastructure/purchases/purchase_actor_repo_impl.dart' as _i690;
 import '../../infrastructure/purchases/subscriptions_repo_impl.dart' as _i621;
 import '../../presentation/core/router/app_router.dart' as _i300;
+import '../services/instalation_source_service.dart' as _i178;
 import '../utils/review/review_pref_manager.dart' as _i630;
 import '../utils/review/review_service.dart' as _i495;
 
@@ -80,6 +81,8 @@ Future<_i174.GetIt> $initGetIt(
     () => appInjectableModule.sharedPreferences(),
     preResolve: true,
   );
+  gh.singleton<_i178.InstalationSourceService>(
+      () => _i178.InstalationSourceService());
   gh.singleton<_i553.InAppReview>(() => appInjectableModule.inAppReview);
   gh.singleton<_i706.Uuid>(() => appInjectableModule.uuid);
   gh.singleton<_i841.AppDriftDatabase>(() => _i841.AppDriftDatabase());

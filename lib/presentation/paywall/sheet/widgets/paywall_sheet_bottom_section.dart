@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
+import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_button_tile.dart';
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_plan_chooser_card.dart';
 
 class PaywallSheetBottomSection extends StatefulWidget {
+  final PaywallFrom paywallFrom;
+
   const PaywallSheetBottomSection({
+    required this.paywallFrom,
     super.key,
   });
 
@@ -48,11 +52,6 @@ class _PaywallSheetBottomSectionState extends State<PaywallSheetBottomSection> {
                     subscriptionPlans: plans,
                   ),
                 ),
-                // SizedBox(height: isSmallScreen ? 20 : t.spacing.x6),
-                // Padding(
-                //   padding: EdgeInsets.symmetric(horizontal: t.spacing.x4),
-                //   child: const FeaturesTile(),
-                // ),
                 SizedBox(height: t.spacing.x6),
                 if (!isSmallScreen) const SecuredByAppleCard(),
                 const Spacer(),
@@ -60,6 +59,7 @@ class _PaywallSheetBottomSectionState extends State<PaywallSheetBottomSection> {
                   productToPurchase:
                       isYearlyChosen ? plans.yearly : plans.weekly,
                   isFromOnboarding: false,
+                  paywallFrom: widget.paywallFrom,
                 ),
               ],
             );

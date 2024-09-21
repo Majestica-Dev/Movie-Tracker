@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:movie_tracker/core/loggers/amplitude_service.dart';
 import 'package:movie_tracker/presentation/core/constants/theme/colors.dart';
 import 'package:movie_tracker/presentation/core/modals/cupertion_style_notification_alert_dialog.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
@@ -22,9 +23,20 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   @override
   void initState() {
+    AmplitudeService.introOpened();
+
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        CupertionStyleNotificationAlertDialog.checkAndShow(context);
+        CupertionStyleNotificationAlertDialog.checkAndShow(
+          context,
+          onSelect: (isAllowed) {
+            if (isAllowed) {
+              AmplitudeService.onbPushAllowed();
+            } else {
+              AmplitudeService.onbPushRejected();
+            }
+          },
+        );
       },
     );
 
@@ -105,6 +117,8 @@ class _IntroScreenBody extends StatelessWidget {
           buttonSize: MDSButtonSize.L,
           text: 'Continue',
           onPressed: () {
+            AmplitudeService.introContinue();
+
             context.router.pushAndPopUntil(
               const OnboardingRoute(),
               predicate: (route) => false,

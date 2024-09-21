@@ -49,6 +49,8 @@ dependencies:
   flutter_native_splash: ^2.4.1
   purchases_flutter: ^8.1.0
   flutter_app_badge: ^2.0.2
+  amplitude_flutter: ^3.7.0
+  store_checker: ^1.6.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0

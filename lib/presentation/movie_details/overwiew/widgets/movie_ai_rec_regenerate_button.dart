@@ -5,6 +5,7 @@ import 'package:majestica_ds/majestica_ds.dart';
 
 import 'package:movie_tracker/application/movie/ai_rec/form/movie_ai_rec_form_cubit.dart';
 import 'package:movie_tracker/core/di/locator.dart';
+import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/presentation/ai_rec_movie/form/movie_ai_rec_form_sheet.dart';
 import 'package:movie_tracker/presentation/core/extensions/context/build_context_x.dart';
 
@@ -36,7 +37,10 @@ class MovieAiRecRegenerateButton extends StatelessWidget {
             },
           );
         } else {
-          PaywallSheet.show(context);
+          PaywallSheet.show(
+            context,
+            paywalFrom: PaywallFrom.aiRecommendation,
+          );
         }
       },
     );

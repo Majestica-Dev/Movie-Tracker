@@ -4,6 +4,7 @@ part of 'purchase_actor_bloc.dart';
 class PurchaseActorEvent with _$PurchaseActorEvent {
   const factory PurchaseActorEvent.buySubscription({
     required StoreProduct product,
+    required PaywallFrom paywallFrom,
     @Default(false) bool isFromFailureDialog,
   }) = _BuySubscription;
 

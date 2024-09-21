@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PurchaseActorEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(StoreProduct product, bool isFromFailureDialog)
+    required TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)
         buySubscription,
     required TResult Function() restore,
     required TResult Function() fail,
@@ -28,7 +29,8 @@ mixin _$PurchaseActorEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult? Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult? Function()? restore,
     TResult? Function()? fail,
@@ -38,7 +40,8 @@ mixin _$PurchaseActorEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult Function()? restore,
     TResult Function()? fail,
@@ -104,7 +107,10 @@ abstract class _$$BuySubscriptionImplCopyWith<$Res> {
           $Res Function(_$BuySubscriptionImpl) then) =
       __$$BuySubscriptionImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({StoreProduct product, bool isFromFailureDialog});
+  $Res call(
+      {StoreProduct product,
+      PaywallFrom paywallFrom,
+      bool isFromFailureDialog});
 
   $StoreProductCopyWith<$Res> get product;
 }
@@ -123,6 +129,7 @@ class __$$BuySubscriptionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = null,
+    Object? paywallFrom = null,
     Object? isFromFailureDialog = null,
   }) {
     return _then(_$BuySubscriptionImpl(
@@ -130,6 +137,10 @@ class __$$BuySubscriptionImplCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as StoreProduct,
+      paywallFrom: null == paywallFrom
+          ? _value.paywallFrom
+          : paywallFrom // ignore: cast_nullable_to_non_nullable
+              as PaywallFrom,
       isFromFailureDialog: null == isFromFailureDialog
           ? _value.isFromFailureDialog
           : isFromFailureDialog // ignore: cast_nullable_to_non_nullable
@@ -152,17 +163,21 @@ class __$$BuySubscriptionImplCopyWithImpl<$Res>
 
 class _$BuySubscriptionImpl implements _BuySubscription {
   const _$BuySubscriptionImpl(
-      {required this.product, this.isFromFailureDialog = false});
+      {required this.product,
+      required this.paywallFrom,
+      this.isFromFailureDialog = false});
 
   @override
   final StoreProduct product;
+  @override
+  final PaywallFrom paywallFrom;
   @override
   @JsonKey()
   final bool isFromFailureDialog;
 
   @override
   String toString() {
-    return 'PurchaseActorEvent.buySubscription(product: $product, isFromFailureDialog: $isFromFailureDialog)';
+    return 'PurchaseActorEvent.buySubscription(product: $product, paywallFrom: $paywallFrom, isFromFailureDialog: $isFromFailureDialog)';
   }
 
   @override
@@ -171,12 +186,15 @@ class _$BuySubscriptionImpl implements _BuySubscription {
         (other.runtimeType == runtimeType &&
             other is _$BuySubscriptionImpl &&
             (identical(other.product, product) || other.product == product) &&
+            (identical(other.paywallFrom, paywallFrom) ||
+                other.paywallFrom == paywallFrom) &&
             (identical(other.isFromFailureDialog, isFromFailureDialog) ||
                 other.isFromFailureDialog == isFromFailureDialog));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product, isFromFailureDialog);
+  int get hashCode =>
+      Object.hash(runtimeType, product, paywallFrom, isFromFailureDialog);
 
   /// Create a copy of PurchaseActorEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -190,33 +208,36 @@ class _$BuySubscriptionImpl implements _BuySubscription {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(StoreProduct product, bool isFromFailureDialog)
+    required TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)
         buySubscription,
     required TResult Function() restore,
     required TResult Function() fail,
     required TResult Function() stop,
     required TResult Function() success,
   }) {
-    return buySubscription(product, isFromFailureDialog);
+    return buySubscription(product, paywallFrom, isFromFailureDialog);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult? Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult? Function()? restore,
     TResult? Function()? fail,
     TResult? Function()? stop,
     TResult? Function()? success,
   }) {
-    return buySubscription?.call(product, isFromFailureDialog);
+    return buySubscription?.call(product, paywallFrom, isFromFailureDialog);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult Function()? restore,
     TResult Function()? fail,
@@ -225,7 +246,7 @@ class _$BuySubscriptionImpl implements _BuySubscription {
     required TResult orElse(),
   }) {
     if (buySubscription != null) {
-      return buySubscription(product, isFromFailureDialog);
+      return buySubscription(product, paywallFrom, isFromFailureDialog);
     }
     return orElse();
   }
@@ -274,9 +295,11 @@ class _$BuySubscriptionImpl implements _BuySubscription {
 abstract class _BuySubscription implements PurchaseActorEvent {
   const factory _BuySubscription(
       {required final StoreProduct product,
+      required final PaywallFrom paywallFrom,
       final bool isFromFailureDialog}) = _$BuySubscriptionImpl;
 
   StoreProduct get product;
+  PaywallFrom get paywallFrom;
   bool get isFromFailureDialog;
 
   /// Create a copy of PurchaseActorEvent
@@ -327,7 +350,8 @@ class _$RestoreImpl implements _Restore {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(StoreProduct product, bool isFromFailureDialog)
+    required TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)
         buySubscription,
     required TResult Function() restore,
     required TResult Function() fail,
@@ -340,7 +364,8 @@ class _$RestoreImpl implements _Restore {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult? Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult? Function()? restore,
     TResult? Function()? fail,
@@ -353,7 +378,8 @@ class _$RestoreImpl implements _Restore {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult Function()? restore,
     TResult Function()? fail,
@@ -452,7 +478,8 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(StoreProduct product, bool isFromFailureDialog)
+    required TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)
         buySubscription,
     required TResult Function() restore,
     required TResult Function() fail,
@@ -465,7 +492,8 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult? Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult? Function()? restore,
     TResult? Function()? fail,
@@ -478,7 +506,8 @@ class _$FailImpl implements _Fail {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult Function()? restore,
     TResult Function()? fail,
@@ -577,7 +606,8 @@ class _$StopImpl implements _Stop {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(StoreProduct product, bool isFromFailureDialog)
+    required TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)
         buySubscription,
     required TResult Function() restore,
     required TResult Function() fail,
@@ -590,7 +620,8 @@ class _$StopImpl implements _Stop {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult? Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult? Function()? restore,
     TResult? Function()? fail,
@@ -603,7 +634,8 @@ class _$StopImpl implements _Stop {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult Function()? restore,
     TResult Function()? fail,
@@ -703,7 +735,8 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(StoreProduct product, bool isFromFailureDialog)
+    required TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)
         buySubscription,
     required TResult Function() restore,
     required TResult Function() fail,
@@ -716,7 +749,8 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult? Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult? Function()? restore,
     TResult? Function()? fail,
@@ -729,7 +763,8 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(StoreProduct product, bool isFromFailureDialog)?
+    TResult Function(StoreProduct product, PaywallFrom paywallFrom,
+            bool isFromFailureDialog)?
         buySubscription,
     TResult Function()? restore,
     TResult Function()? fail,

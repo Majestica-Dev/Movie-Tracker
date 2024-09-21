@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_tracker/core/loggers/amplitude_service.dart';
 import 'package:movie_tracker/core/utils/review/review_service.dart';
+import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/domain/purchases/i_purchase_action_repo.dart';
 import 'package:movie_tracker/domain/review/review_from.dart';
 import 'package:purchases_flutter/models/store_product_wrapper.dart';
@@ -41,6 +43,8 @@ class PurchaseActorBloc extends Bloc<PurchaseActorEvent, PurchaseActorState> {
       ),
       (r) {
         emit(const PurchaseActorState.purchased());
+
+        AmplitudeService.premiumSold(from: event.paywallFrom);
 
         Timer(
           const Duration(seconds: 1),

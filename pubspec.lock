@@ -14,6 +14,14 @@ packages:
     description: dart
     source: sdk
     version: "0.3.2"
+  amplitude_flutter:
+    dependency: "direct main"
+    description:
+      name: amplitude_flutter
+      sha256: "720653959ce0a1e638f24c7d12d264b7f3b8ae099016e6e4a278083dd98707ff"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.0"
   analyzer:
     dependency: transitive
     description:
@@ -1222,6 +1230,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  store_checker:
+    dependency: "direct main"
+    description:
+      name: store_checker
+      sha256: "9e5841e4f922cc7f0283323ff3c78fd31ace14c22e988525d33355c35d7c815a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.0"
   stream_channel:
     dependency: transitive
     description:

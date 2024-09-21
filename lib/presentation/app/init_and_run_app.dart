@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movie_tracker/core/di/injectable.dart';
 import 'package:movie_tracker/core/di/locator.dart';
+import 'package:movie_tracker/core/loggers/amplitude_service.dart';
 import 'package:movie_tracker/core/loggers/sentry.dart';
 import 'package:movie_tracker/env/env.dart';
 import 'package:movie_tracker/infrastructure/notifications/local_notification_service.dart';
@@ -16,6 +17,8 @@ void initAndRunApp() async {
   await configureDependencies();
 
   await _initPurchases();
+
+  _initAmplitude();
 
   _initNotifications();
 
@@ -48,3 +51,5 @@ Future<void> _initNotifications() async {
 
   Locator.reminderFunctions.reschedule();
 }
+
+void _initAmplitude() => AmplitudeService.init();

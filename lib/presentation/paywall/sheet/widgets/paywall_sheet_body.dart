@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/presentation/core/constants/theme/colors.dart';
 import 'package:movie_tracker/presentation/paywall/sheet/widgets/paywall_sheet_body_header.dart';
 import 'package:movie_tracker/presentation/paywall/sheet/widgets/paywall_sheet_bottom_section.dart';
 
 class PaywallSheetBody extends StatelessWidget {
+  final PaywallFrom paywallFrom;
+
   const PaywallSheetBody({
+    required this.paywallFrom,
     super.key,
   });
 
@@ -23,8 +27,10 @@ class PaywallSheetBody extends StatelessWidget {
         children: [
           SizedBox(height: isSmallScreen ? 0 : 30),
           const PaywallSheetBodyHeader(),
-          const Expanded(
-            child: PaywallSheetBottomSection(),
+          Expanded(
+            child: PaywallSheetBottomSection(
+              paywallFrom: paywallFrom,
+            ),
           )
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
+import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/presentation/core/widgets/launch_buttons_tile.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -41,6 +42,7 @@ class PaywallPageButtonTile extends StatelessWidget {
               context.read<PurchaseActorBloc>().add(
                     PurchaseActorEvent.buySubscription(
                       product: productToPurchase,
+                      paywallFrom: PaywallFrom.onboarding,
                     ),
                   );
             },

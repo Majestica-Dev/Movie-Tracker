@@ -10,6 +10,7 @@ import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/application/movie/search/movie_search_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
 import 'package:movie_tracker/application/premium_checker/premium_checker_bloc.dart';
+import 'package:movie_tracker/core/services/instalation_source_service.dart';
 import 'package:movie_tracker/core/utils/review/review_service.dart';
 import 'package:movie_tracker/infrastructure/movie/ai_rec/manager/movie_ai_rec_pref_manager.dart';
 
@@ -54,4 +55,7 @@ abstract final class Locator {
 
   static MovieAiRecUseCountCubit get movieAiRecUseCountCubit =>
       _getIt<MovieAiRecUseCountCubit>();
+
+  static InstalationSourceService get instalationSourceService =>
+      _getIt<InstalationSourceService>();
 }
