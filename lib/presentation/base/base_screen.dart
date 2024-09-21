@@ -1,3 +1,4 @@
+import 'package:movie_tracker/presentation/app/wrapper/app_initializer_wrapper.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 
 import 'package:flutter/material.dart';
@@ -21,32 +22,34 @@ class BaseScreen extends StatelessWidget {
 
     final t = context.mdsTheme;
 
-    return AutoTabsScaffold(
-      backgroundColor: t.colors.background,
-      animationDuration: Duration.zero,
-      routes: routes,
-      bottomNavigationBuilder: (_, tabsRouter) {
-        return MDSBottomNavBar(
-          currentIndex: tabsRouter.activeIndex,
-          onSelect: (index) {
-            tabsRouter.setActiveIndex(index);
-          },
-          items: const [
-            MDSBottomNavBarItem(
-              icon: PhosphorIcon(PhosphorIconsFill.filmReel),
-              label: 'My Watchlist',
-            ),
-            MDSBottomNavBarItem(
-              icon: PhosphorIcon(PhosphorIconsFill.compass),
-              label: 'Discover',
-            ),
-            MDSBottomNavBarItem(
-              icon: PhosphorIcon(PhosphorIconsFill.gearSix),
-              label: 'Settings',
-            ),
-          ],
-        );
-      },
+    return AppInitializerWrapper(
+      child: AutoTabsScaffold(
+        backgroundColor: t.colors.background,
+        animationDuration: Duration.zero,
+        routes: routes,
+        bottomNavigationBuilder: (_, tabsRouter) {
+          return MDSBottomNavBar(
+            currentIndex: tabsRouter.activeIndex,
+            onSelect: (index) {
+              tabsRouter.setActiveIndex(index);
+            },
+            items: const [
+              MDSBottomNavBarItem(
+                icon: PhosphorIcon(PhosphorIconsFill.filmReel),
+                label: 'My Watchlist',
+              ),
+              MDSBottomNavBarItem(
+                icon: PhosphorIcon(PhosphorIconsFill.compass),
+                label: 'Discover',
+              ),
+              MDSBottomNavBarItem(
+                icon: PhosphorIcon(PhosphorIconsFill.gearSix),
+                label: 'Settings',
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

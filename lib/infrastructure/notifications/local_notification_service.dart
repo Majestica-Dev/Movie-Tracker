@@ -51,6 +51,7 @@ abstract final class LocalNotificationService {
 
     final iOSPlatformChannelSpecifics = DarwinNotificationDetails(
       categoryIdentifier: categoryKey,
+      badgeNumber: 1,
     );
 
     final Map<String, dynamic> mergedPayload = {

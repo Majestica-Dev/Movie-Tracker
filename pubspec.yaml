@@ -2,7 +2,7 @@ name: movie_tracker
 description: "A new Flutter project."
 publish_to: "none"
 
-version: 1.0.4+1
+version: 1.0.5+1
 
 environment:
   sdk: ^3.5.0
@@ -48,6 +48,7 @@ dependencies:
   mccounting_text: ^1.0.0
   flutter_native_splash: ^2.4.1
   purchases_flutter: ^8.1.0
+  flutter_app_badge: ^2.0.2
 
 dev_dependencies:
   flutter_lints: ^4.0.0
