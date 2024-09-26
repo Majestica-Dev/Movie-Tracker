@@ -2,14 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-
 import 'package:movie_tracker/domain/movie/entities/failures/movie_search_failure.dart';
-import 'package:movie_tracker/env/env.dart';
-
 import 'package:movie_tracker/core/typdefs/typdef.dart';
-
+import 'package:movie_tracker/env/env_keys.dart';
 import 'package:movie_tracker/infrastructure/movie/search/tmdb/dto/tmdb_movie_dto.dart';
-
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 @Singleton()
@@ -18,7 +14,7 @@ class TmdbSearchService {
 
   TmdbSearchService({required this.dio});
 
-  final String apiKey = Env.tmdbApiKey;
+  final String apiKey = EnvKeys.tmdbApiKey;
   final String baseUrl = 'https://api.themoviedb.org/3/search/movie';
   final String videosBaseUrl = 'https://api.themoviedb.org/3/movie/';
 

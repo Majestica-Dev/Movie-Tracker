@@ -2,7 +2,7 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:dio/dio.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_tracker/env/env.dart';
+import 'package:movie_tracker/env/env_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
@@ -18,7 +18,7 @@ abstract class AppInjectableModule {
 
   @LazySingleton()
   OpenAI get openAI => OpenAI.instance.build(
-        token: Env.gptTestToken,
+        token: EnvKeys.gptToken,
         baseOption: HttpSetup(),
         enableLog: true,
       );

@@ -4,6 +4,7 @@ import 'package:amplitude_flutter/amplitude.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movie_tracker/core/di/locator.dart';
 import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
+import 'package:movie_tracker/env/env_keys.dart';
 
 abstract final class AmplitudeService {
   static final _amplitude = Amplitude.getInstance();
@@ -17,7 +18,7 @@ abstract final class AmplitudeService {
 
   static void init() {
     if (isNotDebugOrTestflight) {
-      _amplitude.init('fa3fa10d405e06e18caed34d690ec99');
+      _amplitude.init(EnvKeys.gptToken);
     }
   }
 
