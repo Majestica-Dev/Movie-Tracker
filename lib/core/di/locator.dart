@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:movie_tracker/application/fisrt_visit/first_visit_cubit.dart';
+import 'package:movie_tracker/application/first_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
 import 'package:movie_tracker/application/movie/actor/movie_actor_bloc.dart';
@@ -56,6 +56,6 @@ abstract final class Locator {
   static MovieAiRecUseCountCubit get movieAiRecUseCountCubit =>
       _getIt<MovieAiRecUseCountCubit>();
 
-  static InstalationSourceService get instalationSourceService =>
+  static InstalationSourceService get installationSourceService =>
       _getIt<InstalationSourceService>();
 }

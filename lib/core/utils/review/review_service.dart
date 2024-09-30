@@ -19,7 +19,7 @@ class ReviewService {
     }
   }
 
-  Future<bool> checkAndRequestReviw({required ReviewFrom reviewFrom}) async {
+  Future<bool> checkAndRequestReview({required ReviewFrom reviewFrom}) async {
     final bool shouldShowReview =
         await _reviewManager.checkShouldShowAndSetShown(
       reviewFrom: reviewFrom,

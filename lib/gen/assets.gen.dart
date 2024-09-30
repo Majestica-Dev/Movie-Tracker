@@ -108,10 +108,14 @@ class $AssetsOnboardingImagesGen {
 class Assets {
   Assets._();
 
+  static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsIntroGen intro = $AssetsIntroGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsOnboardingGen onboarding = $AssetsOnboardingGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

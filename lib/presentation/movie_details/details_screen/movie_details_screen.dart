@@ -14,7 +14,7 @@ import 'package:movie_tracker/core/extensions/movie/movie_watcher_state_x.dart';
 
 import 'package:movie_tracker/core/extensions/movie/movie_x.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
-import 'package:movie_tracker/presentation/core/scafold.dart';
+import 'package:movie_tracker/presentation/core/scaffold.dart';
 import 'package:movie_tracker/presentation/movie_details/details_screen/widgets/listener/movie_details_screen_bloc_listener.dart';
 
 import 'package:movie_tracker/presentation/movie_details/details_screen/widgets/movie_details_screen_app_bar.dart';
@@ -41,7 +41,7 @@ class MovieDetailsScreen extends StatelessWidget {
     return BlocProvider<MovieActorBloc>(
       create: (context) => Locator.movieActorBloc,
       child: MovieDetailsScreenBlocListener(
-        child: MTScafold(
+        child: MTScaffold(
           appBar: MovieDetailsScreenAppBar(movieId: id),
           body: BlocBuilder<MovieWatcherBloc, MovieWatcherState>(
             builder: (context, watcherState) {

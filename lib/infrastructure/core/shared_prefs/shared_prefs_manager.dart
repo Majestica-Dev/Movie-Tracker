@@ -23,6 +23,7 @@ class PrefsKeys {
   static const addedMoviesCount = 'addedMoviesCount';
   static const hasPremium = 'hasPremium';
   static const alreadyAiRecMovies = 'alreadyAiRecMovies';
+  static const shownReviewFromOnboarding = 'shownReviewFromOnboarding';
 
   PrefsKeys._();
 }
@@ -43,6 +44,7 @@ class SharedPrefsManager {
   final Pref<int> addedMoviesCount;
 
   final Pref<bool> hasPremium;
+  final Pref<bool> shownReviewFromOnboarding;
 
   SharedPrefsManager(
     SharedPrefsRawManager sharedPreferences,
@@ -85,5 +87,7 @@ class SharedPrefsManager {
         alreadyAiRecMovies = StringListPref(
           PrefsKeys.alreadyAiRecMovies,
           sharedPreferences,
-        );
+        ),
+        shownReviewFromOnboarding =
+            BoolPref(PrefsKeys.shownReviewFromOnboarding, sharedPreferences);
 }

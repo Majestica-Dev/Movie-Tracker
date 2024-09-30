@@ -85,7 +85,7 @@ class _FindingMovieLastPageState extends State<FindingMovieLastPage> {
                               text: 'See result',
                               disabled: movie == null || !animationEnded,
                               onPressed: () {
-                                Locator.reviewService.checkAndRequestReviw(
+                                Locator.reviewService.checkAndRequestReview(
                                   reviewFrom: ReviewFrom.aiMovieResult,
                                 );
 

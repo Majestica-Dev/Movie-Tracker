@@ -2,11 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/gen/assets.gen.dart';
-import 'package:movie_tracker/presentation/core/scafold.dart';
+import 'package:movie_tracker/presentation/core/scaffold.dart';
 
 import 'package:movie_tracker/presentation/onboarding/models/onboarding_question_item.dart';
 import 'package:movie_tracker/presentation/onboarding/extra/extra_page.dart';
 import 'package:movie_tracker/presentation/onboarding/paywall/paywall_page.dart';
+import 'package:movie_tracker/presentation/onboarding/review/review_page.dart';
 import 'package:movie_tracker/presentation/onboarding/social_trust/social_trust_page.dart';
 import 'package:movie_tracker/presentation/onboarding/structures/onboarding_question_structure.dart';
 
@@ -97,11 +98,12 @@ class OnboardingScreen extends StatelessWidget {
     final List<Widget> pages = [
       SocialTrustPage(changePage: changePage),
       ...questionPages,
+      ReviewPage(changePage: changePage),
       ExtraPage(changePage: changePage),
       const PaywallPage(),
     ];
 
-    return MTScafold(
+    return MTScaffold(
       backgroundColor: t.colors.surface,
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),

@@ -6,7 +6,7 @@ import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/domain/movie/entities/movie.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
-import 'package:movie_tracker/presentation/core/scafold.dart';
+import 'package:movie_tracker/presentation/core/scaffold.dart';
 import 'package:movie_tracker/presentation/onboarding/favorite_movies/widgets/favorite_movie_chooser_grid_view.dart';
 import 'package:movie_tracker/presentation/onboarding/favorite_movies/widgets/favorite_movies_chooser_screen_count_tile.dart';
 import 'package:movie_tracker/presentation/onboarding/favorite_movies/widgets/search_feild_fake.dart';
@@ -28,7 +28,7 @@ class _FavoriteMoviesChooserScreenState
   Widget build(BuildContext context) {
     final t = context.mdsTheme;
 
-    return MTScafold(
+    return MTScaffold(
       backgroundColor: t.colors.surface,
       body: Padding(
         padding: EdgeInsets.only(

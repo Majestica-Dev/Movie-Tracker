@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:majestica_ds/majestica_ds.dart';
 
-class MTScafold extends StatelessWidget {
+class MTScaffold extends StatelessWidget {
   final Widget body;
 
   final Color? backgroundColor;
@@ -15,7 +15,7 @@ class MTScafold extends StatelessWidget {
 
   final bool? resizeToAvoidBottomInset;
 
-  const MTScafold({
+  const MTScaffold({
     this.appBar,
     required this.body,
     this.backgroundColor,

@@ -6,7 +6,7 @@ import 'package:movie_tracker/core/loggers/amplitude_service.dart';
 import 'package:movie_tracker/presentation/core/constants/theme/colors.dart';
 import 'package:movie_tracker/presentation/core/modals/cupertion_style_notification_alert_dialog.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
-import 'package:movie_tracker/presentation/core/scafold.dart';
+import 'package:movie_tracker/presentation/core/scaffold.dart';
 import 'package:movie_tracker/presentation/core/widgets/launch_buttons_tile.dart';
 import 'package:movie_tracker/presentation/intro/listener/intro_screen_listener.dart';
 
@@ -48,7 +48,7 @@ class _IntroScreenState extends State<IntroScreen> {
     final t = context.mdsTheme;
 
     return IntroScreenListener(
-      child: MTScafold(
+      child: MTScaffold(
         body: MDSTheme(
           data: context.mdsTheme.copyWith(
             colors: MTColors.glossy,

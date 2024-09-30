@@ -16,7 +16,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:uuid/uuid.dart' as _i706;
 
-import '../../application/fisrt_visit/first_visit_cubit.dart' as _i808;
+import '../../application/first_visit/first_visit_cubit.dart' as _i808;
 import '../../application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart'
     as _i1013;
 import '../../application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart'
@@ -41,7 +41,7 @@ import '../../infrastructure/core/local_database/drift_database.dart' as _i841;
 import '../../infrastructure/core/shared_prefs/raw_manager.dart' as _i541;
 import '../../infrastructure/core/shared_prefs/shared_prefs_manager.dart'
     as _i352;
-import '../../infrastructure/fisrt_visit/fisrt_visit_pref_manager.dart'
+import '../../infrastructure/first_visit/first_visit_pref_manager.dart'
     as _i657;
 import '../../infrastructure/movie/ai_rec/gpt_movie_rec_impl.dart' as _i914;
 import '../../infrastructure/movie/ai_rec/manager/movie_ai_rec_pref_manager.dart'
@@ -117,8 +117,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i661.MoviePrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i1053.MovieAiRecPrefManager>(
       () => _i1053.MovieAiRecPrefManager(gh<_i352.SharedPrefsManager>()));
-  gh.singleton<_i657.FisrtVisitPrefManager>(
-      () => _i657.FisrtVisitPrefManager(gh<_i352.SharedPrefsManager>()));
+  gh.singleton<_i657.FirstVisitPrefManager>(
+      () => _i657.FirstVisitPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i125.PremiumPrefManager>(
       () => _i125.PremiumPrefManager(gh<_i352.SharedPrefsManager>()));
   gh.singleton<_i947.ReminderPrefManager>(
@@ -144,7 +144,7 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i706.Uuid>(),
       ));
   gh.singleton<_i808.FirstVisitCubit>(
-      () => _i808.FirstVisitCubit(gh<_i657.FisrtVisitPrefManager>()));
+      () => _i808.FirstVisitCubit(gh<_i657.FirstVisitPrefManager>()));
   gh.singleton<_i561.IMovieAiRec>(() => _i691.MovieAiRecImpl(
         gh<_i914.GptMovieRecImpl>(),
         gh<_i71.TmdbSearchService>(),
