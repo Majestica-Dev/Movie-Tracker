@@ -49,7 +49,7 @@ class PurchaseActorBloc extends Bloc<PurchaseActorEvent, PurchaseActorState> {
         Timer(
           const Duration(seconds: 1),
           () {
-            _reviewService.checkAndRequestReviw(
+            _reviewService.checkAndRequestReview(
               reviewFrom: ReviewFrom.boughtPremium,
             );
           },

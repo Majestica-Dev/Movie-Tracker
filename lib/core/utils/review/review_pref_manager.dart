@@ -66,6 +66,7 @@ class ReviewPrefManager {
         _sharedPrefsManager.showedReviewFromPremiumPurchased,
       ReviewFrom.aiMovieResult =>
         _sharedPrefsManager.showedReviewFromAIMovieResult,
+      ReviewFrom.onboarding => _sharedPrefsManager.shownReviewFromOnboarding,
     };
   }
 }

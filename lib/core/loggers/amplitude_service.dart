@@ -11,7 +11,7 @@ abstract final class AmplitudeService {
 
   static bool get isNotDebugOrTestflight {
     final isFromTestFlight =
-        Locator.instalationSourceService.isAppDownloadedFromTestFlight;
+        Locator.installationSourceService.isAppDownloadedFromTestFlight;
 
     return (!kDebugMode && !Platform.isAndroid && !isFromTestFlight);
   }
@@ -55,6 +55,18 @@ abstract final class AmplitudeService {
   static void onbPushRejected() {
     _logEvent(
       name: 'onb_push_rejected',
+    );
+  }
+
+  static void onboardingReviewPageStared() {
+    _logEvent(
+      name: 'onboarding_review_page_starred',
+    );
+  }
+
+  static void onboardingReviewPageSkipped() {
+    _logEvent(
+      name: 'onboarding_review_page_skipped',
     );
   }
 

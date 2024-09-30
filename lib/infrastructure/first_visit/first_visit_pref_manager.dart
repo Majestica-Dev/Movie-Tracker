@@ -2,10 +2,10 @@ import '../core/shared_prefs/shared_prefs_manager.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
-class FisrtVisitPrefManager {
+class FirstVisitPrefManager {
   final SharedPrefsManager _sharedPrefsManager;
 
-  FisrtVisitPrefManager(this._sharedPrefsManager);
+  FirstVisitPrefManager(this._sharedPrefsManager);
 
   bool get isFirstVisit => _sharedPrefsManager.isFirstVisit.get() ?? true;
 

@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:movie_tracker/presentation/core/managers/animations/cnafeti_animation.dart';
 import 'package:movie_tracker/presentation/core/managers/animations/loading_dialog.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
-import '../../../application/fisrt_visit/first_visit_cubit.dart';
+import '../../../application/first_visit/first_visit_cubit.dart';
 import '../../../application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import '../../../application/premium_checker/premium_checker_bloc.dart';
 

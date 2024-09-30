@@ -34,7 +34,7 @@ class MovieSaverBlocListener
                   Timer(
                     const Duration(seconds: 1),
                     () {
-                      Locator.reviewService.checkAndRequestReviw(
+                      Locator.reviewService.checkAndRequestReview(
                         reviewFrom: ReviewFrom.added10movies,
                       );
                     },

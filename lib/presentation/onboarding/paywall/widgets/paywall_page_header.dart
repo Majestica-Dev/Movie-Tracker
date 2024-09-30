@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/icons/icons.dart';
 import 'package:majestica_ds/majestica_ds.dart';
-import 'package:movie_tracker/application/fisrt_visit/first_visit_cubit.dart';
+import 'package:movie_tracker/application/first_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 import 'package:movie_tracker/presentation/onboarding/paywall/widgets/paywall_page_review_tile.dart';
 

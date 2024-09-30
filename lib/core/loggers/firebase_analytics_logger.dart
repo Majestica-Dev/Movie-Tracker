@@ -12,7 +12,7 @@ abstract class FirebaseAnalyticsLogger {
     Map<String, Object>? parameters,
   }) async {
     final isFromTestFlight =
-        Locator.instalationSourceService.isAppDownloadedFromTestFlight;
+        Locator.installationSourceService.isAppDownloadedFromTestFlight;
 
     if (kDebugMode || Platform.isAndroid || isFromTestFlight) {
       // Don't collect analytics in debug mode, in TestFlight and in Android!!
