@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
@@ -23,10 +21,6 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
           'com.majestica.movieTracker.monthly.9',
         ],
       );
-
-      for (var pr in products) {
-        log(pr.identifier);
-      }
 
       if (products.isEmpty) {
         return Left(PurchaseError());
