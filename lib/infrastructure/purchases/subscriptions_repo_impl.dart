@@ -1,6 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+
 import 'package:movie_tracker/domain/purchases/entities/failure/purchase_failure.dart';
 import 'package:movie_tracker/domain/purchases/entities/subscription_plans.dart';
 import 'package:movie_tracker/domain/purchases/i_subscriptions_repo.dart';
@@ -16,7 +18,7 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
       final products = await Purchases.getProducts(
         [
           'com.majestica.movieTracker.yearly35',
-          'com.majestica.movieTracker.weekly3',
+          'com.majestica.movieTracker.monthly.9',
         ],
       );
 
@@ -25,14 +27,16 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
       }
 
       final yearly = products.firstWhere(
-          (e) => e.identifier == 'com.majestica.movieTracker.yearly35');
+        (e) => e.identifier == 'com.majestica.movieTracker.yearly35',
+      );
 
-      final weekly = products.firstWhere(
-          (e) => e.identifier == 'com.majestica.movieTracker.weekly3');
+      final monthly9 = products.firstWhereOrNull(
+        (e) => e.identifier == 'com.majestica.movieTracker.monthly.9,',
+      );
 
       final subscriptionPlans = SubscriptionPlans(
         yearly: yearly,
-        weekly: weekly,
+        monthly9: monthly9,
       );
 
       return Right(subscriptionPlans);

@@ -34,7 +34,7 @@ class _PaywallSheetBottomSectionState extends State<PaywallSheetBottomSection> {
     return BlocBuilder<SubscriptionsFetcherBloc, SubscriptionsFetcherState>(
       builder: (context, fetcherState) {
         return fetcherState.maybeMap(
-          successed: (successedState) {
+          succeed: (successedState) {
             final plans = successedState.subscriptionPlans;
 
             return Column(
@@ -57,7 +57,7 @@ class _PaywallSheetBottomSectionState extends State<PaywallSheetBottomSection> {
                 const Spacer(),
                 PaywallButtonTile(
                   productToPurchase:
-                      isYearlyChosen ? plans.yearly : plans.weekly,
+                      isYearlyChosen ? plans.yearly : plans.monthly9!,
                   isFromOnboarding: false,
                   paywallFrom: widget.paywallFrom,
                 ),

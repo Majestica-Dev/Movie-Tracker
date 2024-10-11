@@ -212,7 +212,7 @@ mixin _$SubscriptionsFetcherState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Successes value)? successed,
+    TResult Function(_Successes value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) =>
@@ -337,7 +337,7 @@ class _$InProgressImpl implements _InProgress {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Successes value)? successed,
+    TResult Function(_Successes value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -476,12 +476,12 @@ class _$SuccessesImpl implements _Successes {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Successes value)? successed,
+    TResult Function(_Successes value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
-    if (successed != null) {
-      return successed(this);
+    if (succeed != null) {
+      return succeed(this);
     }
     return orElse();
   }
@@ -596,7 +596,7 @@ class _$FailedImpl implements _Failed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InProgress value)? inProgress,
-    TResult Function(_Successes value)? successed,
+    TResult Function(_Successes value)? succeed,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {

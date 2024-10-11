@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/core/extensions/store_product/store_product_x.dart';
+import 'package:movie_tracker/core/utils/currency_formatter.dart';
 import 'package:movie_tracker/domain/purchases/entities/subscription_plans.dart';
 
 class PaywallPlanChooserCard extends StatelessWidget {
@@ -20,9 +21,20 @@ class PaywallPlanChooserCard extends StatelessWidget {
     final t = context.mdsTheme;
 
     final yearlyPriceAsString = subscriptionPlans.yearly.priceAsString;
+
     final yearlyPriseMyMonthAsString =
         subscriptionPlans.yearly.perMonthPriceAsString;
-    final weeklyPriseAsString = subscriptionPlans.weekly.priceAsString;
+
+    final monthlyPriseAsString = subscriptionPlans.monthly9?.priceAsString;
+
+    final monthlyPriceYear = subscriptionPlans.monthly9 == null
+        ? 120
+        : subscriptionPlans.monthly9!.price * 12; 
+
+    final savedPrice = CurrencyFormatter.formatCurrencySymbol(
+          subscriptionPlans.yearly.currencyCode,
+        ) +
+        (monthlyPriceYear - subscriptionPlans.yearly.price).toStringAsFixed(2);
 
     return Column(
       children: [
@@ -36,23 +48,35 @@ class PaywallPlanChooserCard extends StatelessWidget {
           },
           child: MDSPayWallOfferCardCustom(
             isActive: isYearlyChosen,
-            cardTitle: 'Best value',
+            cardTitle: 'Save $savedPrice',
             cardTitleColor:
                 isYearlyChosen ? t.colors.highContainerContent : null,
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            body: Row(
               children: [
-                const SizedBox(width: double.infinity),
-                Text(
-                  '1 year $yearlyPriceAsString',
-                  style: t.textTheme.title2Regular.copyWith(
-                    color: t.colors.neutralHighContent,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: double.infinity),
+                      Text(
+                        'Yearly Plan',
+                        style: t.textTheme.title2Regular.copyWith(
+                          color: t.colors.neutralHighContent,
+                        ),
+                      ),
+                      SizedBox(height: t.spacing.x1),
+                      Text(
+                        '12 months $yearlyPriceAsString',
+                        style: t.textTheme.bodySRegular.copyWith(
+                          color: t.colors.neutralHighContent,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: t.spacing.x1),
                 Text(
-                  'Only $yearlyPriseMyMonthAsString / month',
-                  style: t.textTheme.bodySRegular.copyWith(
+                  '$yearlyPriseMyMonthAsString / month',
+                  style: t.textTheme.bodyMBold.copyWith(
                     color: t.colors.neutralHighContent,
                   ),
                 ),
@@ -61,19 +85,21 @@ class PaywallPlanChooserCard extends StatelessWidget {
           ),
         ),
         SizedBox(height: t.spacing.x3),
-        GestureDetector(
-          onTap: () {
-            if (isYearlyChosen) {
-              MDSHapticFeedback.selectionClick();
+        if (monthlyPriseAsString != null)
+          GestureDetector(
+            onTap: () {
+              if (isYearlyChosen) {
+                MDSHapticFeedback.selectionClick();
 
-              yearlyChosen(false);
-            }
-          },
-          child: MDSPayWallTile(
-            isActive: !isYearlyChosen,
-            firstText: '$weeklyPriseAsString / week',
-          ),
-        )
+                yearlyChosen(false);
+              }
+            },
+            child: MDSPayWallTile(
+              isActive: !isYearlyChosen,
+              firstText: 'Monthly',
+              secondText: '$monthlyPriseAsString / month',
+            ),
+          )
       ],
     );
   }
