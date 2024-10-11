@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
@@ -22,6 +24,10 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
         ],
       );
 
+      for (var pr in products) {
+        log(pr.identifier);
+      }
+
       if (products.isEmpty) {
         return Left(PurchaseError());
       }
@@ -31,7 +37,7 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
       );
 
       final monthly9 = products.firstWhereOrNull(
-        (e) => e.identifier == 'com.majestica.movieTracker.monthly.9,',
+        (e) => e.identifier == 'com.majestica.movieTracker.monthly.9',
       );
 
       final subscriptionPlans = SubscriptionPlans(
