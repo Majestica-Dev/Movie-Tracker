@@ -25,11 +25,9 @@ class PaywallPlanChooserCard extends StatelessWidget {
     final yearlyPriseMyMonthAsString =
         subscriptionPlans.yearly.perMonthPriceAsString;
 
-    final monthlyPriseAsString = subscriptionPlans.monthly9?.priceAsString;
+    final monthlyPriseAsString = subscriptionPlans.monthly9.priceAsString;
 
-    final monthlyPriceYear = subscriptionPlans.monthly9 == null
-        ? 120
-        : subscriptionPlans.monthly9!.price * 12; 
+    final monthlyPriceYear = subscriptionPlans.monthly9.price * 12;
 
     final savedPrice = CurrencyFormatter.formatCurrencySymbol(
           subscriptionPlans.yearly.currencyCode,
@@ -85,21 +83,20 @@ class PaywallPlanChooserCard extends StatelessWidget {
           ),
         ),
         SizedBox(height: t.spacing.x3),
-        if (monthlyPriseAsString != null)
-          GestureDetector(
-            onTap: () {
-              if (isYearlyChosen) {
-                MDSHapticFeedback.selectionClick();
+        GestureDetector(
+          onTap: () {
+            if (isYearlyChosen) {
+              MDSHapticFeedback.selectionClick();
 
-                yearlyChosen(false);
-              }
-            },
-            child: MDSPayWallTile(
-              isActive: !isYearlyChosen,
-              firstText: 'Monthly',
-              secondText: '$monthlyPriseAsString / month',
-            ),
-          )
+              yearlyChosen(false);
+            }
+          },
+          child: MDSPayWallTile(
+            isActive: !isYearlyChosen,
+            firstText: 'Monthly',
+            secondText: '$monthlyPriseAsString / month',
+          ),
+        )
       ],
     );
   }

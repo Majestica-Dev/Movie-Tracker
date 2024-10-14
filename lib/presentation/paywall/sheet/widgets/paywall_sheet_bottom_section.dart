@@ -56,9 +56,8 @@ class _PaywallSheetBottomSectionState extends State<PaywallSheetBottomSection> {
                 if (!isSmallScreen) const SecuredByAppleCard(),
                 const Spacer(),
                 PaywallButtonTile(
-                  productToPurchase: isYearlyChosen
-                      ? plans.yearly
-                      : plans.monthly9 ?? plans.yearly,
+                  productToPurchase:
+                      isYearlyChosen ? plans.yearly : plans.monthly9,
                   isFromOnboarding: false,
                   paywallFrom: widget.paywallFrom,
                 ),

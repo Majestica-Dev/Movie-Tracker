@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
@@ -30,7 +29,7 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
         (e) => e.identifier == 'com.majestica.movieTracker.yearly35',
       );
 
-      final monthly9 = products.firstWhereOrNull(
+      final monthly9 = products.firstWhere(
         (e) => e.identifier == 'com.majestica.movieTracker.monthly.9',
       );
 

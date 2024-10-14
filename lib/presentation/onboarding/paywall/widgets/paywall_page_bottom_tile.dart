@@ -51,9 +51,8 @@ class _PaywallPageBottomTileState extends State<PaywallPageBottomTile> {
                 if (!isSmallScreen) const SecuredByAppleCard(),
                 const Spacer(),
                 PaywallPageButtonTile(
-                  productToPurchase: isYearlyChosen
-                      ? plans.yearly
-                      : plans.monthly9 ?? plans.yearly,
+                  productToPurchase:
+                      isYearlyChosen ? plans.yearly : plans.monthly9,
                 ),
               ],
             );
