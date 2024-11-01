@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/gen/assets.gen.dart';
@@ -97,7 +97,6 @@ class OnboardingScreen extends StatelessWidget {
     ];
 
     final List<Widget> pages = [
-      if (kDebugMode) const PaywallPage(),
       SocialTrustPage(changePage: changePage),
       ...questionPages,
       ReviewPage(changePage: changePage),
