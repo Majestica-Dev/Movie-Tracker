@@ -19,11 +19,11 @@ void initAndRunApp() async {
 
   _initWidgetBindingAndPreserveSplash();
 
-  await configureDependencies();
-
   await _initPurchases();
 
   await _initFirebase();
+
+  await configureDependencies();
 
   _initAmplitude();
 

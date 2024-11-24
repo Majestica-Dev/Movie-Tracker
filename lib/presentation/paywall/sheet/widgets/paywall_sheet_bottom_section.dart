@@ -34,7 +34,7 @@ class _PaywallSheetBottomSectionState extends State<PaywallSheetBottomSection> {
     return BlocBuilder<SubscriptionsFetcherBloc, SubscriptionsFetcherState>(
       builder: (context, fetcherState) {
         return fetcherState.maybeMap(
-          succeed: (succeedState) {
+          successed: (succeedState) {
             final plans = succeedState.subscriptionPlans;
 
             return Column(

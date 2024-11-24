@@ -6,6 +6,8 @@ import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/first_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import 'package:movie_tracker/application/premium_checker/premium_checker_bloc.dart';
+import 'package:movie_tracker/core/di/locator.dart';
+import 'package:movie_tracker/core/loggers/firebase_analytics_logger.dart';
 import 'package:movie_tracker/presentation/core/managers/animations/cnafeti_animation.dart';
 import 'package:movie_tracker/presentation/core/managers/animations/loading_dialog.dart';
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
@@ -34,6 +36,8 @@ class PaywallPageListener extends StatelessWidget {
               const FavoriteMoviesChooserRoute(),
               predicate: (route) => false,
             );
+
+            FirebaseAnalyticsLogger.onboardingPremiumSold();
 
             CanfetiAnimation.show();
           },

@@ -1,5 +1,6 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_tracker/env/env_keys.dart';
@@ -25,6 +26,10 @@ abstract class AppInjectableModule {
 
   @singleton
   InAppReview get inAppReview => InAppReview.instance;
+
+  @singleton
+  FirebaseRemoteConfig get firebaseRemoteConfig =>
+      FirebaseRemoteConfig.instance;
 
   @singleton
   Uuid get uuid => const Uuid();
