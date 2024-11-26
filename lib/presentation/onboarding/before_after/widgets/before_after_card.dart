@@ -47,13 +47,13 @@ class BeforeAfterCard extends StatelessWidget {
           SizedBox(height: t.spacing.x8),
           isBefore
               ? PhosphorIcon(
-                  PhosphorIconsRegular.heartBreak,
+                  PhosphorIconsRegular.smileySad,
                   color: t.colors.neutralHighContent,
                   size: 64,
                 )
               : LightShadow(
                   child: PhosphorIcon(
-                    PhosphorIconsFill.heart,
+                    PhosphorIconsFill.popcorn,
                     color: t.colors.allWhite,
                     size: 64,
                   ),

@@ -31,7 +31,7 @@ class BeforeAfterPage extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Effortless Choices,\nEndless Fun',
+            'Your Magical Movie Companion',
             style: t.textTheme.title1Bold.copyWith(
               color: t.colors.neutralHighContent,
             ),
@@ -39,7 +39,7 @@ class BeforeAfterPage extends StatelessWidget {
           ),
           SizedBox(height: t.spacing.x2),
           Text(
-            'Discover, decide, and dive into movie magic.',
+            'Handpicked Movies,\nPerfect for Your Mood and Joy.',
             style: t.textTheme.bodyMRegular.copyWith(
               color: t.colors.neutralMedContent,
             ),
