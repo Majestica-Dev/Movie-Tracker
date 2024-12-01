@@ -29,9 +29,11 @@ class PaywallPageBody extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: isSmallScreen ? 0 : 68),
+            SizedBox(height: isSmallScreen ? 30 : 68),
             const PaywallPageHeader(),
-            const Expanded(child: PaywallPageBottomTile())
+            const Expanded(
+              child: PaywallPageBottomTile(),
+            )
           ],
         ),
       ),

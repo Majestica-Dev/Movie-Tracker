@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
+import 'package:movie_tracker/core/extensions/store_product/store_product_x.dart';
+import 'package:movie_tracker/domain/purchases/entities/subscription_plans.dart';
 import 'package:movie_tracker/presentation/onboarding/paywall/widgets/paywall_page_button_tile.dart';
 
 import 'package:movie_tracker/presentation/paywall/widgets/paywall_plan_chooser_card.dart';
@@ -50,6 +52,13 @@ class _PaywallPageBottomTileState extends State<PaywallPageBottomTile> {
                 SizedBox(height: t.spacing.x6),
                 if (!isSmallScreen) const SecuredByAppleCard(),
                 const Spacer(),
+                Text(
+                  title(plans),
+                  style: t.textTheme.bodyMRegular.copyWith(
+                    color: t.colors.neutralHighContent,
+                  ),
+                ),
+                SizedBox(height: t.spacing.x2),
                 PaywallPageButtonTile(
                   productToPurchase:
                       isYearlyChosen ? plans.yearly : plans.monthly9,
@@ -61,5 +70,13 @@ class _PaywallPageBottomTileState extends State<PaywallPageBottomTile> {
         );
       },
     );
+  }
+
+  String title(SubscriptionPlans plans) {
+    if (isYearlyChosen) {
+      return 'Yearly ${plans.yearly.priceAsString}';
+    } else {
+      return 'Monthly ${plans.monthly9.priceAsString}';
+    }
   }
 }

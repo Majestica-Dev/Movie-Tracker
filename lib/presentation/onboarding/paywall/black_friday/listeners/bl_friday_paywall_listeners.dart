@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/icons/icons.dart';
 import 'package:majestica_ds/majestica_ds.dart';
+import 'package:movie_tracker/application/first_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import 'package:movie_tracker/application/premium_checker/premium_checker_bloc.dart';
 import 'package:movie_tracker/core/loggers/firebase_analytics_logger.dart';
@@ -53,6 +54,33 @@ class BlFridayPaywallListeners extends StatelessWidget {
             const MDSToast(
               type: ToastType.neutral,
               message: 'Something went wrong',
+              icon: PhosphorIcon(PhosphorIconsRegular.warning),
+            ).show();
+          },
+          restored: (_) {
+            context.read<PremiumCheckerBloc>().add(
+                  const PremiumCheckerEvent.check(),
+                );
+
+            context.router.pushAndPopUntil(
+              const FavoriteMoviesChooserRoute(),
+              predicate: (route) => false,
+            );
+
+            context.read<FirstVisitCubit>().recordVisit();
+
+            const MDSToast(
+              type: ToastType.success,
+              message: 'Successfully restored!',
+              icon: PhosphorIcon(PhosphorIconsRegular.checkCircle),
+            ).show();
+          },
+          noAccountsToRestore: (_) {
+            context.router.maybePop();
+
+            const MDSToast(
+              type: ToastType.neutral,
+              message: 'No purchases to restore',
               icon: PhosphorIcon(PhosphorIconsRegular.warning),
             ).show();
           },

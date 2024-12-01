@@ -60,7 +60,7 @@ class BlackFridayPaywallScreen extends StatelessWidget {
                       child: PhosphorIcon(
                         PhosphorIconsRegular.x,
                         size: 24,
-                        color: const Color(0xff9397AB).withOpacity(.4),
+                        color: const Color(0xff9397AB).withOpacity(.7),
                       ),
                     ),
                   ),
@@ -105,10 +105,10 @@ class BlackFridayPaywallScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 35),
+              const Spacer(),
               const BlFridatFeaturesList(),
               const Spacer(),
-              const BlFridayBottomTile()
+              const BlFridayBottomTile(),
             ],
           ),
         ),

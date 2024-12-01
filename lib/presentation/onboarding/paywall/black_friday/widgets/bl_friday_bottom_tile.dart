@@ -6,7 +6,9 @@ import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher
 import 'package:movie_tracker/core/extensions/store_product/store_product_x.dart';
 import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/gen/fonts.gen.dart';
+import 'package:movie_tracker/presentation/core/constants/app_url.dart';
 import 'package:movie_tracker/presentation/core/constants/theme/colors.dart';
+import 'package:movie_tracker/presentation/core/utils/url_launcher.dart';
 
 class BlFridayBottomTile extends StatelessWidget {
   const BlFridayBottomTile({super.key});
@@ -15,13 +17,17 @@ class BlFridayBottomTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = context.mdsTheme;
 
+    final double screenHeight = MediaQuery.of(context).size.height;
+
+    final bool isSmallScreen = screenHeight < 700;
+
     return BlocBuilder<SubscriptionsFetcherBloc, SubscriptionsFetcherState>(
       builder: (context, fetcherState) {
         return fetcherState.maybeMap(
           orElse: () => Center(
             child: CupertinoActivityIndicator(
-              radius: 32,
-              color: context.mdsTheme.colors.primaryHighContainer,
+              radius: 22,
+              color: context.mdsTheme.colors.allWhite,
             ),
           ),
           successed: (succeededState) {
@@ -46,7 +52,7 @@ class BlFridayBottomTile extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Text(
-                        "${product.priceAsString}/yr",
+                        "${product.priceAsString}/year",
                         style: t.textTheme.title1Bold.copyWith(
                           color: const Color(0xffEB4E3D),
                           fontFamily: FontFamily.sFPro,
@@ -54,7 +60,7 @@ class BlFridayBottomTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(height: isSmallScreen ? 20 : 40),
                   MDSTheme(
                     data: t.copyWith(colors: MTColors.glossy),
                     child: PrimaryButton(
@@ -70,6 +76,48 @@ class BlFridayBottomTile extends StatelessWidget {
                             );
                       },
                     ),
+                  ),
+                  SizedBox(height: t.spacing.x2),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => UrlLauncher.launchUrl(MTUrls.terms),
+                        child: Text(
+                          'Terms & Conditions',
+                          maxLines: 2,
+                          style: t.textTheme.bodyXSRegular.copyWith(
+                            color: t.colors.allWhite,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          context.read<PurchaseActorBloc>().add(
+                                const PurchaseActorEvent.restore(),
+                              );
+                        },
+                        child: Text(
+                          'Restore purchases',
+                          maxLines: 1,
+                          style: t.textTheme.bodyXSRegular.copyWith(
+                            color: t.colors.allWhite,
+                            fontFamily: FontFamily.sFPro,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () =>
+                            UrlLauncher.launchUrl(MTUrls.privacyPolicy),
+                        child: Text(
+                          'Privacy Policy',
+                          maxLines: 1,
+                          style: t.textTheme.bodyXSRegular.copyWith(
+                            color: t.colors.allWhite,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
