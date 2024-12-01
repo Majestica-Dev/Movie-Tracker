@@ -18,6 +18,7 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
         [
           'com.majestica.movieTracker.yearly35',
           'com.majestica.movieTracker.monthly.9',
+          'com.majestica.movieTracker.yearly.19'
         ],
       );
 
@@ -33,9 +34,14 @@ class SubscriptionsRepoImpl implements ISubscriptionsRepo {
         (e) => e.identifier == 'com.majestica.movieTracker.monthly.9',
       );
 
+      final yearly19 = products.firstWhere(
+        (e) => e.identifier == 'com.majestica.movieTracker.yearly.19',
+      );
+
       final subscriptionPlans = SubscriptionPlans(
         yearly: yearly,
         monthly9: monthly9,
+        yearly19: yearly19,
       );
 
       return Right(subscriptionPlans);

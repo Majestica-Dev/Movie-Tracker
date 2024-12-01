@@ -7,4 +7,10 @@ extension PremiumCheckerX on PremiumCheckerState {
       orElse: () => false,
     );
   }
+
+  bool get isChecked => map(
+        initial: (value) => false,
+        premium: (value) => true,
+        limited: (value) => true,
+      );
 }

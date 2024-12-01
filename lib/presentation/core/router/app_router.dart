@@ -25,5 +25,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: MovieDetailsRoute.page),
         AutoRoute(page: MovieOverviewRoute.page),
         AutoRoute(page: FavoriteMoviesChooserRoute.page),
+        CustomRoute(
+          page: BlackFridayPaywallRoute.page,
+          transitionsBuilder: TransitionsBuilders.noTransition,
+          reverseDurationInMilliseconds: 0,
+        ),
       ];
 }

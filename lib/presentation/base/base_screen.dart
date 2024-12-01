@@ -15,7 +15,7 @@ class BaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<PageRouteInfo<dynamic>> routes = [
-      const HomeRoute(),
+      HomeRoute(isFromOnboarding: false),
       const DiscoverRoute(),
       const SettingsRoute(),
     ];

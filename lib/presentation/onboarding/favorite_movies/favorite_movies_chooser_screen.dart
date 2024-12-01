@@ -84,7 +84,7 @@ class _FavoriteMoviesChooserScreenState
                     MovieSaverEvent.saveAll(movies: chosenMovieFromOurRec));
 
                 context.router.pushAndPopUntil(
-                  const HomeRoute(),
+                  HomeRoute(isFromOnboarding: true),
                   predicate: (_) => false,
                 );
               },

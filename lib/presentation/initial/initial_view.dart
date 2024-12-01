@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
-
 import 'package:movie_tracker/application/first_visit/first_visit_cubit.dart';
-
 import 'package:movie_tracker/presentation/core/router/app_router.gr.dart';
 
 import 'package:flutter/widgets.dart';
@@ -38,7 +35,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Future<void> _openFirstScreen(BuildContext context) async {
     final isFirstVisit = context.read<FirstVisitCubit>().state;
 
-    if (isFirstVisit || kDebugMode) {
+    if (isFirstVisit) {
       context.router.replace(
         const IntroRoute(),
       );

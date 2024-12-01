@@ -12,14 +12,20 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/65percent_badge.svg
+  String get a65percentBadge => 'assets/icons/65percent_badge.svg';
+
   /// File path: assets/icons/app_icon.png
   AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.png');
+
+  /// File path: assets/icons/black_friday_title.svg
+  String get blackFridayTitle => 'assets/icons/black_friday_title.svg';
 
   /// Directory path: assets/icons/spike
   $AssetsIconsSpikeGen get spike => const $AssetsIconsSpikeGen();
 
   /// List of all assets
-  List<AssetGenImage> get values => [appIcon];
+  List<dynamic> get values => [a65percentBadge, appIcon, blackFridayTitle];
 }
 
 class $AssetsIntroGen {

@@ -27,7 +27,7 @@ class PaywallPageHeader extends StatelessWidget {
                 context.read<FirstVisitCubit>().recordVisit();
 
                 context.router.pushAndPopUntil(
-                  const FavoriteMoviesChooserRoute(),
+                  BlackFridayPaywallRoute(isFromOnboarding: true),
                   predicate: (route) => false,
                 );
               },

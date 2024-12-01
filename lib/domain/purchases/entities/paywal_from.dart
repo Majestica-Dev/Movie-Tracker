@@ -3,4 +3,5 @@ enum PaywallFrom {
   addMovie,
   discover,
   onboarding,
+  blackFriday,
 }
