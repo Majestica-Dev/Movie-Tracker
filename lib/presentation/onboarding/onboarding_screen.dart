@@ -1,10 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/majestica_ds.dart';
-import 'package:movie_tracker/application/remote_config/before_after_page_remote_config.dart';
-import 'package:movie_tracker/core/di/locator.dart';
 import 'package:movie_tracker/gen/assets.gen.dart';
 import 'package:movie_tracker/presentation/core/scaffold.dart';
 import 'package:movie_tracker/presentation/onboarding/before_after/before_after_page.dart';
@@ -33,100 +30,84 @@ class OnboardingScreen extends StatelessWidget {
       );
     }
 
-    return BlocProvider<BeforeAfterPageRemoteConfig>(
-      create: (_) => Locator.beforeAfterPageRemoteConfig,
-      child: MTScaffold(
-        backgroundColor: t.colors.surface,
-        body: BlocBuilder<BeforeAfterPageRemoteConfig, bool>(
-          builder: (context, isWithBeforeAfterPage) {
-            final List<Widget> pages = [
-              SocialTrustPage(changePage: changePage),
-              OnboardingQuestionStructure(
-                changePage: changePage,
-                title: 'How long do you typically spend searching for a movie?',
-                iconPath: Assets.onboarding.icons.clock,
-                questions: [
-                  OnboardingQuestionItem(
-                      emoji: '😇', title: 'Less than 15 minutes'),
-                  OnboardingQuestionItem(emoji: '🙂', title: '15 - 40 minutes'),
-                  OnboardingQuestionItem(
-                      emoji: '🙁', title: 'More than 40 minutes'),
-                ],
-              ),
-              OnboardingQuestionStructure(
-                changePage: changePage,
-                title:
-                    'Do you ever start a movie and realize it’s not what you wanted?',
-                iconPath: Assets.onboarding.icons.crying,
-                questions: [
-                  OnboardingQuestionItem(emoji: '🤔', title: 'Often'),
-                  OnboardingQuestionItem(emoji: '😐', title: 'Sometimes'),
-                  OnboardingQuestionItem(emoji: '😊', title: 'Rarely'),
-                ],
-              ),
-              OnboardingQuestionStructure(
-                changePage: () {
-                  context.read<BeforeAfterPageRemoteConfig>().init();
+    final List<Widget> pages = [
+      SocialTrustPage(changePage: changePage),
+      OnboardingQuestionStructure(
+        changePage: changePage,
+        title: 'How long do you typically spend searching for a movie?',
+        iconPath: Assets.onboarding.icons.clock,
+        questions: [
+          OnboardingQuestionItem(emoji: '😇', title: 'Less than 15 minutes'),
+          OnboardingQuestionItem(emoji: '🙂', title: '15 - 40 minutes'),
+          OnboardingQuestionItem(emoji: '🙁', title: 'More than 40 minutes'),
+        ],
+      ),
+      OnboardingQuestionStructure(
+        changePage: changePage,
+        title:
+            'Do you ever start a movie and realize it’s not what you wanted?',
+        iconPath: Assets.onboarding.icons.crying,
+        questions: [
+          OnboardingQuestionItem(emoji: '🤔', title: 'Often'),
+          OnboardingQuestionItem(emoji: '😐', title: 'Sometimes'),
+          OnboardingQuestionItem(emoji: '😊', title: 'Rarely'),
+        ],
+      ),
+      OnboardingQuestionStructure(
+        changePage: changePage,
+        title:
+            'How satisfied are you with the recommendations on streaming platforms?',
+        iconPath: Assets.onboarding.icons.film,
+        questions: [
+          OnboardingQuestionItem(emoji: '😍', title: 'Very satisfied'),
+          OnboardingQuestionItem(emoji: '🙂', title: 'Satisfied'),
+          OnboardingQuestionItem(emoji: '😐', title: 'Neutral'),
+          OnboardingQuestionItem(emoji: '😞', title: 'Dissatisfied'),
+        ],
+      ),
+      OnboardingQuestionStructure(
+        changePage: changePage,
+        title: 'Do you feel that most movie suggestions don’t match your mood?',
+        iconPath: Assets.onboarding.icons.film,
+        questions: [
+          OnboardingQuestionItem(emoji: '😕', title: 'Yes'),
+          OnboardingQuestionItem(emoji: '😐', title: 'Sometimes'),
+          OnboardingQuestionItem(emoji: '😊', title: 'No'),
+        ],
+      ),
+      OnboardingQuestionStructure(
+        changePage: changePage,
+        title:
+            'How often do you want to watch something but can’t decide what?',
+        iconPath: Assets.onboarding.icons.film,
+        questions: [
+          OnboardingQuestionItem(emoji: '😞', title: 'Often'),
+          OnboardingQuestionItem(emoji: '😕', title: 'Sometimes'),
+          OnboardingQuestionItem(emoji: '😊', title: 'Rarely'),
+        ],
+      ),
+      OnboardingQuestionStructure(
+        changePage: changePage,
+        title: 'Do you struggle to find movies that match your unique tastes?',
+        iconPath: Assets.onboarding.icons.film,
+        questions: [
+          OnboardingQuestionItem(emoji: '😞', title: 'Often'),
+          OnboardingQuestionItem(emoji: '😕', title: 'Sometimes'),
+          OnboardingQuestionItem(emoji: '😊', title: 'Rarely'),
+        ],
+      ),
+      ReviewPage(changePage: changePage),
+      ExtraPage(changePage: changePage),
+      BeforeAfterPage(changePage: changePage),
+      const PaywallPage(),
+    ];
 
-                  changePage();
-                },
-                title:
-                    'How satisfied are you with the recommendations on streaming platforms?',
-                iconPath: Assets.onboarding.icons.film,
-                questions: [
-                  OnboardingQuestionItem(emoji: '😍', title: 'Very satisfied'),
-                  OnboardingQuestionItem(emoji: '🙂', title: 'Satisfied'),
-                  OnboardingQuestionItem(emoji: '😐', title: 'Neutral'),
-                  OnboardingQuestionItem(emoji: '😞', title: 'Dissatisfied'),
-                ],
-              ),
-              OnboardingQuestionStructure(
-                changePage: changePage,
-                title:
-                    'Do you feel that most movie suggestions don’t match your mood?',
-                iconPath: Assets.onboarding.icons.film,
-                questions: [
-                  OnboardingQuestionItem(emoji: '😕', title: 'Yes'),
-                  OnboardingQuestionItem(emoji: '😐', title: 'Sometimes'),
-                  OnboardingQuestionItem(emoji: '😊', title: 'No'),
-                ],
-              ),
-              OnboardingQuestionStructure(
-                changePage: changePage,
-                title:
-                    'How often do you want to watch something but can’t decide what?',
-                iconPath: Assets.onboarding.icons.film,
-                questions: [
-                  OnboardingQuestionItem(emoji: '😞', title: 'Often'),
-                  OnboardingQuestionItem(emoji: '😕', title: 'Sometimes'),
-                  OnboardingQuestionItem(emoji: '😊', title: 'Rarely'),
-                ],
-              ),
-              OnboardingQuestionStructure(
-                changePage: changePage,
-                title:
-                    'Do you struggle to find movies that match your unique tastes?',
-                iconPath: Assets.onboarding.icons.film,
-                questions: [
-                  OnboardingQuestionItem(emoji: '😞', title: 'Often'),
-                  OnboardingQuestionItem(emoji: '😕', title: 'Sometimes'),
-                  OnboardingQuestionItem(emoji: '😊', title: 'Rarely'),
-                ],
-              ),
-              ReviewPage(changePage: changePage),
-              ExtraPage(changePage: changePage),
-              if (isWithBeforeAfterPage)
-                BeforeAfterPage(changePage: changePage),
-              const PaywallPage(),
-            ];
-
-            return PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: pageController,
-              children: pages,
-            );
-          },
-        ),
+    return MTScaffold(
+      backgroundColor: t.colors.surface,
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: pageController,
+        children: pages,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:movie_tracker/application/app_store_review_checker/app_store_review_checker_cubit.dart';
 import 'package:movie_tracker/application/first_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
@@ -10,7 +11,6 @@ import 'package:movie_tracker/application/movie/saver/movie_saver_bloc.dart';
 import 'package:movie_tracker/application/movie/search/movie_search_bloc.dart';
 import 'package:movie_tracker/application/movie/watcher/movie_watcher_bloc.dart';
 import 'package:movie_tracker/application/premium_checker/premium_checker_bloc.dart';
-import 'package:movie_tracker/application/remote_config/before_after_page_remote_config.dart';
 import 'package:movie_tracker/core/services/instalation_source_service.dart';
 import 'package:movie_tracker/core/utils/review/review_service.dart';
 import 'package:movie_tracker/infrastructure/movie/ai_rec/manager/movie_ai_rec_pref_manager.dart';
@@ -23,6 +23,9 @@ abstract final class Locator {
   static final GetIt _getIt = GetIt.I;
 
   static AppRouter get appRouter => _getIt<AppRouter>();
+
+  static AppStoreReviewCheckerCubit get appStoreReviewCheckerCubit =>
+      _getIt<AppStoreReviewCheckerCubit>();
 
   static MovieSearchBloc get movieSearchBloc => _getIt<MovieSearchBloc>();
 
@@ -59,7 +62,4 @@ abstract final class Locator {
 
   static InstalationSourceService get installationSourceService =>
       _getIt<InstalationSourceService>();
-
-  static BeforeAfterPageRemoteConfig get beforeAfterPageRemoteConfig =>
-      _getIt<BeforeAfterPageRemoteConfig>();
 }

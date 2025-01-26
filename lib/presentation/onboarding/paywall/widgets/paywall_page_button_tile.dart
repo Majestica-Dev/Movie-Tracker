@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:majestica_ds/majestica_ds.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
+import 'package:movie_tracker/core/extensions/store_product/store_product_x.dart';
 import 'package:movie_tracker/domain/purchases/entities/paywal_from.dart';
 import 'package:movie_tracker/presentation/core/widgets/launch_buttons_tile.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class PaywallPageButtonTile extends StatelessWidget {
+  final bool isInReview;
+
   final StoreProduct productToPurchase;
 
   const PaywallPageButtonTile({
     required this.productToPurchase,
+    required this.isInReview,
     super.key,
   });
 
@@ -35,7 +39,9 @@ class PaywallPageButtonTile extends StatelessWidget {
       child: Column(
         children: [
           PrimaryButton(
-            text: 'Continue',
+            text: isInReview
+                ? 'Subscribe ${productToPurchase.priceAsString}'
+                : 'Continue',
             buttonSize: MDSButtonSize.L,
             expand: true,
             onPressed: () {

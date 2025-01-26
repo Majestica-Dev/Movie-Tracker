@@ -78,17 +78,19 @@ class MovieCover extends StatelessWidget {
   List<BoxShadow>? get _boxShadow {
     if (removeShadow ||
         movieCoverSize == MovieCoverSize.XS ||
-        movieCoverSize == MovieCoverSize.XS2) return null;
+        movieCoverSize == MovieCoverSize.XS2) {
+      return null;
+    }
 
     return [
       BoxShadow(
-        color: const Color(0xff2A2A30).withOpacity(.25),
+        color: const Color(0xff2A2A30).withValues(alpha: .25),
         offset: const Offset(0, 0),
         blurRadius: 2,
         spreadRadius: 0,
       ),
       BoxShadow(
-        color: const Color(0xff201F31).withOpacity(.2),
+        color: const Color(0xff201F31).withValues(alpha: .2),
         offset: const Offset(0, 3.1),
         blurRadius: 10,
         spreadRadius: 1,

@@ -17,6 +17,8 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:uuid/uuid.dart' as _i706;
 
+import '../../application/app_store_review_checker/app_store_review_checker_cubit.dart'
+    as _i784;
 import '../../application/first_visit/first_visit_cubit.dart' as _i235;
 import '../../application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart'
     as _i1013;
@@ -32,8 +34,6 @@ import '../../application/movie/saver/movie_saver_bloc.dart' as _i47;
 import '../../application/movie/search/movie_search_bloc.dart' as _i1024;
 import '../../application/movie/watcher/movie_watcher_bloc.dart' as _i756;
 import '../../application/premium_checker/premium_checker_bloc.dart' as _i277;
-import '../../application/remote_config/before_after_page_remote_config.dart'
-    as _i621;
 import '../../domain/movie/repositories/i_movie_ai_rec.dart' as _i561;
 import '../../domain/movie/repositories/i_movie_repo.dart' as _i72;
 import '../../domain/movie/repositories/i_movie_search_repo.dart' as _i1069;
@@ -92,6 +92,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i706.Uuid>(() => appInjectableModule.uuid);
   gh.singleton<_i841.AppDriftDatabase>(() => _i841.AppDriftDatabase());
   gh.singleton<_i300.AppRouter>(() => _i300.AppRouter());
+  gh.singleton<_i784.AppStoreReviewCheckerCubit>(
+      () => _i784.AppStoreReviewCheckerCubit());
   gh.lazySingleton<_i361.Dio>(() => appInjectableModule.dio);
   gh.lazySingleton<_i1054.OpenAI>(() => appInjectableModule.openAI);
   gh.singleton<_i617.ISubscriptionsRepo>(() => _i621.SubscriptionsRepoImpl());
@@ -100,11 +102,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i5.IPurchaseActionRepo>(() => _i690.PurchaseActionRepoImpl());
   gh.factory<_i541.SharedPrefsRawManager>(
       () => _i541.SharedPrefsRawManager(gh<_i460.SharedPreferences>()));
-  gh.singleton<_i621.BeforeAfterPageRemoteConfig>(
-      () => _i621.BeforeAfterPageRemoteConfig(
-            gh<_i627.FirebaseRemoteConfig>(),
-            gh<_i178.InstalationSourceService>(),
-          ));
   gh.singleton<_i71.TmdbSearchService>(
       () => _i71.TmdbSearchService(dio: gh<_i361.Dio>()));
   gh.singleton<_i72.IMovieRepo>(

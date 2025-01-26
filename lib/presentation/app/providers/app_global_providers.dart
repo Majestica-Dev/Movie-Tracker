@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_tracker/application/app_store_review_checker/app_store_review_checker_cubit.dart';
 import 'package:movie_tracker/application/first_visit/first_visit_cubit.dart';
 import 'package:movie_tracker/application/in_app_purchases/purchase_actor/purchase_actor_bloc.dart';
 import 'package:movie_tracker/application/in_app_purchases/subscriptions_fetcher/subscriptions_fetcher_bloc.dart';
@@ -41,6 +42,10 @@ class AppGlobalProviders extends StatelessWidget {
             ..add(
               const SubscriptionsFetcherEvent.fetch(),
             ),
+        ),
+        BlocProvider<AppStoreReviewCheckerCubit>(
+          lazy: false,
+          create: (_) => Locator.appStoreReviewCheckerCubit..check(),
         ),
         BlocProvider<PurchaseActorBloc>(
           create: (_) => Locator.purchaseActorBloc,
